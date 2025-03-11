@@ -5,6 +5,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login';
 import { store } from './store/store';
+import { PrivateRoute } from './routes/private-route';
 
 function App() {
   return (
@@ -32,7 +33,15 @@ function App() {
                 </>
               }
             />
-            <Route path="/about" element={<>kek2</>} />
+
+            <Route
+              path="/about"
+              element={
+                <PrivateRoute>
+                  <>Kek2</>
+                </PrivateRoute>
+              }
+            />
             <Route path="/contact" element={<>kek3</>} />
             <Route path="/login" element={<Login></Login>} />
           </Routes>
