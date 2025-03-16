@@ -3,10 +3,10 @@ import { Provider } from 'react-redux';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
 import './i18n';
-import Login from './pages/Login';
 import Main from './pages/Main/Main';
 import { PrivateRoute } from './routes/private-route';
 import { store } from './store/store';
+import SignIn from './pages/Login/SignIn';
 
 function App() {
   return (
@@ -19,8 +19,14 @@ function App() {
       <Provider store={store}>
         <Router>
           <Routes>
-            <Route path="/" element={<Main></Main>} />
-
+            <Route
+              path="/"
+              element={
+                <PrivateRoute>
+                  <Main></Main>
+                </PrivateRoute>
+              }
+            />
             <Route
               path="/about"
               element={
@@ -29,8 +35,15 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/contact" element={<>kek3</>} />
-            <Route path="/login" element={<Login></Login>} />
+            <Route
+              path="/contact"
+              element={
+                <PrivateRoute>
+                  <>kek3</>
+                </PrivateRoute>
+              }
+            />
+            <Route path="/sign-in" element={<SignIn></SignIn>} />
           </Routes>
         </Router>
       </Provider>

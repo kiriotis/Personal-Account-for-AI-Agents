@@ -1,4 +1,13 @@
 {
   "welcome": "Welcome",
-  "greeting": "Hello, {{name}}!"
+  "greeting": "Hello, {{name}}!",
+  "login": "Login",
+  "password": "Password",
+  "loginExaple": "your@email.com",
+  "Remember": "Remember me",
+  "signIn": "Sign In",
+  "Invalid email": "Invalid email",
+  "Email is required": "Email is required",
+  "Password must be at least 6 characters": "Password must be at least 6 characters",
+  "Password is required": "Password is required"
 }
