@@ -1,4 +1,13 @@
 {
   "welcome": "Добро пожаловать",
-  "greeting": "Привет, {{name}}!"
+  "greeting": "Привет, {{name}}!",
+  "login": "Логин",
+  "password": "Пароль",
+  "loginExaple": "почта@email.com",
+  "Remember": "Запомнить меня",
+  "signIn": "Войти",
+  "Invalid email": "Неправильный email",
+  "Email is required": "Email необходим",
+  "Password must be at least 6 characters": "Пароль должен быть не менее 6 символов",
+  "Password is required": "Пароль необходим"
 }
