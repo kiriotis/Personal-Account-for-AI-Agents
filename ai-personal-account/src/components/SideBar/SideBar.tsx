@@ -1,9 +1,8 @@
-import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import ModeOutlinedIcon from '@mui/icons-material/ModeOutlined';
-import QueryStatsOutlinedIcon from '@mui/icons-material/QueryStatsOutlined';
 import RecordVoiceOverOutlinedIcon from '@mui/icons-material/RecordVoiceOverOutlined';
 import {
+  List,
   ListItem,
   ListItemButton,
   ListItemIcon,
@@ -11,10 +10,23 @@ import {
   Typography,
 } from '@mui/material';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import { useLocation } from 'react-router-dom';
-import CustomLink from '../../features/links/custom-link';
+import CustomLink from '../../utils/links/custom-link';
+import { RoutePaths } from '../../app/routes';
+
 export default function StaticSidebar() {
+  const pagesTabs = [
+    { name: 'AI ChatBots', link: RoutePaths.TextBots, icon: <ModeOutlinedIcon /> },
+    {
+      name: 'AI Voice ChatBots',
+      link: RoutePaths.VoiceBots,
+      icon: <RecordVoiceOverOutlinedIcon />,
+    },
+    { name: 'Usage', link: RoutePaths.Usage, icon: <ModeOutlinedIcon /> },
+    { name: 'Company', link: RoutePaths.Company, icon: <GroupOutlinedIcon /> },
+    { name: 'Biling', link: RoutePaths.Billing, icon: <GroupOutlinedIcon /> },
+  ];
+
   let location = useLocation();
 
   return (
@@ -49,98 +61,29 @@ export default function StaticSidebar() {
         >
           AIMPACT
         </Typography>
-        <CustomLink to={'/TextBots'}>
-          <ListItem
-            disablePadding
-            sx={{
-              bgcolor:
-                location.pathname == '/TextBots'
-                  ? 'rgba(0, 0, 0, 0.1)'
-                  : 'transparent',
-            }}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <ModeOutlinedIcon></ModeOutlinedIcon>
-              </ListItemIcon>
-              <ListItemText primary={'Ai ChatBots'} />
-            </ListItemButton>
-          </ListItem>
-        </CustomLink>
-        <CustomLink to={'/VoiceBots'}>
-          <ListItem
-            disablePadding
-            sx={{
-              bgcolor:
-                location.pathname == '/VoiceBots'
-                  ? 'rgba(0, 0, 0, 0.1)'
-                  : 'transparent',
-            }}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <RecordVoiceOverOutlinedIcon></RecordVoiceOverOutlinedIcon>
-              </ListItemIcon>
-              <ListItemText primary={'Ai Voice ChatBots'} />
-            </ListItemButton>
-          </ListItem>
-        </CustomLink>
-        <CustomLink to={'/Stats'}>
-          <ListItem
-            disablePadding
-            sx={{
-              bgcolor:
-                location.pathname == '/Stats'
-                  ? 'rgba(0, 0, 0, 0.1)'
-                  : 'transparent',
-            }}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <QueryStatsOutlinedIcon></QueryStatsOutlinedIcon>
-              </ListItemIcon>
-              <ListItemText primary={'Ai ChatBots'} />
-            </ListItemButton>
-          </ListItem>
-        </CustomLink>
+        <List>
+          {pagesTabs.map((el) => {
+            return (
+              <CustomLink key={el.name} to={el.link}>
+                <ListItem
+                  disablePadding
+                  sx={{
+                    bgcolor:
+                      location.pathname === el.link
+                        ? 'rgba(0, 0, 0, 0.1)'
+                        : 'transparent',
+                  }}
+                >
+                  <ListItemButton>
+                    <ListItemIcon>{el.icon}</ListItemIcon>
+                    <ListItemText primary={el.name} />
+                  </ListItemButton>
+                </ListItem>
+              </CustomLink>
+            );
+          })}
+        </List>
       </div>
-      <Divider sx={{ color: 'blue' }} />
-      <CustomLink to={'/User'}>
-        <ListItem
-          disablePadding
-          sx={{
-            bgcolor:
-              location.pathname == '/User'
-                ? 'rgba(0, 0, 0, 0.1)'
-                : 'transparent',
-          }}
-        >
-          <ListItemButton>
-            <ListItemIcon>
-              <GroupOutlinedIcon></GroupOutlinedIcon>
-            </ListItemIcon>
-            <ListItemText primary={'Company'} />
-          </ListItemButton>
-        </ListItem>
-      </CustomLink>
-      <CustomLink to={'/Billing'}>
-        <ListItem
-          disablePadding
-          sx={{
-            bgcolor:
-              location.pathname == '/Billing'
-                ? 'rgba(0, 0, 0, 0.1)'
-                : 'transparent',
-          }}
-        >
-          <ListItemButton>
-            <ListItemIcon>
-              <AccountBalanceWalletOutlinedIcon></AccountBalanceWalletOutlinedIcon>
-            </ListItemIcon>
-            <ListItemText primary={'Billing'} />
-          </ListItemButton>
-        </ListItem>
-      </CustomLink>
     </Box>
   );
 }
