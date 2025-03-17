@@ -3,10 +3,15 @@ import { Provider } from 'react-redux';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
 import './i18n';
-import Main from './pages/Main/Main';
+import Billing from './pages/Billing/Billing';
+import SignIn from './pages/Login/SignIn';
+import Stats from './pages/Stats/Stats';
+import TextBots from './pages/TextBots/TextBots';
+import User from './pages/User/User';
+import VoiceBots from './pages/VoiceBots/VoiceBots';
 import { PrivateRoute } from './routes/private-route';
 import { store } from './store/store';
-import SignIn from './pages/Login/SignIn';
+import NotFound from './pages/NotFound/NotFound';
 
 function App() {
   return (
@@ -23,27 +28,54 @@ function App() {
               path="/"
               element={
                 <PrivateRoute>
-                  <Main></Main>
+                  <TextBots></TextBots>
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/TextBots"
+              element={
+                <PrivateRoute>
+                  <TextBots></TextBots>
                 </PrivateRoute>
               }
             />
             <Route
-              path="/about"
+              path="/VoiceBots"
               element={
                 <PrivateRoute>
-                  <>Kek2</>
+                  <VoiceBots></VoiceBots>
                 </PrivateRoute>
               }
             />
             <Route
-              path="/contact"
+              path="/Stats"
               element={
                 <PrivateRoute>
-                  <>kek3</>
+                  <Stats></Stats>
                 </PrivateRoute>
               }
             />
+            <Route
+              path="/Billing"
+              element={
+                <PrivateRoute>
+                  <Billing></Billing>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/User"
+              element={
+                <PrivateRoute>
+                  <User></User>
+                </PrivateRoute>
+              }
+            />
+
             <Route path="/sign-in" element={<SignIn></SignIn>} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
       </Provider>
