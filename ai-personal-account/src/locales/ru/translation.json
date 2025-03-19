@@ -9,5 +9,17 @@
   "Invalid email": "Неправильный email",
   "Email is required": "Email необходим",
   "Password must be at least 6 characters": "Пароль должен быть не менее 6 символов",
-  "Password is required": "Пароль необходим"
+  "Password is required": "Пароль необходим",
+  "Knowledge Base": "База знаний",
+  "Stats": "Статистика",
+  "Activity": "Активность",
+  "Date & Time": "Дата и время",
+  "Platform": "Платформа",
+  "Status": "Статус",
+  "Chat": "Чат",
+  "AI ChatBots": "AI чат-боты",
+  "AI Voice ChatBots": "AI голосовые чат-боты",
+  "Usage": "Статистика использования",
+  "Company": "Компания",
+  "Billing": "Счета"
 }
