@@ -26,8 +26,6 @@ const rows: Array<IRows> = [
   { id: 9, date: '2025-03-19T18:57:30', platform: 'VK', status: 'Paid', chat: 'Lorem ipsum' },
 ];
 
-const paginationModel = { page: 0, pageSize: 5 };
-
 export default function ActivityTab({}: Props) {
   const { t } = useTranslation();
 
