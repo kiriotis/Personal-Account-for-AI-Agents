@@ -13,13 +13,20 @@
   "Knowledge Base": "База знаний",
   "Stats": "Статистика",
   "Activity": "Активность",
-  "Date & Time": "Дата и время",
-  "Platform": "Платформа",
-  "Status": "Статус",
-  "Chat": "Чат",
   "AI ChatBots": "AI чат-боты",
   "AI Voice ChatBots": "AI голосовые чат-боты",
   "Usage": "Статистика использования",
   "Company": "Компания",
-  "Billing": "Счета"
+  "Billing": "Счета",
+  "table": {
+    "id": "ID",
+    "DateTime": "Дата и время",
+    "Platform": "Платформа",
+    "Status": "Статус",
+    "Chat": "Чат",
+    "date": "Дата и время",
+    "platform": "Платформа",
+    "status": "Статус",
+    "chat": "Чат"
+  }
 }
