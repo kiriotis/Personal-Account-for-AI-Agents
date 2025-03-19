@@ -13,6 +13,7 @@ import Box from '@mui/material/Box';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import CustomLink from '../../utils/links/custom-link';
+import Logo from '../Logo/Logo';
 import { RoutePaths } from '../../app/routes';
 
 export default function StaticSidebar() {
@@ -45,20 +46,7 @@ export default function StaticSidebar() {
           justifyContent: 'center',
         }}
       >
-        <Typography
-          component="h1"
-          variant="h4"
-          sx={{
-            padding: '1rem',
-            width: '100%',
-            fontSize: 'clamp(2rem, 10vw, 2.15rem)',
-            paddingBottom: '1rem',
-            color: 'blue',
-            textAlign: 'center',
-          }}
-        >
-          AIMPACT
-        </Typography>
+        <Logo />
         <List>
           {pagesTabs.map((el) => {
             return (
