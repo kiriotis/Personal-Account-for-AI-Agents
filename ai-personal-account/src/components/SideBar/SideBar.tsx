@@ -19,11 +19,27 @@ import { RoutePaths } from '../../app/routes';
 export default function StaticSidebar() {
   const { t } = useTranslation();
   const pagesTabs = [
-    { name: t('AI ChatBots'), link: RoutePaths.TextBots, icon: <ModeOutlinedIcon /> },
-    { name: t('AI Voice ChatBots'), link: RoutePaths.VoiceBots, icon: <RecordVoiceOverOutlinedIcon /> },
+    {
+      name: t('AI ChatBots'),
+      link: RoutePaths.TextBots,
+      icon: <ModeOutlinedIcon />,
+    },
+    {
+      name: t('AI Voice ChatBots'),
+      link: RoutePaths.VoiceBots,
+      icon: <RecordVoiceOverOutlinedIcon />,
+    },
     { name: t('Usage'), link: RoutePaths.Usage, icon: <ModeOutlinedIcon /> },
-    { name: t('Company'), link: RoutePaths.Company, icon: <GroupOutlinedIcon /> },
-    { name: t('Billing'), link: RoutePaths.Billing, icon: <GroupOutlinedIcon /> },
+    {
+      name: t('Company'),
+      link: RoutePaths.Company,
+      icon: <GroupOutlinedIcon />,
+    },
+    {
+      name: t('Billing'),
+      link: RoutePaths.Billing,
+      icon: <GroupOutlinedIcon />,
+    },
   ];
 
   let location = useLocation();
@@ -37,6 +53,15 @@ export default function StaticSidebar() {
         width: 250,
         height: '100%', // Занимает всю высоту экрана
         backgroundColor: 'background.paper', // Цвет фона
+        '@media (max-width: 600px)': {
+          width: 60,
+          '& .MuiListItemText-root': {
+            display: 'none',
+          },
+          '& .MuiListItemIcon-root': {
+            minWidth: 'auto',
+          },
+        },
       }}
     >
       <div
@@ -46,8 +71,10 @@ export default function StaticSidebar() {
           justifyContent: 'center',
         }}
       >
-        <Logo />
         <List>
+          <ListItem>
+            <Logo />
+          </ListItem>
           {pagesTabs.map((el) => {
             return (
               <CustomLink key={el.name} to={el.link}>

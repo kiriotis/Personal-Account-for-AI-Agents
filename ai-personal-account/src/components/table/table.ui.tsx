@@ -59,8 +59,8 @@ const sortedRows = orderBy
   : rows;
 
 return (
-    <TableContainer component={Paper} sx={{ height: '100%', width: '100%', overflowX: 'auto' }}>
-      <Table>
+    <TableContainer component={Paper} sx={{ height: '100%', width: '100%', overflowX: 'auto', '@media (max-width: 600px)': { width: '100%', overflowX: 'scroll' } }}>
+      <Table sx={{width: '100%'}}>
         <TableHead>
           <TableRow>
             <TableCell padding="checkbox">
