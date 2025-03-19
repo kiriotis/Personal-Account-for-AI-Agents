@@ -9,5 +9,17 @@
   "Invalid email": "Invalid email",
   "Email is required": "Email is required",
   "Password must be at least 6 characters": "Password must be at least 6 characters",
-  "Password is required": "Password is required"
+  "Password is required": "Password is required",
+  "Knowledge Base": "Knowledge Base",
+  "Stats": "Stats",
+  "Activity": "Activity",
+  "Date & Time": "Date & Time",
+  "Platform": "Platform",
+  "Status": "Status",
+  "Chat": "Chat",
+  "AI ChatBots": "AI ChatBots",
+  "AI Voice ChatBots": "AI Voice ChatBots",
+  "Usage": "Usage",
+  "Company": "Company",
+  "Billing": "Billing"
 }

@@ -11,20 +11,18 @@ import {
 } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import CustomLink from '../../utils/links/custom-link';
 import { RoutePaths } from '../../app/routes';
 
 export default function StaticSidebar() {
+  const { t } = useTranslation();
   const pagesTabs = [
-    { name: 'AI ChatBots', link: RoutePaths.TextBots, icon: <ModeOutlinedIcon /> },
-    {
-      name: 'AI Voice ChatBots',
-      link: RoutePaths.VoiceBots,
-      icon: <RecordVoiceOverOutlinedIcon />,
-    },
-    { name: 'Usage', link: RoutePaths.Usage, icon: <ModeOutlinedIcon /> },
-    { name: 'Company', link: RoutePaths.Company, icon: <GroupOutlinedIcon /> },
-    { name: 'Biling', link: RoutePaths.Billing, icon: <GroupOutlinedIcon /> },
+    { name: t('AI ChatBots'), link: RoutePaths.TextBots, icon: <ModeOutlinedIcon /> },
+    { name: t('AI Voice ChatBots'), link: RoutePaths.VoiceBots, icon: <RecordVoiceOverOutlinedIcon /> },
+    { name: t('Usage'), link: RoutePaths.Usage, icon: <ModeOutlinedIcon /> },
+    { name: t('Company'), link: RoutePaths.Company, icon: <GroupOutlinedIcon /> },
+    { name: t('Billing'), link: RoutePaths.Billing, icon: <GroupOutlinedIcon /> },
   ];
 
   let location = useLocation();
