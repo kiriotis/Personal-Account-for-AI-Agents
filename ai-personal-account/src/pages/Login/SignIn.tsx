@@ -14,6 +14,7 @@ import { enqueueSnackbar } from 'notistack';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
+import { ILoginRequest } from '../../interfaces/auth/auth.interface.ts';
 interface iSignIn {}
 
 export interface iLoginUser {
@@ -23,7 +24,7 @@ export interface iLoginUser {
 
 export default function SignIn({}: iSignIn) {
   const { t, i18n } = useTranslation();
-  const schema = yup.object().shape({
+  const schema = yup.object<ILoginRequest>().shape({
     email: yup
       .string()
       .email(t('Invalid email'))
