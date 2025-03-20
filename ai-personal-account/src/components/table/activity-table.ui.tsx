@@ -1,4 +1,4 @@
-import { Paper } from '@mui/material';
+import { Avatar, Box, Chip, Paper } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
@@ -10,8 +10,48 @@ interface Props {
 
 const paginationModel = { page: 0, pageSize: 5 };
 
+function setVariant(variant: 'Paid' | 'Booked' | 'Clicked booking' | 'Lost') {
+  switch (variant) {
+    case 'Paid':
+      return 'success';
+    case 'Booked':
+      return 'warning';
+    case 'Clicked booking':
+      return 'info';
+    case 'Lost':
+      return 'error';
+    default:
+      return 'info';
+  }
+}
+
 export default function ActivityTableUi({ columns, rows }: Props) {
   const { t } = useTranslation('translation');
+
+  const renderPlatformCell = (params: any) => {
+    // Custom rendering logic for platform
+    return (
+      <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+        <Avatar
+          sx={{ width: 32, height: 32, fontSize: '14px' }}
+          alt={params.value}
+          src="/static/images/avatar/1.jpg"
+        >
+          {params.value
+            .split(/(?=[A-Z])/)
+            .map((word: string) => word[0])
+            .join('')
+            .slice(0, 2)}
+        </Avatar>
+        <span>{params.value}</span>
+      </Box>
+    );
+  };
+
+  const renderStatusCell = (params: any) => {
+    // Custom rendering logic for status
+    return <Chip label={params.value} color={setVariant(params.value)} />;
+  };
 
   const localeText = {
     noRowsLabel: t('dataGrid.noRowsLabel'),
@@ -53,11 +93,21 @@ export default function ActivityTableUi({ columns, rows }: Props) {
     columnsPanelHideAllButton: t('dataGrid.columnsPanelHideAllButton'),
   };
 
+  const updatedColumns = columns.map((column) => {
+    if (column.field === 'platform') {
+      return { ...column, renderCell: renderPlatformCell };
+    }
+    if (column.field === 'status') {
+      return { ...column, renderCell: renderStatusCell };
+    }
+    return column;
+  });
+
   return (
     <Paper sx={{ height: 400, width: '100%', minHeight: '100%' }}>
       <DataGrid
         rows={rows}
-        columns={columns}
+        columns={updatedColumns}
         initialState={{ pagination: { paginationModel } }}
         pageSizeOptions={[5, 10]}
         checkboxSelection
