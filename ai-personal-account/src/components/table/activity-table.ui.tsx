@@ -1,6 +1,8 @@
-import { Avatar, Box, Chip, Paper } from '@mui/material';
+import { Avatar, Box, Chip, Paper, Button } from '@mui/material';
+import { useState } from 'react';
+import ChatPopup from '../Pop-Up/ChatPopup';
 import { useTranslation } from 'react-i18next';
-
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 interface Props {
@@ -53,6 +55,30 @@ export default function ActivityTableUi({ columns, rows }: Props) {
     return <Chip label={params.value} color={setVariant(params.value)} />;
   };
 
+  const renderChatCell = (params: any) => {
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+    return (
+      <Box
+        sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+      >
+        <span>{params.value}</span>
+        <Button variant="outlined"  onClick={handleClickOpen} endIcon={<OpenInNewIcon />} >
+          {t('dataGrid.openChatButton')}
+        </Button>
+        <ChatPopup open={open} onClose={handleClose} chatId={params.id} />
+      </Box>
+    );
+  };
+
   const localeText = {
     noRowsLabel: t('dataGrid.noRowsLabel'),
     footerTotalVisibleRows: (visibleCount: number, totalCount: number) =>
@@ -99,6 +125,9 @@ export default function ActivityTableUi({ columns, rows }: Props) {
     }
     if (column.field === 'status') {
       return { ...column, renderCell: renderStatusCell };
+    }
+    if (column.field === 'chat') {
+      return { ...column, renderCell: renderChatCell };
     }
     return column;
   });

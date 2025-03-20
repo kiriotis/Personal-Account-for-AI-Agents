@@ -72,6 +72,7 @@
     "columnsPanelTextFieldPlaceholder": "Column title",
     "columnsPanelDragIconLabel": "Reorder column",
     "columnsPanelShowAllButton": "Show all",
-    "columnsPanelHideAllButton": "Hide all"
+    "columnsPanelHideAllButton": "Hide all",
+    "openChatButton": "Open chat"
   }
 }
