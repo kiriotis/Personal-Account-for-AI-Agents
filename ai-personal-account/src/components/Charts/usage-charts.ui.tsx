@@ -10,14 +10,15 @@ import { useState } from 'react';
 interface UsageChartsProps {
   data: Record<number, { labels: string[]; input: number[]; output: number[] }>;
   title: string;
+  series: { label: string }[];
 }
 
-export default function UsageCharts({ data, title }: UsageChartsProps) {
-  const [days, setDays] = useState<number>(7);
+export default function UsageCharts({ data, title, series }: UsageChartsProps) {
+  const [days, setDays] = useState<7 | 30 | 90>(7);
 
   const handleDaysChange = (
     event: React.MouseEvent<HTMLElement>,
-    newDays: number | null
+    newDays: 7 | 30 | 90 | null
   ) => {
     if (newDays !== null) {
       setDays(newDays);
@@ -56,10 +57,10 @@ export default function UsageCharts({ data, title }: UsageChartsProps) {
       <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
         <BarChart
           xAxis={[{ scaleType: 'band', data: data[days].labels }]}
-          series={[
-            { data: data[days].input, label: 'Input Tokens', color: 'blue' },
-            { data: data[days].output, label: 'Output Tokens', color: 'green' },
-          ]}
+          series={series.map((s, index) => ({
+            data: index === 0 ? data[days].input : data[days].output,
+            label: s.label,
+          }))}
           borderRadius={6}
           sx={{
             width: '100%',
