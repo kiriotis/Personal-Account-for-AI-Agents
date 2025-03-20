@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import ActivityTableUi from '../../../../components/table/activity-table.ui';
+import ActivityTableUi from '../../../../components/Tables/activity-table.ui';
 import { GridColDef } from '@mui/x-data-grid';
 
 interface Props {}
