@@ -51,7 +51,7 @@ export default function TextBots({}: iTextBots) {
             <Tab value={3} label={t('Knowledge Base')} />
           </Tabs>
         </Box>
-        <Box sx={{ width: '100%', height: '100%', display: 'flex', py: 4 }}>
+        <Box sx={{ width: '100%', height: '100%', display: 'flex', p: 4 }}>
           {value === 1 ? <ActivityTab /> : null}
           {value === 2 ? <StatsTab /> : null}
           {value === 3 ? <KnowledgeTab /> : null}
