@@ -13,7 +13,7 @@ const Logo: React.FC = () => {
         color: 'primary.main',
         textAlign: 'center',
         lineHeight: '0px',
-        '@media (max-width: 600px)': {
+        '@media (max-width: 768px)': {
           flexDirection: 'column',
           '& p': {
             display: 'none',

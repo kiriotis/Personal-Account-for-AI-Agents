@@ -53,7 +53,7 @@ export default function StaticSidebar() {
         width: 250,
         height: '100%', // Занимает всю высоту экрана
         backgroundColor: 'background.paper', // Цвет фона
-        '@media (max-width: 600px)': {
+        '@media (max-width: 768px)': {
           width: 60,
           '& .MuiListItemText-root': {
             display: 'none',
