@@ -1,4 +1,12 @@
-import { Avatar, Box, Chip, Paper, Button } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Chip,
+  Paper,
+  Button,
+  IconButton,
+  Typography,
+} from '@mui/material';
 import { useState } from 'react';
 import ChatPopup from '../Pop-Up/ChatPopup';
 import { useTranslation } from 'react-i18next';
@@ -67,13 +75,12 @@ export default function ActivityTableUi({ columns, rows }: Props) {
     };
 
     return (
-      <Box
-        sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
-      >
-        <span>{params.value}</span>
-        <Button variant="outlined"  onClick={handleClickOpen} endIcon={<OpenInNewIcon />} >
-          {t('dataGrid.openChatButton')}
-        </Button>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>{params.value}</Box>
+        <IconButton onClick={handleClickOpen} aria-label="open-chat">
+          <OpenInNewIcon />
+        </IconButton>
+
         <ChatPopup open={open} onClose={handleClose} chatId={params.id} />
       </Box>
     );
@@ -123,15 +130,15 @@ export default function ActivityTableUi({ columns, rows }: Props) {
     const commonProps = { flex: 1 };
 
     if (column.field === 'platform') {
-      return { ...column, renderCell: renderPlatformCell, ...commonProps };
+      return { ...column, renderCell: renderPlatformCell, minWidth: 200, ...commonProps };
     }
     if (column.field === 'status') {
-      return { ...column, renderCell: renderStatusCell, ...commonProps };
+      return { ...column, renderCell: renderStatusCell, minWidth: 200, ...commonProps };
     }
     if (column.field === 'chat') {
-      return { ...column, renderCell: renderChatCell, ...commonProps };
+      return { ...column, renderCell: renderChatCell, minWidth: 300, ...commonProps };
     }
-    return column;
+    return { ...column, minWidth: 200, ...commonProps };
   });
 
   return (
@@ -142,7 +149,9 @@ export default function ActivityTableUi({ columns, rows }: Props) {
         initialState={{ pagination: { paginationModel } }}
         pageSizeOptions={[5, 10]}
         checkboxSelection
-        sx={{ border: 0 }}
+        sx={{
+          border: 0,
+        }}
         localeText={localeText}
       />
     </Paper>
