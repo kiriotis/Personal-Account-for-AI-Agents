@@ -7,7 +7,12 @@ import {
 import { BarChart } from '@mui/x-charts/BarChart';
 import { useState } from 'react';
 
-export default function UsageCharts() {
+interface UsageChartsProps {
+  data: Record<number, { labels: string[]; input: number[]; output: number[] }>;
+  title: string;
+}
+
+export default function UsageCharts({ data, title }: UsageChartsProps) {
   const [days, setDays] = useState<number>(7);
 
   const handleDaysChange = (
@@ -19,26 +24,6 @@ export default function UsageCharts() {
     }
   };
 
-  const generateMockData = (days: number) => {
-    const labels = Array.from({ length: days }, (_, i) => `${i + 1}.02`);
-    const input = Array(days)
-      .fill(0)
-      .map(() => Math.floor(Math.random() * 5000));
-    const output = Array(days)
-      .fill(0)
-      .map(() => Math.floor(Math.random() * 5000));
-    return { labels, input, output };
-  };
-
-  const data: Record<
-    number,
-    { labels: string[]; input: number[]; output: number[] }
-  > = {
-    7: generateMockData(7),
-    30: generateMockData(30),
-    90: generateMockData(90),
-  };
-
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       <Box
@@ -46,11 +31,10 @@ export default function UsageCharts() {
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'space-between',
+          gap: { xs: 2, sm: 0 },
         }}
       >
-        <Typography variant="h5">
-          {'Статистика по кол-ву использованных токенов'}
-        </Typography>
+        <Typography variant="h5">{title}</Typography>
         <ToggleButtonGroup
           value={days}
           exclusive
@@ -76,7 +60,10 @@ export default function UsageCharts() {
             { data: data[days].input, label: 'Input Tokens', color: 'blue' },
             { data: data[days].output, label: 'Output Tokens', color: 'green' },
           ]}
-          sx={{ width: '100%' }}
+          borderRadius={6}
+          sx={{
+            width: '100%',
+          }}
           height={300}
         />
       </Box>
