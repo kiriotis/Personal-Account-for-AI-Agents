@@ -28,5 +28,15 @@
     "platform": "Platform",
     "status": "Status",
     "chat": "Chat"
+  },
+  "pages": {
+    "main": "Main",
+    "sign-in": "Sign-In",
+    "sign-up": "Sign-Up",
+    "AI ChatBots": "AI ChatBots",
+    "AI Voice ChatBots": "AI Voice ChatBots",
+    "Usage": "Usage",
+    "Company": "Company",
+    "Billing": "Billing"
   }
 }

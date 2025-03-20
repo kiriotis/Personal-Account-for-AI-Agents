@@ -1,13 +1,10 @@
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
-import ModeOutlinedIcon from '@mui/icons-material/ModeOutlined';
-import RecordVoiceOverOutlinedIcon from '@mui/icons-material/RecordVoiceOverOutlined';
 import {
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Typography,
 } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useLocation } from 'react-router-dom';
@@ -15,6 +12,11 @@ import { useTranslation } from 'react-i18next';
 import CustomLink from '../../utils/links/custom-link';
 import Logo from '../Logo/Logo';
 import { RoutePaths } from '../../app/routes';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import VoiceChatIcon from '@mui/icons-material/VoiceChat';
+import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
+import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
+import LanguageButton from '../../features/change-language/language-button.feature';
 
 export default function StaticSidebar() {
   const { t } = useTranslation();
@@ -22,14 +24,14 @@ export default function StaticSidebar() {
     {
       name: t('AI ChatBots'),
       link: RoutePaths.TextBots,
-      icon: <ModeOutlinedIcon />,
+      icon: <ChatOutlinedIcon />,
     },
     {
       name: t('AI Voice ChatBots'),
       link: RoutePaths.VoiceBots,
-      icon: <RecordVoiceOverOutlinedIcon />,
+      icon: <VoiceChatIcon />,
     },
-    { name: t('Usage'), link: RoutePaths.Usage, icon: <ModeOutlinedIcon /> },
+    { name: t('Usage'), link: RoutePaths.Usage, icon: <QueryStatsIcon /> },
     {
       name: t('Company'),
       link: RoutePaths.Company,
@@ -38,7 +40,7 @@ export default function StaticSidebar() {
     {
       name: t('Billing'),
       link: RoutePaths.Billing,
-      icon: <GroupOutlinedIcon />,
+      icon: <RequestQuoteOutlinedIcon />,
     },
   ];
 
@@ -49,6 +51,7 @@ export default function StaticSidebar() {
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'space-between', // Добавлено для распределения элементов
         alignSelf: 'flex-start',
         width: 250,
         height: '100%', // Занимает всю высоту экрана
@@ -97,6 +100,9 @@ export default function StaticSidebar() {
           })}
         </List>
       </div>
+      <Box sx={{ position: 'fixed', bottom: 10, left: 10 }}>
+        <LanguageButton />
+      </Box>
     </Box>
   );
 }

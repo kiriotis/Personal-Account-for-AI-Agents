@@ -11,7 +11,7 @@ const paginationModel = { page: 0, pageSize: 5 };
 
 export default function ActivityTableUi({ columns, rows }: Props) {
   return (
-    <Paper sx={{ height: 400, width: '100%' }}>
+    <Paper sx={{ height: 400, width: '100%', minHeight: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}
