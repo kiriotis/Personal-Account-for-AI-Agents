@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import TableUi from '../../../../components/table/table.ui';
+import ActivityTableUi from '../../../../components/table/activity-table.ui';
 import { GridColDef } from '@mui/x-data-grid';
 
 interface Props {}
@@ -95,7 +95,7 @@ export default function ActivityTab({}: Props) {
 
   return (
     <Box sx={{ width: '100%', display: 'flex', px: 4 }}>
-      <TableUi columns={columns} rows={rows} />
+      <ActivityTableUi columns={columns} rows={rows} />
     </Box>
   );
 }
