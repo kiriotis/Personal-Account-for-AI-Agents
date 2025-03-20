@@ -1,11 +1,29 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import SideBar from '../SideBar/SideBar';
-import { Box } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { grey } from '@mui/material/colors';
+import { useTranslation } from 'react-i18next';
+import LanguageButton from '../../features/change-language/language-button.feature';
 
 interface iLayout {}
 
 export default function Layout({}: iLayout) {
+  const theme = useTheme();
+  const location = useLocation();
+  const { t } = useTranslation();
+
+  const pageTitles: { [key: string]: string } = {
+    '/': t('pages.main'),
+    '/text-bots': t('pages.AI ChatBots'),
+    '/billing': t('pages.Billing'),
+    '/company': t('pages.Company'),
+    '/usage': t('pages.Usage'),
+    '/voice-bots': t('pages.AI Voice ChatBots'),
+    '/sign-in': t('pages.sign-in'),
+  };
+
+  const currentPageTitle = pageTitles[location.pathname] || 'Страница';
+
   return (
     <Box
       sx={{
@@ -28,6 +46,22 @@ export default function Layout({}: iLayout) {
           background: grey[100],
         }}
       >
+        <Typography
+          variant="h5"
+          sx={{
+            display: 'none',
+            '@media (max-width: 768px)': {
+              display: 'block',
+            },
+            padding: '16px',
+            backgroundColor: grey[200],
+            textAlign: 'start',
+            fontWeight: 'bold',
+            color: theme.palette.primary.main,
+          }}
+        >
+          {currentPageTitle}
+        </Typography>
         <Outlet />
       </Box>
     </Box>

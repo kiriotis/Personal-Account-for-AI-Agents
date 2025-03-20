@@ -1,19 +1,22 @@
 import { createTheme } from '@mui/material/styles';
 
-export let theme = createTheme({
+const colors = {
+  primary:{
+    main: 'rgb(34,47,122)'
+  }
+}
+
+export const theme = createTheme({
   palette: {
     primary: {
-      main: 'rgb(34,47,122)',
+      main: colors.primary.main,
     },
   },
-});
-
-theme = createTheme({
   components: {
     MuiSvgIcon: {
       styleOverrides: {
         root: {
-          color: theme.palette.primary.main,
+          color: colors.primary.main,
         },
       },
     },

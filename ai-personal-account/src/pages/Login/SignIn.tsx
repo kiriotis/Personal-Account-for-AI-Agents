@@ -57,14 +57,7 @@ export default function SignIn({}: iSignIn) {
 
   return (
     <>
-      <ButtonGroup
-        variant="text"
-        aria-label="Basic button group"
-        sx={{ position: 'fixed', top: '2rem', right: '2rem' }}
-      >
-        <Button onClick={() => changeLanguage('en')}>En</Button>
-        <Button onClick={() => changeLanguage('ru')}>RU</Button>
-      </ButtonGroup>
+      
 
       <Card
         component="form"
