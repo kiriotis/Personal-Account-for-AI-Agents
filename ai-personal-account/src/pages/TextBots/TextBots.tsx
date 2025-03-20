@@ -5,7 +5,6 @@ import Tab from '@mui/material/Tab';
 import ActivityTab from './ui/tabs/activity-tab.ui';
 import StatsTab from './ui/tabs/stats-tab.ui';
 import KnowledgeTab from './ui/tabs/knowledge-tab.ui';
-import { grey } from '@mui/material/colors';
 
 interface iTextBots {}
 
@@ -46,9 +45,9 @@ export default function TextBots({}: iTextBots) {
             scrollButtons
             allowScrollButtonsMobile
           >
-            <Tab value={1} label={t('Activity')} />
-            <Tab value={2} label={t('Stats')} />
-            <Tab value={3} label={t('Knowledge Base')} />
+            <Tab value={1} label={t('tabs.Activity')} />
+            <Tab value={2} label={t('tabs.Stats')} />
+            <Tab value={3} label={t('tabs.Knowledge Base')} />
           </Tabs>
         </Box>
         <Box

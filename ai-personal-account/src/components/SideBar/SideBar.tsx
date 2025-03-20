@@ -22,23 +22,23 @@ export default function StaticSidebar() {
   const { t } = useTranslation();
   const pagesTabs = [
     {
-      name: t('AI ChatBots'),
+      name: t('pages.AI ChatBots'),
       link: RoutePaths.TextBots,
       icon: <ChatOutlinedIcon />,
     },
     {
-      name: t('AI Voice ChatBots'),
+      name: t('pages.AI Voice ChatBots'),
       link: RoutePaths.VoiceBots,
       icon: <VoiceChatIcon />,
     },
-    { name: t('Usage'), link: RoutePaths.Usage, icon: <QueryStatsIcon /> },
+    { name: t('pages.Usage'), link: RoutePaths.Usage, icon: <QueryStatsIcon /> },
     {
-      name: t('Company'),
+      name: t('pages.Company'),
       link: RoutePaths.Company,
       icon: <GroupOutlinedIcon />,
     },
     {
-      name: t('Billing'),
+      name: t('pages.Billing'),
       link: RoutePaths.Billing,
       icon: <RequestQuoteOutlinedIcon />,
     },

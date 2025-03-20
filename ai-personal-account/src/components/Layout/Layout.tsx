@@ -3,7 +3,6 @@ import SideBar from '../SideBar/SideBar';
 import { Box, Typography, useTheme } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { useTranslation } from 'react-i18next';
-import LanguageButton from '../../features/change-language/language-button.feature';
 
 interface iLayout {}
 
