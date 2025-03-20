@@ -120,14 +120,16 @@ export default function ActivityTableUi({ columns, rows }: Props) {
   };
 
   const updatedColumns = columns.map((column) => {
+    const commonProps = { flex: 1 };
+
     if (column.field === 'platform') {
-      return { ...column, renderCell: renderPlatformCell };
+      return { ...column, renderCell: renderPlatformCell, ...commonProps };
     }
     if (column.field === 'status') {
-      return { ...column, renderCell: renderStatusCell };
+      return { ...column, renderCell: renderStatusCell, ...commonProps };
     }
     if (column.field === 'chat') {
-      return { ...column, renderCell: renderChatCell };
+      return { ...column, renderCell: renderChatCell, ...commonProps };
     }
     return column;
   });
