@@ -27,7 +27,7 @@ export default function Usage({}: iUsage) {
   return (
     <Box
       sx={{
-        p: 4,
+        p: { xs: 1, sm: 2, md: 4 },
         display: 'flex',
         flexDirection: 'column',
         flexGrow: 1,
@@ -37,8 +37,19 @@ export default function Usage({}: iUsage) {
       <UsageCharts
         data={data}
         title={'Статистика по кол-ву использованных токенов'}
+        series={[
+          { label: 'Вход' },
+          { label: 'Выход' },
+        ]}
       />
-      <UsageCharts data={data} title={'Статистика по кол-ву сообщений'} />
+      <UsageCharts
+        data={data}
+        title={'Статистика по кол-ву сообщений'}
+        series={[
+          { label: 'Получено' },
+          { label: 'Отправлено' },
+        ]}
+      />
     </Box>
   );
 }
