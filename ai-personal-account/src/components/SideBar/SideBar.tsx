@@ -25,22 +25,31 @@ export default function StaticSidebar() {
       name: t('pages.AI ChatBots'),
       link: RoutePaths.TextBots,
       icon: <ChatOutlinedIcon />,
+      enable: true,
     },
     {
       name: t('pages.AI Voice ChatBots'),
       link: RoutePaths.VoiceBots,
       icon: <VoiceChatIcon />,
+      enable: false,
     },
-    { name: t('pages.Usage'), link: RoutePaths.Usage, icon: <QueryStatsIcon /> },
+    {
+      name: t('pages.Usage'),
+      link: RoutePaths.Usage,
+      icon: <QueryStatsIcon />,
+      enable: true,
+    },
     {
       name: t('pages.Company'),
       link: RoutePaths.Company,
       icon: <GroupOutlinedIcon />,
+      enable: true,
     },
     {
       name: t('pages.Billing'),
       link: RoutePaths.Billing,
       icon: <RequestQuoteOutlinedIcon />,
+      enable: false,
     },
   ];
 
@@ -80,7 +89,7 @@ export default function StaticSidebar() {
           </ListItem>
           {pagesTabs.map((el) => {
             return (
-              <CustomLink key={el.name} to={el.link}>
+              <CustomLink key={el.name} to={el.link} disabled={!el.enable}>
                 <ListItem
                   disablePadding
                   sx={{
@@ -90,7 +99,7 @@ export default function StaticSidebar() {
                         : 'transparent',
                   }}
                 >
-                  <ListItemButton>
+                  <ListItemButton disabled={!el.enable}>
                     <ListItemIcon>{el.icon}</ListItemIcon>
                     <ListItemText primary={el.name} />
                   </ListItemButton>

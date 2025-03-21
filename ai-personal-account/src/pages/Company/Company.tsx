@@ -1,5 +1,5 @@
 import React from 'react';
-import ClientDataForm from '../../components/forms/ClientDataForm';
+import ClientDataForm from '../../components/Forms/ClientDataForm';
 import { Box } from '@mui/material';
 
 interface iCompany {}
@@ -15,7 +15,11 @@ export default function Company({}: iCompany) {
         overflow: 'scroll',
       }}
     >
-      <ClientDataForm />
+      <ClientDataForm initialData={{
+        company: 'PressF',
+        email: 'pressf@mail.com',
+        password: 'password'
+      }} />
     </Box>
   );
 }
