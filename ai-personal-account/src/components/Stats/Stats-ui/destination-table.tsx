@@ -44,7 +44,7 @@ export default function DestinationTable({}: iDestinationTable) {
       sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 2 }}
     >
       <Typography variant="h5">Top destinations</Typography>
-      <Box sx={{ maxHeight:{  xs: 150, sm: 150, md: 150, lg: 450 }, overflow: 'auto' }}>
+      <Box sx={{ maxHeight:{  xs: 150, sm: 150, md: 150, lg: 420 }, overflow: 'auto' }}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 250}} size="small" aria-label="a dense table">
             <TableHead>

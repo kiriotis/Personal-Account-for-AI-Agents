@@ -1,6 +1,6 @@
 import { Box, Tab, Tabs, tabsClasses } from '@mui/material';
 import { useState } from 'react';
-import StatsGraph from '../../../../components/Stats/stats-graph';
+import StatsGraph from '../../../../components/Stats/Graph-ui/stats-graph';
 import StatsTablesUi from '../../../../components/Stats/stats-tables.ui';
 import TotalRequestsCard from '../../../../components/Stats/Tabs-ui/TotalRequestsCard';
 
@@ -24,6 +24,7 @@ export default function StatsTab({}: Props) {
         sx={{
           width: '100%',
           display: 'flex',
+          padding: "1rem"
           // justifyContent: { xs: 'center', sm: 'start' },
         }}
       >

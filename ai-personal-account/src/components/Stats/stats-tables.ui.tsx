@@ -12,10 +12,11 @@ export default function StatsTablesUi({}: iStatsTablesUi) {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        gap: '1rem',
+        gap: '10px',
+
       }}
     >
-      <Box sx={{ width: '100%', display: 'flex', gap: '1rem' }}>
+      <Box sx={{ width: '100%', display: 'flex', gap: '10px' }}>
         <TotalRequestsCard
           title={'Total requests'}
           value={'12'}
@@ -24,7 +25,7 @@ export default function StatsTablesUi({}: iStatsTablesUi) {
         ></TotalRequestsCard>
         <TotalRequestsCard
           title={'Total requests'}
-          value={'14141123123123123'}
+          value={'14141123'}
           capture={'1000%'}
           isIncrease={true}
         ></TotalRequestsCard>
@@ -37,7 +38,7 @@ export default function StatsTablesUi({}: iStatsTablesUi) {
           flexDirection: { xs: 'column', lg: 'row' },
           justifyContent: 'center',
           alignItems: 'flex-start',
-          gap: '1rem',
+          gap: '10px',
         }}
       >
         <DestinationTable></DestinationTable>
