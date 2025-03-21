@@ -79,10 +79,11 @@ export default function UsageCharts({ data, title, series }: UsageChartsProps) {
             series={series.map((s, index) => ({
               data: index === 0 ? data[days].input : data[days].output,
               label: s.label,
+              stack: 'assets',
             }))}
             borderRadius={6}
             sx={{
-              pointerEvents: { xs: 'none', sm: 'auto' },
+              // pointerEvents: { xs: 'none', sm: 'auto' },
               transition: { xs: 'none', sm: 'all 0.3s ease' },
               width: '100%',
             }}
