@@ -1,96 +1,114 @@
-import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+import React, { useState } from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
+import IconButton from '@mui/material/IconButton';
+import Drawer from '@mui/material/Drawer';
 import {
+  Box,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-import Box from '@mui/material/Box';
-import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import CustomLink from '../../utils/links/custom-link';
 import Logo from '../Logo/Logo';
 import { RoutePaths } from '../../app/routes';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import VoiceChatIcon from '@mui/icons-material/VoiceChat';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
-import LanguageButton from '../../features/change-language/language-button.feature';
 
 export default function StaticSidebar() {
   const { t } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDrawer =
+    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        (event.type === 'keydown' &&
+          (event as React.KeyboardEvent).key === 'Tab') ||
+        (event as React.KeyboardEvent).key === 'Shift'
+      ) {
+        return;
+      }
+      setIsOpen(open);
+    };
+
   const pagesTabs = [
     {
       name: t('pages.AI ChatBots'),
       link: RoutePaths.TextBots,
       icon: <ChatOutlinedIcon />,
+      enable: true,
     },
     {
       name: t('pages.AI Voice ChatBots'),
       link: RoutePaths.VoiceBots,
       icon: <VoiceChatIcon />,
+      enable: false,
     },
-    { name: t('pages.Usage'), link: RoutePaths.Usage, icon: <QueryStatsIcon /> },
+    {
+      name: t('pages.Usage'),
+      link: RoutePaths.Usage,
+      icon: <QueryStatsIcon />,
+      enable: true,
+    },
     {
       name: t('pages.Company'),
       link: RoutePaths.Company,
       icon: <GroupOutlinedIcon />,
+      enable: true,
     },
     {
       name: t('pages.Billing'),
       link: RoutePaths.Billing,
       icon: <RequestQuoteOutlinedIcon />,
+      enable: false,
     },
   ];
 
-  let location = useLocation();
-
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between', // Добавлено для распределения элементов
-        alignSelf: 'flex-start',
-        width: 250,
-        height: '100%', // Занимает всю высоту экрана
-        backgroundColor: 'background.paper', // Цвет фона
-        '@media (max-width: 768px)': {
-          width: 60,
-          '& .MuiListItemText-root': {
-            display: 'none',
-          },
-          '& .MuiListItemIcon-root': {
-            minWidth: 'auto',
-          },
-        },
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
+    <Box>
+      <IconButton
+        color="inherit"
+        aria-label="open drawer"
+        edge="start"
+        onClick={toggleDrawer(!isOpen)}
+        sx={{
+          display: { xs: 'block', sm: 'none' },
+          position: 'fixed',
+          top: 14,
+          left: 16,
+          zIndex: 1300,
+        }}
+      >
+        <MenuIcon />
+      </IconButton>
+      <Box
+        sx={{
           flexDirection: 'column',
-          justifyContent: 'center',
+          justifyContent: 'space-between',
+          alignSelf: 'flex-start',
+          width: 325,
+          height: '100%',
+          backgroundColor: 'background.paper',
+          display: { xs: 'none', sm: 'flex' },
         }}
       >
         <List>
-          <ListItem>
+          <ListItem sx={{ pb: 6 }}>
             <Logo />
           </ListItem>
           {pagesTabs.map((el) => {
             return (
-              <CustomLink key={el.name} to={el.link}>
-                <ListItem
-                  disablePadding
-                  sx={{
-                    bgcolor:
-                      location.pathname === el.link
-                        ? 'rgba(0, 0, 0, 0.1)'
-                        : 'transparent',
-                  }}
-                >
-                  <ListItemButton>
+              <CustomLink key={el.name} to={el.link} disabled={!el.enable}>
+                <ListItem disablePadding>
+                  <ListItemButton
+                    selected={location.pathname === el.link}
+                    disabled={!el.enable}
+                  >
                     <ListItemIcon>{el.icon}</ListItemIcon>
                     <ListItemText primary={el.name} />
                   </ListItemButton>
@@ -99,10 +117,38 @@ export default function StaticSidebar() {
             );
           })}
         </List>
-      </div>
-      <Box sx={{ position: 'fixed', bottom: 10, left: 10 }}>
-        <LanguageButton />
       </Box>
+      <Drawer anchor="left" open={isOpen} onClose={toggleDrawer(false)}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            width: 250,
+          }}
+        >
+          <List>
+            <ListItem sx={{ pb: 6 }}>
+              <Logo />
+            </ListItem>
+            {pagesTabs.map((el) => {
+              return (
+                <CustomLink key={el.name} to={el.link} disabled={!el.enable}>
+                  <ListItem disablePadding>
+                    <ListItemButton
+                      selected={location.pathname === el.link}
+                      disabled={!el.enable}
+                    >
+                      <ListItemIcon>{el.icon}</ListItemIcon>
+                      <ListItemText primary={el.name} />
+                    </ListItemButton>
+                  </ListItem>
+                </CustomLink>
+              );
+            })}
+          </List>
+        </Box>
+      </Drawer>
     </Box>
   );
 }

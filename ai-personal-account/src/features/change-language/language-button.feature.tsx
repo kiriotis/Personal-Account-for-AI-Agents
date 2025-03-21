@@ -15,7 +15,7 @@ export default function LanguageButton({}: Props) {
 
   return (
     <ButtonGroup
-      orientation="vertical"
+      orientation="horizontal"
       variant="text"
       aria-label="Basic button group"
     >
