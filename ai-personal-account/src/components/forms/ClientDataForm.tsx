@@ -1,8 +1,17 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { TextField, Button, IconButton, Box } from '@mui/material';
+import {
+  TextField,
+  Button,
+  IconButton,
+  Box,
+  InputAdornment,
+} from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import EditIcon from '@mui/icons-material/Edit';
 import DoneIcon from '@mui/icons-material/Done';
+import ChangePasswordPopup from '../Pop-Up/ChangePasswordPopup';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -32,34 +41,30 @@ const passwordValidationSchema = Yup.object().shape({
     }),
 });
 
-const ClientDataForm = () => {
+interface ClientDataFormProps {
+  initialData: {
+    company: string;
+    email: string;
+    password: string;
+  };
+}
+
+const ClientDataForm: React.FC<ClientDataFormProps> = ({ initialData }) => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty },
     setValue,
   } = useForm({
     resolver: yupResolver(passwordValidationSchema),
+    defaultValues: initialData,
   });
 
-  const [isEditingCompany, setIsEditingCompany] = React.useState(false);
-  const [isEditingEmail, setIsEditingEmail] = React.useState(false);
-  const [isEditingPassword, setIsEditingPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [openChangePassword, setOpenChangePassword] = React.useState(false);
 
-  const handleEditClick = (field: string) => {
-    switch (field) {
-      case 'company':
-        setIsEditingCompany(!isEditingCompany);
-        break;
-      case 'email':
-        setIsEditingEmail(!isEditingEmail);
-        break;
-      case 'password':
-        setIsEditingPassword(!isEditingPassword);
-        break;
-      default:
-        break;
-    }
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const onSubmit = (data: {
@@ -67,91 +72,77 @@ const ClientDataForm = () => {
     email: string;
     password: string;
   }) => {
-    if (!isEditingCompany && !isEditingEmail && !isEditingPassword) return;
     console.log(data);
     // Handle form submission
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        <Controller
-          name="company"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              label="Company"
-              variant={isEditingCompany ? 'outlined' : 'filled'}
-              error={!!errors.company}
-              disabled={!isEditingCompany}
-              helperText={errors.company ? errors.company.message : ''}
-              fullWidth
-              margin="normal"
+    <Box>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Controller
+              name="company"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="Company"
+                  variant="standard"
+                  error={!!errors.company}
+                  helperText={errors.company ? errors.company.message : ''}
+                  fullWidth
+                  margin="normal"
+                />
+              )}
             />
-          )}
-        />
-        <IconButton
-          onClick={() => handleEditClick('company')}
-          color={isEditingCompany ? 'secondary' : 'primary'}
-        >
-          {isEditingCompany ? <DoneIcon /> : <EditIcon />}
-        </IconButton>
-      </Box>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              label="Email"
-              variant={isEditingCompany ? 'outlined' : 'filled'}
-              error={!!errors.email}
-              disabled={!isEditingEmail}
-              helperText={errors.email ? errors.email.message : ''}
-              fullWidth
-              margin="normal"
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Controller
+              name="email"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="Email"
+                  variant="standard"
+                  error={!!errors.email}
+                  helperText={errors.email ? errors.email.message : ''}
+                  fullWidth
+                  margin="normal"
+                />
+              )}
             />
+          </Box>
+          {isDirty && (
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              disabled={!isDirty}
+            >
+              Submit
+            </Button>
           )}
-        />
-        <IconButton
-          onClick={() => handleEditClick('email')}
-          color={isEditingEmail ? 'secondary' : 'primary'}
-        >
-          {isEditingEmail ? <DoneIcon /> : <EditIcon />}
-        </IconButton>
-      </Box>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        <Controller
-          name="password"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              label="Password"
-              type="password"
-              variant={isEditingCompany ? 'outlined' : 'filled'}
-              error={!!errors.password}
-              disabled={!isEditingPassword}
-              helperText={errors.password ? errors.password.message : ''}
-              fullWidth
-              margin="normal"
-            />
-          )}
-        />
-        <IconButton
-          onClick={() => handleEditClick('password')}
-          color={isEditingPassword ? 'secondary' : 'primary'}
-        >
-          {isEditingPassword ? <DoneIcon /> : <EditIcon />}
-        </IconButton>
-      </Box>
 
-      <Button type="submit" variant="contained" color="primary">
-        Submit
-      </Button>
-    </form>
+          {openChangePassword && (
+            <ChangePasswordPopup
+              open={openChangePassword}
+              onClose={() => setOpenChangePassword(false)}
+            />
+          )}
+        </Box>
+      </form>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, marginTop: 2 }}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={() => setOpenChangePassword(true)}
+        >
+          Сменить Пароль
+        </Button>
+      </Box>
+    </Box>
   );
 };
 
