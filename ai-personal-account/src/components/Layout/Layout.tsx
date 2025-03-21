@@ -53,6 +53,7 @@ export default function Layout({}: iLayout) {
               display: 'block',
             },
             padding: '16px',
+            pl: 6,
             backgroundColor: grey[200],
             textAlign: 'start',
             fontWeight: 'bold',
