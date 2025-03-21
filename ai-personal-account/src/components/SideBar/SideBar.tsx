@@ -62,7 +62,7 @@ export default function StaticSidebar() {
         flexDirection: 'column',
         justifyContent: 'space-between', // Добавлено для распределения элементов
         alignSelf: 'flex-start',
-        width: 250,
+        width: 450,
         height: '100%', // Занимает всю высоту экрана
         backgroundColor: 'background.paper', // Цвет фона
         '@media (max-width: 768px)': {
@@ -84,22 +84,17 @@ export default function StaticSidebar() {
         }}
       >
         <List>
-          <ListItem>
+          <ListItem sx={{ pb: 6 }}>
             <Logo />
           </ListItem>
           {pagesTabs.map((el) => {
             return (
               <CustomLink key={el.name} to={el.link} disabled={!el.enable}>
-                <ListItem
-                  disablePadding
-                  sx={{
-                    bgcolor:
-                      location.pathname === el.link
-                        ? 'rgba(0, 0, 0, 0.1)'
-                        : 'transparent',
-                  }}
-                >
-                  <ListItemButton disabled={!el.enable}>
+                <ListItem disablePadding>
+                  <ListItemButton
+                    selected={location.pathname === el.link}
+                    disabled={!el.enable}
+                  >
                     <ListItemIcon>{el.icon}</ListItemIcon>
                     <ListItemText primary={el.name} />
                   </ListItemButton>
