@@ -109,9 +109,6 @@ export default function StaticSidebar() {
           })}
         </List>
       </div>
-      <Box sx={{ position: 'fixed', bottom: 10, left: 10 }}>
-        <LanguageButton />
-      </Box>
     </Box>
   );
 }
