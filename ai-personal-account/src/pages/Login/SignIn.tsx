@@ -1,51 +1,14 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Card,
-  Checkbox,
-  FormControlLabel,
-  FormLabel,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { ButtonGroup, Card, Typography } from '@mui/material';
 import { enqueueSnackbar } from 'notistack';
-import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import * as yup from 'yup';
-import { ILoginRequest } from '../../interfaces/auth/auth.interface.ts';
-interface iSignIn {}
+import LoginForm, { iLoginUser } from '../../components/Forms/LoginForm';
 
-export interface iLoginUser {
-  email: string;
-  password: string;
-}
-
-export default function SignIn({}: iSignIn) {
+export default function SignIn() {
   const { t, i18n } = useTranslation();
-  const schema = yup.object<ILoginRequest>().shape({
-    email: yup
-      .string()
-      .email(t('Invalid email'))
-      .required(t('Email is required')),
-    password: yup
-      .string()
-      .min(6, t('Password must be at least 6 characters'))
-      .required(t('Password is required')),
-  });
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
   };
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<iLoginUser>({
-    resolver: yupResolver(schema),
-  });
 
   const onSubmit = (data: iLoginUser) => {
     alert(data.email + data.password);
@@ -59,11 +22,7 @@ export default function SignIn({}: iSignIn) {
     <>
       
 
-      <Card
-        component="form"
-        onSubmit={handleSubmit(onSubmit)}
-        sx={{ width: '30%', boxShadow: 'none', padding: '1rem' }}
-      >
+      <Card sx={{ width: '30%', boxShadow: 'none', padding: '1rem' }}>
         <Typography
           component="h1"
           variant="h4"
@@ -76,55 +35,7 @@ export default function SignIn({}: iSignIn) {
         >
           AIMPACT
         </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            gap: 2,
-          }}
-        >
-          <FormLabel htmlFor="email">{t('login')}</FormLabel>
-          <TextField
-            id="email"
-            type="email"
-            placeholder={t('loginExaple')}
-            autoComplete="email"
-            autoFocus
-            {...register('email')}
-            error={!!errors.email}
-            helperText={errors.email?.message}
-          />
-
-          <FormLabel htmlFor="password">{t('password')}</FormLabel>
-          <TextField
-            placeholder="••••••"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            variant="outlined"
-            {...register('password')}
-            error={!!errors.password}
-            helperText={errors.password?.message}
-          />
-
-          <FormControlLabel
-            control={
-              <Checkbox
-                value="remember"
-                color="primary"
-                onClick={() => {
-                  alert('remember');
-                }}
-              />
-            }
-            label={t('Remember')}
-          />
-
-          <Button type="submit" fullWidth variant="contained">
-            {t('signIn')}
-          </Button>
-        </Box>
+        <LoginForm onSubmit={onSubmit} t={t} />
       </Card>
     </>
   );
