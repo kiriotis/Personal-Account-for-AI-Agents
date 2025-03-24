@@ -77,7 +77,7 @@ export default function StaticSidebar() {
         edge="start"
         onClick={toggleDrawer(!isOpen)}
         sx={{
-          display: { xs: 'block', sm: 'none' },
+          display: { xs: 'block', sm: 'block',md: 'none' },
           position: 'fixed',
           top: 14,
           left: 16,
@@ -94,7 +94,7 @@ export default function StaticSidebar() {
           width: 325,
           height: '100%',
           backgroundColor: 'background.paper',
-          display: { xs: 'none', sm: 'flex' },
+          display: { xs: 'none', sm: 'none', md: 'flex' },
         }}
       >
         <List>
@@ -138,7 +138,7 @@ export default function StaticSidebar() {
                   to={el.link}
                   disabled={!el.enable}
                   extraFunction={() => {
-                    setIsOpen(false)
+                    setIsOpen(false);
                   }}
                 >
                   <ListItem disablePadding>

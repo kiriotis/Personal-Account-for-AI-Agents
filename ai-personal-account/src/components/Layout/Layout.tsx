@@ -72,7 +72,7 @@ export default function Layout({}: iLayout) {
             flexDirection: 'column',
             overflow: 'hidden',
             background: grey[100],
-            pt: { xs: 1, sm: 7 },
+            pt: { xs: 1, sm: 2, lg: 7 },
           }}
         >
           <Outlet />
