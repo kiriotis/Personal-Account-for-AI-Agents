@@ -2,7 +2,7 @@ import { grey } from '@mui/material/colors';
 import { createTheme } from '@mui/material/styles';
 import type {} from '@mui/x-data-grid/themeAugmentation';
 
-const borderRadius = '10px'
+const borderRadius = '10px';
 const colors = {
   primary: {
     main: 'rgb(34,47,122)',
@@ -103,6 +103,16 @@ export const theme = createTheme({
         root: {
           color: colors.primary.main,
           fontSize: '22px',
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          '&.Mui-disabled .MuiSvgIcon-root': {
+            color: grey[500],
+            opacity: 0.5,
+          },
         },
       },
     },
