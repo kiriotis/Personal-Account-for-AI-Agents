@@ -1,17 +1,16 @@
 import {
   Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
   Typography,
-  ToggleButtonGroup,
-  ToggleButton,
 } from '@mui/material';
 import { BarChart } from '@mui/x-charts';
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
 import { useEffect, useState } from 'react';
 
-// Тип для элемента dataset
-
-
-// Тип для series
 type SeriesItem = {
   dataKey: string;
   label: string;
@@ -24,7 +23,7 @@ const chartSetting = {
       label: 'Requests',
     },
   ],
-  height: 300,
+  height: 250,
   sx: {
     [`.${axisClasses.left} .${axisClasses.label}`]: {
       transform: 'translate(-10px, 0)',
@@ -122,13 +121,19 @@ export const dataset = [
 ];
 
 export function valueFormatter(value: number | null): string {
-  return `${value}mm`;
+  return `${value}`;
 }
 
 interface TextChartsProps {}
 
+
 export default function TextChartsUi({}: TextChartsProps) {
   const [series, setSeries] = useState<SeriesItem[]>([]);
+  const [age, setAge] = useState('');
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setAge(event.target.value as string);
+  };
 
   useEffect(() => {
     // Собираем все уникальные ключи, исключая 'month'
@@ -137,7 +142,7 @@ export default function TextChartsUi({}: TextChartsProps) {
       Object.keys(item).forEach((key) => {
         if (key !== 'month') {
           keys.add(key);
-          console.log(key)
+
         }
       });
     });
@@ -154,7 +159,7 @@ export default function TextChartsUi({}: TextChartsProps) {
 
   return (
     <Box
-      sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}
+      sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%', p: 0}}
     >
       <Box
         sx={{
@@ -165,23 +170,23 @@ export default function TextChartsUi({}: TextChartsProps) {
         }}
       >
         <Typography variant="h5">{'Количество запросов'}</Typography>
-        <ToggleButtonGroup
-          value={''}
-          exclusive
-          onChange={() => {}}
-          aria-label="days"
-          sx={{ justifySelf: 'center', alignSelf: 'center' }}
-        >
-          <ToggleButton value={7} aria-label="previous year">
-            Предыдущий год
-          </ToggleButton>
-          <ToggleButton value={30} aria-label="current year">
-            Текущий год
-          </ToggleButton>
-          <ToggleButton value={90} aria-label="next year">
-            Следующий год
-          </ToggleButton>
-        </ToggleButtonGroup>
+        <FormControl sx={{ minWidth: 120 }}>
+          <InputLabel id="demo-simple-select-label">Year</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={age}
+            label="Age"
+            onChange={handleChange}
+          >
+            <MenuItem value={10}>2020</MenuItem>
+            <MenuItem value={20}>2021</MenuItem>
+            <MenuItem value={30}>2022</MenuItem>
+            <MenuItem value={40}>2023</MenuItem>
+            <MenuItem value={50}>2024</MenuItem>
+            <MenuItem value={60}>2025</MenuItem>
+          </Select>
+        </FormControl>
       </Box>
       <BarChart
         dataset={dataset}

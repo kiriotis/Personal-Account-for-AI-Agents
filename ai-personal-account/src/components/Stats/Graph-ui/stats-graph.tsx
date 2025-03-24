@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import TextChartsUi from '../../Charts/text-charts.ui';
+import TextChartsConUi from '../../Charts/Text-chartsCon.ui';
 
 interface iStatsGraph {}
 
@@ -51,6 +52,7 @@ export default function StatsGraph({}: iStatsGraph) {
       }}
     >
       <TextChartsUi />
+      <TextChartsConUi />
       {/* <Box
         sx={{
           display: 'flex',
