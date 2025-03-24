@@ -6,11 +6,12 @@ import {
   LinkProps as RouterLinkProps,
 } from 'react-router-dom';
 
-type CustomLinkProps = Omit<MuiLinkProps, 'component'> & RouterLinkProps & { disabled?: boolean };
+type CustomLinkProps = Omit<MuiLinkProps, 'component'> &
+  RouterLinkProps & { disabled?: boolean; extraFunction?: () => void };
 
 const CustomLink = React.forwardRef<HTMLAnchorElement, CustomLinkProps>(
   function CustomLink(props, ref) {
-    const { disabled, ...otherProps } = props;
+    const { disabled, extraFunction, ...otherProps } = props;
     return (
       <MuiLink
         component={RouterLink}
@@ -19,6 +20,10 @@ const CustomLink = React.forwardRef<HTMLAnchorElement, CustomLinkProps>(
         onClick={(event) => {
           if (disabled) {
             event.preventDefault();
+          } else {
+            if (extraFunction) {
+              extraFunction();
+            }
           }
         }}
         sx={{ color: 'inherit', textDecoration: 'none' }}

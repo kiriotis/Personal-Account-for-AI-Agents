@@ -124,16 +124,23 @@ export default function StaticSidebar() {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            width: 250,
+            width: 275,
           }}
         >
-          <List>
-            <ListItem sx={{ pb: 6 }}>
+          <List disablePadding>
+            <ListItem sx={{ pb: 6, pl: 6 }}>
               <Logo />
             </ListItem>
             {pagesTabs.map((el) => {
               return (
-                <CustomLink key={el.name} to={el.link} disabled={!el.enable}>
+                <CustomLink
+                  key={el.name}
+                  to={el.link}
+                  disabled={!el.enable}
+                  extraFunction={() => {
+                    setIsOpen(false)
+                  }}
+                >
                   <ListItem disablePadding>
                     <ListItemButton
                       selected={location.pathname === el.link}
