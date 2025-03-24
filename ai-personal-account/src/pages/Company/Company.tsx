@@ -1,8 +1,8 @@
-import ClientDataForm from '../../components/Forms/ClientDataForm';
-import { Box, Typography, Button } from '@mui/material';
-import ChangePasswordPopup from '../../components/Pop-Up/ChangePasswordPopup';
+import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
+import ChangePasswordPopup from '../../components/Pop-Up/ChangePasswordPopup';
 import LanguageButton from '../../features/change-language/language-button.feature';
+import ClientDataForm from '../../components/forms/ClientDataForm';
 
 interface iCompany {}
 
@@ -52,7 +52,7 @@ export default function Company({}: iCompany) {
         Универсальный доступ
       </Typography>
       <Box>
-        <Typography variant="body2" >Локализация</Typography>
+        <Typography variant="body2">Локализация</Typography>
         <LanguageButton />
       </Box>
     </Box>
