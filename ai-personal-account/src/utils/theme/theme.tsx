@@ -86,15 +86,28 @@ export const theme = createTheme({
         },
       },
     },
+    MuiTableCell: {
+      styleOverrides: {
+        head: {
+          backgroundColor: 'rgb(234, 236, 240)',
+          color: 'rgb(52, 64, 84)',
+          fontWeight: 700,
+          cursor: 'default',
+        },
+      },
+    },
     MuiDataGrid: {
       styleOverrides: {
         columnHeaders: {
-          // background: colors.secondary.main, // Цвет фона заголовков
-          // fontSize: '1.2rem', // Размер шрифта
-          // fontWeight: 'bold', // Жирный шрифт
+          backgroundColor: 'rgb(234, 236, 240)',
+          color: 'rgb(52, 64, 84)',
+          fontWeight: 700,
+          cursor: 'default',
         },
         root: {
           '--unstable_DataGrid-radius': borderRadius,
+          '--DataGrid-containerBackground': 'rgb(234, 236, 240)',
+          '--unstable_DataGrid-headWeight': '600'
         },
       },
     },
