@@ -1,5 +1,128 @@
-interface Props {};
+import { useRef } from 'react';
+import LaunchIcon from '@mui/icons-material/Launch';
+import DeleteIcon from '@mui/icons-material/Delete';
+import UpdateIcon from '@mui/icons-material/Update';
+import {
+  Box,
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from '@mui/material';
+
+interface Props {}
+
+interface Destination {
+  filename: string;
+  weights: string;
+  link: string;
+}
+
+const BaseFile = [
+  { name: 'File.txt', weights: "60 kb" },
+  { name: 'kek.txt', weights: "54 kb" },
+  { name: 'File.txt', weights: "51 kb" },
+  { name: 'File2.txt', weights: "33 kb" },
+  { name: 'File3.txt', weights: "28 kb" },
+  { name: 'File4.txt', weights: "22 kb" },
+];
 
 export default function KnowledgeTab({}: Props) {
-  return <div>KnowledgeTab</div>;
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleUploadClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      const selectedFile = files[0];
+      console.log('Selected file:', selectedFile);
+      // Here you would typically handle the file upload to the server
+      // For now, we're just logging it to the console
+
+      // Reset the file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    }
+  };
+
+  return (
+    <Box
+      sx={{
+        width: '100%',
+        bgcolor: 'white',
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '1rem',
+      }}
+    >
+      <Typography variant="h5">База знаний</Typography>
+      <Box
+        sx={{
+          overflow: 'auto',
+        }}
+      >
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 250 }} size="small" aria-label="a dense table">
+            <TableHead>
+              <TableRow>
+                <TableCell>File name</TableCell>
+                <TableCell align="right">Weight</TableCell>
+                <TableCell align="right"></TableCell>
+                <TableCell align="right"></TableCell>
+                <TableCell align="right">
+                  <Button
+                    variant="outlined"
+                    onClick={handleUploadClick}
+                  >
+                    Upload new File
+                  </Button>
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleFileChange}
+                    style={{ display: 'none' }}
+                  />
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {BaseFile.map((BaseFile, index) => (
+                <TableRow
+                  key={index}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {BaseFile.name}
+                  </TableCell>
+                  <TableCell align="right">{BaseFile.weights}</TableCell>
+                  <TableCell align="right">
+                    <LaunchIcon></LaunchIcon>
+                  </TableCell>
+                  <TableCell align="right">
+                    <Button variant="outlined" sx={{ gap: 1 }}>
+                      <UpdateIcon></UpdateIcon>Update
+                    </Button>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Button variant="outlined" sx={{ gap: 1 }}>
+                      <DeleteIcon></DeleteIcon>Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+    </Box>
+  );
 }

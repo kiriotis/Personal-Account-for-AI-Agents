@@ -65,7 +65,7 @@ export default function StaticSidebar() {
       name: t('pages.Billing'),
       link: RoutePaths.Billing,
       icon: <RequestQuoteOutlinedIcon />,
-      enable: false,
+      enable: true,
     },
   ];
 
