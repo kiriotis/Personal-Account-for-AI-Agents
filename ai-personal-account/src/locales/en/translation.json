@@ -74,5 +74,19 @@
     "columnsPanelShowAllButton": "Show all",
     "columnsPanelHideAllButton": "Hide all",
     "openChatButton": "Open chat"
-  }
+  },
+  "period": "Period",
+  "Information": "Information",
+  "Security": "Security",
+  "Accessibility": "Accessibility",
+  "Localization": "Localization",
+  "Billing settings": "Billing settings",
+  "Top requests": "Top requests",
+  "Request text": "Request text",
+  "Count": "Count",
+  "Conversion": "Conversion",
+  "Enter Verification Code": "Enter Verification Code",
+  "Change Password": "Change Password",
+  "Token Usage Stats": "Token Usage Stats",
+  "Message Usage Stats": "Message Usage Stats"
 }

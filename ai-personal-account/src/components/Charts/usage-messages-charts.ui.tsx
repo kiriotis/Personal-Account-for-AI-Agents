@@ -10,11 +10,13 @@ import {
 } from '@mui/material';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { generateMockGraphData } from '../../utils/helpers/mockGraphData';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 export default function UsageMessagesCharts() {
+  const { t } = useTranslation();
   const [period, setPeriod] = useState<'7' | '30' | '90'>('7');
   const [chartData, setChartData] = useState(generateMockGraphData(7));
 
@@ -39,7 +41,7 @@ export default function UsageMessagesCharts() {
         }}
       >
         <Typography variant="h5">
-          {'Статистика по кол-ву сообщений'}
+          {t('Message Usage Stats')}
         </Typography>
       </Box>
       <Box
@@ -51,7 +53,7 @@ export default function UsageMessagesCharts() {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={period}
-            label="Age"
+            label={t('period')}
             onChange={handlePeriodChange}
           >
             <MenuItem value={'7'}>7 days</MenuItem>
@@ -71,7 +73,7 @@ export default function UsageMessagesCharts() {
             <ChevronLeftIcon />
           </IconButton>
           <Typography variant="body1" sx={{ margin: '0 10px' }}>
-            {`Период: 01.02.2025 - 07.02.2027`}
+            {`${t('period')}: 01.02.2025 - 07.02.2027`}
           </Typography>
           <IconButton>
             <ChevronRightIcon />

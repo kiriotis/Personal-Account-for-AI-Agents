@@ -10,6 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 
+import { useTranslation } from 'react-i18next';
 interface iDestinationTable {}
 
 interface Destination {
@@ -39,18 +40,19 @@ const destinations = [
 ];
 
 export default function DestinationTable({}: iDestinationTable) {
+  const { t } = useTranslation();
   return (
     <Box
       sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 2 }}
     >
-      <Typography variant="h5">Top destinations</Typography>
+<Typography variant="h5">{t('Top destinations')}</Typography>
       <Box sx={{ maxHeight:{  xs: 150, sm: 150, md: 150, lg: 380 }, overflow: 'auto' }}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 250}} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>Country</TableCell>
-                <TableCell align="right">Requests</TableCell>
+<TableCell>{t('Country')}</TableCell>
+<TableCell align="right">{t('Requests')}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

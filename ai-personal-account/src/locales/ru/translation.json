@@ -74,5 +74,19 @@
     "columnsPanelShowAllButton": "Показать все",
     "columnsPanelHideAllButton": "Скрыть все",
     "openChatButton": "Открыть чат"
-  }
+  },
+  "period": "Период",
+  "Information": "Информация",
+  "Security": "Безопасность",
+  "Accessibility": "Доступность",
+  "Localization": "Локализация",
+  "Billing settings": "Настройки биллинга",
+  "Top requests": "Топ запросов",
+  "Request text": "Текст запроса",
+  "Count": "Количество",
+  "Conversion": "Конверсия",
+  "Enter Verification Code": "Введите код подтверждения",
+  "Change Password": "Изменить пароль",
+  "Token Usage Stats": "Статистика по кол-ву использованных токенов",
+  "Message Usage Stats": "Статистика по кол-ву сообщений"
 }
