@@ -30,7 +30,6 @@ export default function TextBots({}: iTextBots) {
           sx={{
             width: '100%',
             display: 'flex',
-            pt: { xs: 1, sm: 7 },
             // justifyContent: { xs: 'center', sm: 'start' },
           }}
         >

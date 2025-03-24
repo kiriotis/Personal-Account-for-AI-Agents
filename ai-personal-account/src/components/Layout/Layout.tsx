@@ -54,6 +54,7 @@ export default function Layout({}: iLayout) {
             },
             padding: '16px',
             pl: 6,
+
             backgroundColor: grey[200],
             textAlign: 'start',
             fontWeight: 'bold',
@@ -62,7 +63,20 @@ export default function Layout({}: iLayout) {
         >
           {currentPageTitle}
         </Typography>
-        <Outlet />
+        <Box
+          sx={{
+            flexGrow: 1,
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+            background: grey[100],
+            pt: { xs: 1, sm: 7 },
+          }}
+        >
+          <Outlet />
+        </Box>
       </Box>
     </Box>
   );

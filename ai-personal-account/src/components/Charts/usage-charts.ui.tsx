@@ -63,14 +63,12 @@ export default function UsageCharts({ data, title, series }: UsageChartsProps) {
           flexGrow: 1,
           flexDirection: 'column',
           width: '100%',
-          overflowX: 'scroll',
         }}
       >
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            minWidth: '600px',
             width: '100%',
           }}
         >
