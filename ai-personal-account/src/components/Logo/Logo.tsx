@@ -2,10 +2,27 @@ import React from 'react';
 import { SvgIcon } from '@mui/material';
 import { theme } from '../../utils/theme/theme';
 
-const Logo: React.FC = React.memo(() => {
+interface LogoProps {
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+}
+
+const Logo: React.FC<LogoProps> = React.memo(({ size = 'md' }) => {
   console.log('Logo/loading');
+
+  const sizes = {
+    sm: 0.75,
+    md: 1,
+    lg: 1.25,
+    xl: 1.5,
+  };
+
   return (
-    <SvgIcon sx={{ height: 50, width: 200 }}>
+    <SvgIcon
+      sx={{
+        height: { xs: 50, sm: 50 * sizes[size] },
+        width: { xs: 200, sm: 200 * sizes[size] },
+      }}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="200"

@@ -2,6 +2,8 @@ import { ButtonGroup, Card, Typography } from '@mui/material';
 import { enqueueSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import LoginForm, { iLoginUser } from '../../components/Forms/LoginForm';
+import Logo from '../../components/Logo/Logo';
+import video_bg from './../../../assets/bg_video.mp4';
 
 export default function SignIn() {
   const { t, i18n } = useTranslation();
@@ -20,21 +22,35 @@ export default function SignIn() {
 
   return (
     <>
-      
-
-      <Card sx={{ width: '30%', boxShadow: 'none', padding: '1rem' }}>
-        <Typography
-          component="h1"
-          variant="h4"
-          sx={{
-            width: '100%',
-            fontSize: 'clamp(2rem, 10vw, 2.15rem)',
-            paddingBottom: '1rem',
-            color: 'blue',
-          }}
-        >
-          AIMPACT
-        </Typography>
+      <video
+        style={{
+          position: 'fixed',
+          width: '100vw',
+          height: '100vh',
+          objectFit: 'cover',
+          filter: 'grayscale(0.5)'
+        }}
+        autoPlay
+        muted={true}
+        loop={true}
+      >
+        <source src={video_bg} type="video/mp4" />
+      </video>
+      <Card
+        sx={{
+          width: { xs: '90%', sm: '70%', md: '50%', lg: '30%' },
+          boxShadow: 'none',
+          padding: '1rem',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 6,
+          zIndex: 99,
+          paddingTop: 2,
+        }}
+      >
+        <Logo size="xl" />
         <LoginForm onSubmit={onSubmit} t={t} />
       </Card>
     </>
