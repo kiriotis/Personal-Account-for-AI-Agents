@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dialog, DialogTitle, DialogContent } from '@mui/material';
 import VerificationCodeForm from '../Forms/VerificationCodeForm';
+import { useTranslation } from 'react-i18next';
 
 interface VerificationCodePopupProps {
   open: boolean;
@@ -8,9 +9,10 @@ interface VerificationCodePopupProps {
 }
 
 const VerificationCodePopup: React.FC<VerificationCodePopupProps> = ({ open, onClose }) => {
+  const { t } = useTranslation();
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
-      <DialogTitle>Enter Verification Code</DialogTitle>
+<DialogTitle>{t('Enter Verification Code')}</DialogTitle>
       <DialogContent>
         <VerificationCodeForm onSubmit={(data) => {
           console.log('Verification code entered:', data.verificationCode);

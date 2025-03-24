@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import VerificationCodePopup from './VerificationCodePopup';
 import { Dialog, DialogTitle, DialogContent } from '@mui/material';
 import ChangePasswordForm from '../Forms/ChangePasswordForm';
+import { useTranslation } from 'react-i18next';
 
 interface ChangePasswordPopupProps {
   open: boolean;
@@ -9,6 +10,7 @@ interface ChangePasswordPopupProps {
 }
 
 const ChangePasswordPopup: React.FC<ChangePasswordPopupProps> = ({ open, onClose }) => {
+  const { t } = useTranslation();
   const [openVerificationCode, setOpenVerificationCode] = useState(false);
 
   const handleFormSubmit = (data: { oldPassword: string; newPassword: string; confirmPassword: string }) => {
@@ -24,7 +26,7 @@ const ChangePasswordPopup: React.FC<ChangePasswordPopupProps> = ({ open, onClose
   return (
     <>
       <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
-        <DialogTitle>Change Password</DialogTitle>
+<DialogTitle>{t('Change Password')}</DialogTitle>
         <DialogContent>
           <ChangePasswordForm onSubmit={handleFormSubmit} />
         </DialogContent>

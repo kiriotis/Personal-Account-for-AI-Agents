@@ -2,18 +2,8 @@ import { useRef } from 'react';
 import LaunchIcon from '@mui/icons-material/Launch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UpdateIcon from '@mui/icons-material/Update';
-import {
-  Box,
-  Button,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 interface Props {}
 
@@ -33,6 +23,7 @@ const BaseFile = [
 ];
 
 export default function KnowledgeTab({}: Props) {
+  const { t } = useTranslation();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleUploadClick = () => {
@@ -64,7 +55,7 @@ export default function KnowledgeTab({}: Props) {
         padding: '1rem',
       }}
     >
-      <Typography variant="h5">База знаний</Typography>
+<Typography variant="h5">{t('Knowledge Base')}</Typography>
       <Box
         sx={{
           overflow: 'auto',
@@ -74,8 +65,8 @@ export default function KnowledgeTab({}: Props) {
           <Table sx={{ minWidth: 250 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>File name</TableCell>
-                <TableCell align="right">Weight</TableCell>
+<TableCell>{t('File name')}</TableCell>
+<TableCell align="right">{t('Weight')}</TableCell>
                 <TableCell align="right"></TableCell>
                 <TableCell align="right"></TableCell>
                 <TableCell align="right">
@@ -109,12 +100,12 @@ export default function KnowledgeTab({}: Props) {
                   </TableCell>
                   <TableCell align="right">
                     <Button variant="outlined" sx={{ gap: 1 }}>
-                      <UpdateIcon></UpdateIcon>Update
+<UpdateIcon></UpdateIcon>{t('Update')}
                     </Button>
                   </TableCell>
                   <TableCell align="center">
                     <Button variant="outlined" sx={{ gap: 1 }}>
-                      <DeleteIcon></DeleteIcon>Delete
+<DeleteIcon></DeleteIcon>{t('Delete')}
                     </Button>
                   </TableCell>
                 </TableRow>

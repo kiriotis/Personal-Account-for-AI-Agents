@@ -12,9 +12,11 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { generateMockGraphData } from '../../utils/helpers/mockGraphData';
 
 export default function UsageTokensCharts() {
+  const { t } = useTranslation();
   const [period, setPeriod] = useState<'7' | '30' | '90'>('7');
   const [chartData, setChartData] = useState(generateMockGraphData(7));
 
@@ -39,7 +41,7 @@ export default function UsageTokensCharts() {
         }}
       >
         <Typography variant="h5">
-          {'Статистика по кол-ву использованных токенов'}
+          {t('Token Usage Stats')}
         </Typography>
       </Box>
       <Box
@@ -51,7 +53,7 @@ export default function UsageTokensCharts() {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={period}
-            label="Age"
+label={t('period')}
             onChange={handlePeriodChange}
           >
             <MenuItem value={'7'}>7 days</MenuItem>
