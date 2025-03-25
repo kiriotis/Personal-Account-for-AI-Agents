@@ -18,9 +18,7 @@ export default function TotalRequestsCard(props: TotalRequestsCardProps) {
         position: 'relative',
         '& .MuiCardContent-root': {
           p: { xs: '8px', sm: '16px' },
-          ':hover': {
-            pb: 0,
-          },
+          ':last-child': { p: { xs: '8px', sm: '16px' } },
         },
       }}
     >
