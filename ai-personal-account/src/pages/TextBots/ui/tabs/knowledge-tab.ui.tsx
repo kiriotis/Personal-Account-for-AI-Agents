@@ -64,7 +64,8 @@ export default function KnowledgeTab({}: Props) {
         bgcolor: 'white',
         display: 'flex',
         flexDirection: 'column',
-        padding: '1rem',
+        p: { xs: 1, sm: 2 },
+        gap: 2,
       }}
     >
       <Typography variant="h5">{t('Knowledge Base')}</Typography>
@@ -74,8 +75,13 @@ export default function KnowledgeTab({}: Props) {
           height: '100%',
         }}
       >
-        <TableContainer sx={{ height: '100%' }} component={Paper}>
-          <Table sx={{ minWidth: 250 }} size="small" aria-label="a dense table">
+        <TableContainer sx={{ height: '100%' }}>
+          <Table
+            stickyHeader
+            sx={{ minWidth: 250 }}
+            size="small"
+            aria-label="a dense table"
+          >
             <TableHead>
               <TableRow>
                 <TableCell>{t('File name')}</TableCell>

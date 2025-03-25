@@ -118,8 +118,15 @@ export const theme = createTheme({
     MuiSvgIcon: {
       styleOverrides: {
         root: {
-          // color: colors.primary.main,
+          color: colors.primary.main,
           fontSize: '22px',
+        },
+      },
+    },
+    MuiTableContainer: {
+      styleOverrides: {
+        root: {
+          borderRadius: borderRadius,
         },
       },
     },

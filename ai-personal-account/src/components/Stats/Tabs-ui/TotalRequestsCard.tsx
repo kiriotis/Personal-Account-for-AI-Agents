@@ -15,6 +15,7 @@ export default function TotalRequestsCard(props: TotalRequestsCardProps) {
   return (
     <Card
       sx={{
+        width: '100%',
         position: 'relative',
         '& .MuiCardContent-root': {
           p: { xs: '8px', sm: '16px' },

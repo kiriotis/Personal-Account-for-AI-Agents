@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import StatsGraph from '../../../../components/Stats/Graph-ui/stats-graph';
 import StatsTablesUi from '../../../../components/Stats/stats-tables.ui';
+import TotalRequestsCard from '../../../../components/Stats/Tabs-ui/TotalRequestsCard';
 
 interface Props {}
 
@@ -28,8 +29,30 @@ export default function StatsTab({}: Props) {
         sx={{
           width: '100%',
           display: 'flex',
-          padding: '1rem',
-          // justifyContent: { xs: 'center', sm: 'start' },
+          flexDirection: { xs: 'column', sm: 'row' },
+          gap: { xs: 1, sm: 2 },
+          p: { xs: 1, sm: 2 },
+        }}
+      >
+        <TotalRequestsCard
+          title={'Всего обращений'}
+          value={'4,328'}
+          capture={'+12.5% с прошлого месяца'}
+          isIncrease={true}
+        ></TotalRequestsCard>
+        <TotalRequestsCard
+          title={'Конверсия в бронирование'}
+          value={'24.3%'}
+          capture={'+3.2% с прошлого месяца'}
+          isIncrease={true}
+        ></TotalRequestsCard>
+      </Box>
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          p: { xs: 1, sm: 2 },
+          justifyContent: { xs: 'center', sm: 'start' },
         }}
       >
         <Tabs
@@ -47,6 +70,7 @@ export default function StatsTab({}: Props) {
           <Tab value={2} label={t('Graphs')} />
         </Tabs>
       </Box>
+
       <Box
         sx={{
           width: '100%',
@@ -55,7 +79,7 @@ export default function StatsTab({}: Props) {
           alignItems: 'flex-start',
           flexGrow: 1,
           overflow: 'auto',
-          p: { xs: 1, sm: 2, md: 4 },
+          p: { xs: 1, sm: 2 },
         }}
       >
         {value === 1 ? <StatsTablesUi /> : null}

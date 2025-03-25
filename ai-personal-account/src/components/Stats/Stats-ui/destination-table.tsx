@@ -43,64 +43,68 @@ export default function DestinationTable({}: iDestinationTable) {
   const { t } = useTranslation();
   return (
     <Box
-  sx={{
-    width: '100%',
-    height: { xs: '50%', ms: '50%', md: '100%' },
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 2,
-  }}
->
-  <Typography variant="h5">{t('Top destinations')}</Typography>
-  <Box
-    sx={{
-      height: '100%',
-      minHeight: 200,
-      maxHeight: { xs: '300px', sm: '100%' },
-      overflow: 'hidden', // ← Главный контейнер без прокрутки
-      position: 'relative', // ← Для абсолютного позиционирования заголовка
-    }}
-  >
-    <TableContainer 
-      component={Paper}
       sx={{
-        height: '100%',
-        overflow: 'auto', // ← Прокрутка только для тела таблицы
+        width: '100%',
+        height: { xs: '50%', ms: '50%', md: '100%' },
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
       }}
     >
-      <Table sx={{ minWidth: 250 }} size="small" aria-label="a dense table">
-        {/* Заголовок таблицы (фиксированный) */}
-        <TableHead
+      <Typography variant="h5">{t('Top destinations')}</Typography>
+      <Box
+        sx={{
+          height: '100%',
+          minHeight: 200,
+          maxHeight: { xs: '300px', sm: '100%' },
+          overflow: 'hidden', // ← Главный контейнер без прокрутки
+          position: 'relative', // ← Для абсолютного позиционирования заголовка
+        }}
+      >
+        <TableContainer
           sx={{
-            position: 'sticky', // ← Фиксирует заголовок
-            top: 0,             // ← Прилипает к верху
-            zIndex: 1,          // ← Чтобы был над контентом
-            backgroundColor: 'background.paper', // ← Фон как у Paper
+            height: '100%',
+            overflow: 'auto', // ← Прокрутка только для тела таблицы
           }}
         >
-          <TableRow>
-            <TableCell>{t('Country')}</TableCell>
-            <TableCell align="right">{t('Requests')}</TableCell>
-          </TableRow>
-        </TableHead>
-        
-        {/* Тело таблицы (прокручивается) */}
-        <TableBody>
-          {destinations.map((destination, index) => (
-            <TableRow
-              key={index}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+          <Table
+            stickyHeader
+            sx={{ minWidth: 250 }}
+            size="small"
+            aria-label="a dense table"
+          >
+            {/* Заголовок таблицы (фиксированный) */}
+            <TableHead
+              sx={{
+                // position: 'sticky', // ← Фиксирует заголовок
+                top: 0, // ← Прилипает к верху
+                zIndex: 1, // ← Чтобы был над контентом
+                backgroundColor: 'background.paper', // ← Фон как у Paper
+              }}
             >
-              <TableCell component="th" scope="row">
-                {destination.name}
-              </TableCell>
-              <TableCell align="right">{destination.requests}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  </Box>
-</Box>
+              <TableRow>
+                <TableCell>{t('Country')}</TableCell>
+                <TableCell align="right">{t('Requests')}</TableCell>
+              </TableRow>
+            </TableHead>
+
+            {/* Тело таблицы (прокручивается) */}
+            <TableBody>
+              {destinations.map((destination, index) => (
+                <TableRow
+                  key={index}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {destination.name}
+                  </TableCell>
+                  <TableCell align="right">{destination.requests}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+    </Box>
   );
 }
