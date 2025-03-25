@@ -88,5 +88,21 @@
   "Enter Verification Code": "Введите код подтверждения",
   "Change Password": "Изменить пароль",
   "Token Usage Stats": "Статистика по кол-ву использованных токенов",
-  "Message Usage Stats": "Статистика по кол-ву сообщений"
+  "Message Usage Stats": "Статистика по кол-ву сообщений",
+  "tables": "Таблицы",
+  "Graphs": "Графики",
+  "requests": "Количество запросов",
+  "conversion": "Коверсия по городам",
+  "Top destinations": "Топ направлений",
+  "Country": "Страна",
+  "Requests": "Запросы",
+  "Status": "Статус",
+  "File name": "Имя файла",
+  "Weight": "Вес",
+  "Upload new File": "Загрузить новый файл",
+  "Update": "Обновить",
+  "Delete": "Удалить",
+  "input": "Вход",
+  "output": "Выход",
+  "Change password": "Изменить пароль"
 }

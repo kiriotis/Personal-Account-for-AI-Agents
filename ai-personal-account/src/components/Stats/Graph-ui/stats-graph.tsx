@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import TextChartsUi from '../../Charts/text-charts.ui';
-import TextChartsConUi from '../../Charts/Text-chartsCon.ui';
+import TextChartsConUi from '../../Charts/text-chartsCon.ui';
 
 interface iStatsGraph {}
 

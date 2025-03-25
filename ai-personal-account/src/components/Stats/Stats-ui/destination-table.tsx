@@ -45,14 +45,19 @@ export default function DestinationTable({}: iDestinationTable) {
     <Box
       sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 2 }}
     >
-<Typography variant="h5">{t('Top destinations')}</Typography>
-      <Box sx={{ maxHeight:{  xs: 150, sm: 150, md: 150, lg: 380 }, overflow: 'auto' }}>
+      <Typography variant="h5">{t('Top destinations')}</Typography>
+      <Box
+        sx={{
+          maxHeight: { xs: 150, sm: 150, md: 150, lg: 380 },
+          overflow: 'auto',
+        }}
+      >
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 250}} size="small" aria-label="a dense table">
+          <Table sx={{ minWidth: 250 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-<TableCell>{t('Country')}</TableCell>
-<TableCell align="right">{t('Requests')}</TableCell>
+                <TableCell>{t('Country')}</TableCell>
+                <TableCell align="right">{t('Requests')}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

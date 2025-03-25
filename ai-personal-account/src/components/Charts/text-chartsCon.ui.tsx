@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { axisClasses, BarChart } from '@mui/x-charts';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface ChartDataItem {
   direction: string;
@@ -49,6 +50,8 @@ const chartSetting = {
 };
 
 export default function ConversionChart() {
+  const { t } = useTranslation();
+
   const [series] = useState<SeriesItem[]>([
     {
       dataKey: 'conversion',
@@ -67,7 +70,7 @@ export default function ConversionChart() {
         p: 0,
       }}
     >
-      <Typography variant="h5">{'Коверсия по городам'}</Typography>
+      <Typography variant="h5">{t('conversion')}</Typography>
       <BarChart
         dataset={sortedDataset} // Используем отсортированный массив
         xAxis={[

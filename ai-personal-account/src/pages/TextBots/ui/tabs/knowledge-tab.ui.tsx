@@ -2,7 +2,18 @@ import { useRef } from 'react';
 import LaunchIcon from '@mui/icons-material/Launch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UpdateIcon from '@mui/icons-material/Update';
-import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 interface Props {}
@@ -14,12 +25,12 @@ interface Destination {
 }
 
 const BaseFile = [
-  { name: 'File.txt', weights: "60 kb" },
-  { name: 'kek.txt', weights: "54 kb" },
-  { name: 'File.txt', weights: "51 kb" },
-  { name: 'File2.txt', weights: "33 kb" },
-  { name: 'File3.txt', weights: "28 kb" },
-  { name: 'File4.txt', weights: "22 kb" },
+  { name: 'File.txt', weights: '60 kb' },
+  { name: 'kek.txt', weights: '54 kb' },
+  { name: 'File.txt', weights: '51 kb' },
+  { name: 'File2.txt', weights: '33 kb' },
+  { name: 'File3.txt', weights: '28 kb' },
+  { name: 'File4.txt', weights: '22 kb' },
 ];
 
 export default function KnowledgeTab({}: Props) {
@@ -55,7 +66,7 @@ export default function KnowledgeTab({}: Props) {
         padding: '1rem',
       }}
     >
-<Typography variant="h5">{t('Knowledge Base')}</Typography>
+      <Typography variant="h5">{t('Knowledge Base')}</Typography>
       <Box
         sx={{
           overflow: 'auto',
@@ -65,16 +76,13 @@ export default function KnowledgeTab({}: Props) {
           <Table sx={{ minWidth: 250 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-<TableCell>{t('File name')}</TableCell>
-<TableCell align="right">{t('Weight')}</TableCell>
+                <TableCell>{t('File name')}</TableCell>
+                <TableCell align="right">{t('Weight')}</TableCell>
                 <TableCell align="right"></TableCell>
                 <TableCell align="right"></TableCell>
                 <TableCell align="right">
-                  <Button
-                    variant="outlined"
-                    onClick={handleUploadClick}
-                  >
-                    Upload new File
+                  <Button variant="outlined" onClick={handleUploadClick}>
+                  { t("Upload new File") }
                   </Button>
                   <input
                     type="file"
@@ -100,12 +108,14 @@ export default function KnowledgeTab({}: Props) {
                   </TableCell>
                   <TableCell align="right">
                     <Button variant="outlined" sx={{ gap: 1 }}>
-<UpdateIcon></UpdateIcon>{t('Update')}
+                      <UpdateIcon></UpdateIcon>
+                      {t('Update')}
                     </Button>
                   </TableCell>
                   <TableCell align="center">
                     <Button variant="outlined" sx={{ gap: 1 }}>
-<DeleteIcon></DeleteIcon>{t('Delete')}
+                      <DeleteIcon></DeleteIcon>
+                      {t('Delete')}
                     </Button>
                   </TableCell>
                 </TableRow>
