@@ -98,7 +98,7 @@ export default function PopularRequests({}: iPopularRequests) {
     <Box
       sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 2 }}
     >
-<Typography variant="h5">{t('Top requests')}</Typography>
+      <Typography variant="h5">{t('Top requests')}</Typography>
       <Box
         sx={{
           maxHeight: { xs: 150, sm: 150, md: 150, lg: 380 },
@@ -109,10 +109,10 @@ export default function PopularRequests({}: iPopularRequests) {
           <Table sx={{ minWidth: 250 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-<TableCell>{t('Request text')}</TableCell>
-<TableCell align="right">{t('Count')}</TableCell>
-<TableCell align="right">{t('Conversion')}</TableCell>
-<TableCell align="right">{t('Status')}</TableCell>
+                <TableCell>{t('Request text')}</TableCell>
+                <TableCell align="right">{t('Count')}</TableCell>
+                <TableCell align="right">{t('Conversion')}</TableCell>
+                <TableCell align="right">{t('Status')}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

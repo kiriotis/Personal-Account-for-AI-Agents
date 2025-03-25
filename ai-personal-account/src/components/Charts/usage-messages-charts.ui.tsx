@@ -73,7 +73,7 @@ export default function UsageMessagesCharts() {
             <ChevronLeftIcon />
           </IconButton>
           <Typography variant="body1" sx={{ margin: '0 10px' }}>
-            {`${t('period')}: 01.02.2025 - 07.02.2027`}
+          {`${t('period')}: 01.02.2025 - 07.02.2027`}
           </Typography>
           <IconButton>
             <ChevronRightIcon />
@@ -98,8 +98,8 @@ export default function UsageMessagesCharts() {
           <BarChart
             xAxis={[{ scaleType: 'band', data: chartData.labels }]}
             series={[
-              { data: chartData.input, label: 'Вход', stack: 'assets' },
-              { data: chartData.output, label: 'Выход', stack: 'assets' },
+              { data: chartData.input, label:t('input'), stack: 'assets' },
+              { data: chartData.output, label: t('output'), stack: 'assets' },
             ]}
             borderRadius={6}
             sx={{

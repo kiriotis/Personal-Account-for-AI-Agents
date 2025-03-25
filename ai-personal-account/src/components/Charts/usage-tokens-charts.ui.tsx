@@ -40,12 +40,15 @@ export default function UsageTokensCharts() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h5">
-          {t('Token Usage Stats')}
-        </Typography>
+        <Typography variant="h5">{t('Token Usage Stats')}</Typography>
       </Box>
       <Box
-        sx={{ display: 'flex', width: '100%', justifyContent: 'space-between', flexWrap:'wrap' }}
+        sx={{
+          display: 'flex',
+          width: '100%',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+        }}
       >
         <FormControl variant="standard">
           <InputLabel id="demo-simple-select-label">Age</InputLabel>
@@ -53,7 +56,7 @@ export default function UsageTokensCharts() {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={period}
-label={t('period')}
+            label={t('period')}
             onChange={handlePeriodChange}
           >
             <MenuItem value={'7'}>7 days</MenuItem>
@@ -73,7 +76,7 @@ label={t('period')}
             <ChevronLeftIcon />
           </IconButton>
           <Typography variant="body1" sx={{ margin: '0 10px' }}>
-            {`Период: 01.02.2025 - 07.02.2027`}
+          {`${t('period')}: 01.02.2025 - 07.02.2027`}
           </Typography>
           <IconButton>
             <ChevronRightIcon />
@@ -98,8 +101,8 @@ label={t('period')}
           <BarChart
             xAxis={[{ scaleType: 'band', data: chartData.labels }]}
             series={[
-              { data: chartData.input, label: 'Вход', stack: 'assets' },
-              { data: chartData.output, label: 'Выход', stack: 'assets' },
+              { data: chartData.input, label: t('input'), stack: 'assets' },
+              { data: chartData.output, label: t('output'), stack: 'assets' },
             ]}
             borderRadius={6}
             sx={{

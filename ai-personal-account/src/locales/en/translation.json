@@ -88,5 +88,21 @@
   "Enter Verification Code": "Enter Verification Code",
   "Change Password": "Change Password",
   "Token Usage Stats": "Token Usage Stats",
-  "Message Usage Stats": "Message Usage Stats"
+  "Message Usage Stats": "Message Usage Stats",
+  "tables": "Tables",
+  "Graphs": "Graphs",
+  "requests": "Number of requests",
+  "conversion": "Conversion by city",
+  "Top destinations": "Top destinations",
+  "Country": "Country",
+  "Requests": "Requests",
+  "Status": "Status",
+  "File name": "File name",
+  "Weight": "Weight",
+  "Upload new File": "Upload new File",
+  "Update": "Update",
+  "Delete": "Delete",
+  "input": "Input",
+  "output": "Output",
+  "Change password": "Change password"
 }

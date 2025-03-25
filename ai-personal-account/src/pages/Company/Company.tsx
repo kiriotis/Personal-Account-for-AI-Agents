@@ -2,8 +2,9 @@ import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 import ChangePasswordPopup from '../../components/Pop-Up/ChangePasswordPopup';
 import LanguageButton from '../../features/change-language/language-button.feature';
-import ClientDataForm from '../../components/Forms/ClientDataForm';
+
 import { useTranslation } from 'react-i18next';
+import ClientDataForm from '../../components/forms/ClientDataForm';
 
 interface iCompany {}
 
@@ -21,8 +22,8 @@ export default function Company({}: iCompany) {
         overflow: 'scroll',
       }}
     >
-<Typography variant="h5" sx={{ mb: 2 }}>
-  {t('Information')}
+      <Typography variant="h5" sx={{ mb: 2 }}>
+        {t('Information')}
       </Typography>
       <ClientDataForm
         initialData={{
@@ -31,8 +32,8 @@ export default function Company({}: iCompany) {
         }}
       />
 
-<Typography variant="h5" sx={{ mt: 4, mb: 2 }}>
-  {t('Security')}
+      <Typography variant="h5" sx={{ mt: 4, mb: 2 }}>
+        {t('Security')}
       </Typography>
       <Box sx={{ mb: 4 }}>
         <Button
@@ -40,7 +41,7 @@ export default function Company({}: iCompany) {
           color="primary"
           onClick={() => setOpenChangePassword(true)}
         >
-          Сменить Пароль
+          {t('Change password')}
         </Button>
         {openChangePassword && (
           <ChangePasswordPopup
@@ -50,11 +51,11 @@ export default function Company({}: iCompany) {
         )}
       </Box>
 
-<Typography variant="h5" sx={{ mt: 4, mb: 2 }}>
-  {t('Accessibility')}
+      <Typography variant="h5" sx={{ mt: 4, mb: 2 }}>
+        {t('Accessibility')}
       </Typography>
       <Box>
-<Typography variant="body2">{t('Localization')}</Typography>
+        <Typography variant="body2">{t('Localization')}</Typography>
         <LanguageButton />
       </Box>
     </Box>

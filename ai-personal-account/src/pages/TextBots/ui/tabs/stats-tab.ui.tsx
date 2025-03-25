@@ -1,13 +1,14 @@
 import { Box, Tab, Tabs, tabsClasses } from '@mui/material';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import StatsGraph from '../../../../components/Stats/Graph-ui/stats-graph';
 import StatsTablesUi from '../../../../components/Stats/stats-tables.ui';
-import TotalRequestsCard from '../../../../components/Stats/Tabs-ui/TotalRequestsCard';
 
 interface Props {}
 
 export default function StatsTab({}: Props) {
   const [value, setValue] = useState(1);
+  const { t } = useTranslation();
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -24,7 +25,7 @@ export default function StatsTab({}: Props) {
         sx={{
           width: '100%',
           display: 'flex',
-          padding: "1rem"
+          padding: '1rem',
           // justifyContent: { xs: 'center', sm: 'start' },
         }}
       >
@@ -39,8 +40,8 @@ export default function StatsTab({}: Props) {
           variant="scrollable"
           allowScrollButtonsMobile
         >
-          <Tab value={1} label={'Таблицы'} />
-          <Tab value={2} label={'Графики'} />
+          <Tab value={1} label={t('tables')} />
+          <Tab value={2} label={t('Graphs')} />
         </Tabs>
       </Box>
       <Box

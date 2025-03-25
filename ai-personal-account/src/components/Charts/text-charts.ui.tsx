@@ -10,6 +10,7 @@ import {
 import { BarChart } from '@mui/x-charts';
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 type SeriesItem = {
   dataKey: string;
@@ -126,11 +127,10 @@ export function valueFormatter(value: number | null): string {
 
 interface TextChartsProps {}
 
-
 export default function TextChartsUi({}: TextChartsProps) {
   const [series, setSeries] = useState<SeriesItem[]>([]);
   const [age, setAge] = useState('');
-
+  const { t } = useTranslation();
   const handleChange = (event: SelectChangeEvent) => {
     setAge(event.target.value as string);
   };
@@ -142,7 +142,6 @@ export default function TextChartsUi({}: TextChartsProps) {
       Object.keys(item).forEach((key) => {
         if (key !== 'month') {
           keys.add(key);
-
         }
       });
     });
@@ -159,7 +158,13 @@ export default function TextChartsUi({}: TextChartsProps) {
 
   return (
     <Box
-      sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%', p: 0}}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
+        width: '100%',
+        p: 0,
+      }}
     >
       <Box
         sx={{
@@ -169,7 +174,7 @@ export default function TextChartsUi({}: TextChartsProps) {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h5">{'Количество запросов'}</Typography>
+        <Typography variant="h5">{t('requests')}</Typography>
         <FormControl sx={{ minWidth: 120 }}>
           <InputLabel id="demo-simple-select-label">Year</InputLabel>
           <Select
