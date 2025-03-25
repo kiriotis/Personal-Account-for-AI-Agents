@@ -24,7 +24,7 @@ const chartSetting = {
       label: 'Requests',
     },
   ],
-  height: 250,
+  height: 450,
   sx: {
     [`.${axisClasses.left} .${axisClasses.label}`]: {
       transform: 'translate(-10px, 0)',

@@ -19,6 +19,7 @@ export default function StatsTab({}: Props) {
         bgcolor: 'white',
         display: 'flex',
         flexDirection: 'column',
+        overflow: 'scroll'
       }}
     >
       <Box
