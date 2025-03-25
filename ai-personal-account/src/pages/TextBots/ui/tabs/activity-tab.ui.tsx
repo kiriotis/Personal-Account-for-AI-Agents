@@ -94,7 +94,7 @@ export default function ActivityTab({}: Props) {
   );
 
   return (
-    <Box sx={{ width: '100%', display: 'flex' }}>
+    <Box sx={{ width: '100%', display: 'flex', p: { xs: 1, sm: 2 } }}>
       <ActivityTableUi columns={columns} rows={rows} />
     </Box>
   );

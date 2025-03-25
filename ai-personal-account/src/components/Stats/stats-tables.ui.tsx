@@ -13,31 +13,11 @@ export default function StatsTablesUi({}: iStatsTablesUi) {
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        gap: { xs: 6, sm: 1 },
+        gap: { xs: 6, sm: 4 },
         overflow: 'auto',
       }}
     >
-      <Box
-        sx={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
-          gap: '10px',
-        }}
-      >
-        <TotalRequestsCard
-          title={'Всего обращений'}
-          value={'4,328'}
-          capture={'+12.5% с прошлого месяца'}
-          isIncrease={true}
-        ></TotalRequestsCard>
-        <TotalRequestsCard
-          title={'Конверсия в бронирование'}
-          value={'24.3%'}
-          capture={'+3.2% с прошлого месяца'}
-          isIncrease={true}
-        ></TotalRequestsCard>
-      </Box>
+     
 
       <Box
         sx={{

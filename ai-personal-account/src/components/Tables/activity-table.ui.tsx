@@ -130,30 +130,43 @@ export default function ActivityTableUi({ columns, rows }: Props) {
     const commonProps = { flex: 1 };
 
     if (column.field === 'platform') {
-      return { ...column, renderCell: renderPlatformCell, minWidth: 200, ...commonProps };
+      return {
+        ...column,
+        renderCell: renderPlatformCell,
+        minWidth: 200,
+        ...commonProps,
+      };
     }
     if (column.field === 'status') {
-      return { ...column, renderCell: renderStatusCell, minWidth: 200, ...commonProps };
+      return {
+        ...column,
+        renderCell: renderStatusCell,
+        minWidth: 200,
+        ...commonProps,
+      };
     }
     if (column.field === 'chat') {
-      return { ...column, renderCell: renderChatCell, minWidth: 300, ...commonProps };
+      return {
+        ...column,
+        renderCell: renderChatCell,
+        minWidth: 300,
+        ...commonProps,
+      };
     }
     return { ...column, minWidth: 200, ...commonProps };
   });
 
   return (
-    <Paper sx={{ height: 400, width: '100%', minHeight: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={updatedColumns}
-        initialState={{ pagination: { paginationModel } }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-        sx={{
-          border: 0,
-        }}
-        localeText={localeText}
-      />
-    </Paper>
+    <DataGrid
+      rows={rows}
+      columns={updatedColumns}
+      initialState={{ pagination: { paginationModel } }}
+      pageSizeOptions={[5, 10]}
+      checkboxSelection
+      sx={{
+        border: 0,
+      }}
+      localeText={localeText}
+    />
   );
 }

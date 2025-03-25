@@ -150,17 +150,21 @@ export default function PopularRequests({}: iPopularRequests) {
           position: 'relative', // Для sticky-элементов
         }}
       >
-        <TableContainer 
-          component={Paper}
+        <TableContainer
           sx={{
             height: '100%',
             overflow: 'auto', // Прокрутка только внутри TableContainer
           }}
         >
-          <Table sx={{ minWidth: 250 }} size="small" aria-label="a dense table">
+          <Table
+            stickyHeader
+            sx={{ minWidth: 250 }}
+            size="small"
+            aria-label="a dense table"
+          >
             <TableHead
               sx={{
-                position: 'sticky',
+                // position: 'sticky',
                 top: 0,
                 zIndex: 2,
                 backgroundColor: 'background.paper',
