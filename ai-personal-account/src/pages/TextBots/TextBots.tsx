@@ -1,6 +1,7 @@
 import { Box, Paper, Tabs, tabsClasses } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Tab from '@mui/material/Tab';
 import ActivityTab from './ui/tabs/activity-tab.ui';
 import StatsTab from './ui/tabs/stats-tab.ui';
@@ -10,9 +11,25 @@ interface iTextBots {}
 
 export default function TextBots({}: iTextBots) {
   const { t } = useTranslation();
-  const [value, setValue] = useState(1);
+  const location = useLocation();
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const [value, setValue] = useState(() => {
+    const query = new URLSearchParams(location.search);
+    const tab = query.get('tab');
+    return tab ? String(tab) : 'Activity';
+  });
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const tab = query.get('tab') || 'Activity';
+    setValue(String(tab));
+  }, [location.search]);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    const query = new URLSearchParams(location.search);
+    query.set('tab', newValue.toString());
+    navigate({ search: query.toString() });
     setValue(newValue);
   };
 
@@ -45,9 +62,9 @@ export default function TextBots({}: iTextBots) {
             scrollButtons
             allowScrollButtonsMobile
           >
-            <Tab value={1} label={t('tabs.Activity')} />
-            <Tab value={2} label={t('tabs.Stats')} />
-            <Tab value={3} label={t('tabs.Knowledge Base')} />
+            <Tab value={'Activity'} label="Activity" />
+            <Tab value={'Stats'} label="Stats" />
+            <Tab value={'Knowledge'} label="Knowledge" />
           </Tabs>
         </Box>
         <Box
@@ -65,12 +82,11 @@ export default function TextBots({}: iTextBots) {
               height: '100%',
               display: 'flex',
               p: 1,
-              
             }}
           >
-            {value === 1 ? <ActivityTab /> : null}
-            {value === 2 ? <StatsTab /> : null}
-            {value === 3 ? <KnowledgeTab /> : null}
+            {value === 'Activity' ? <ActivityTab /> : null}
+            {value === 'Stats' ? <StatsTab /> : null}
+            {value === 'Knowledge' ? <KnowledgeTab /> : null}
           </Paper>
         </Box>
       </Box>
