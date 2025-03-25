@@ -10,23 +10,32 @@ export default function StatsTablesUi({}: iStatsTablesUi) {
     <Box
       sx={{
         width: '100%',
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
         gap: '10px',
-
+        flexGrow: 1,
+        overflow: 'auto',
       }}
     >
-      <Box sx={{ width: '100%', display: 'flex', gap: '10px' }}>
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          gap: '10px',
+        }}
+      >
         <TotalRequestsCard
-          title={'Total requests'}
-          value={'12'}
-          capture={'23%'}
+          title={'Всего обращений'}
+          value={'4,328'}
+          capture={'+12.5% с прошлого месяца'}
           isIncrease={true}
         ></TotalRequestsCard>
         <TotalRequestsCard
-          title={'Total requests'}
-          value={'14141123'}
-          capture={'1000%'}
+          title={'Конверсия в бронирование'}
+          value={'24.3%'}
+          capture={'+3.2% с прошлого месяца'}
           isIncrease={true}
         ></TotalRequestsCard>
       </Box>
@@ -34,15 +43,16 @@ export default function StatsTablesUi({}: iStatsTablesUi) {
       <Box
         sx={{
           width: '100%',
+          height: '100%',
           display: 'flex',
           flexDirection: { xs: 'column', lg: 'row' },
-          justifyContent: 'center',
+          // justifyContent: 'center',
           alignItems: 'flex-start',
           gap: '10px',
         }}
       >
         <DestinationTable></DestinationTable>
-        <PopularRequests></PopularRequests>
+        {/* <PopularRequests></PopularRequests> */}
       </Box>
     </Box>
   );

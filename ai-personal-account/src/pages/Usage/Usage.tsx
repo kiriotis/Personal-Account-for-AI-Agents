@@ -12,7 +12,7 @@ export default function Usage({}: iUsage) {
         display: 'flex',
         flexDirection: 'column',
         flexGrow: 1,
-        overflow: 'scroll',
+        overflow: 'auto',
         gap: 2,
       }}
     >

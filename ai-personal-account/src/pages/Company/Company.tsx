@@ -19,7 +19,7 @@ export default function Company({}: iCompany) {
         display: 'flex',
         flexDirection: 'column',
         flexGrow: 1,
-        overflow: 'scroll',
+        overflow: 'auto',
       }}
     >
       <Typography variant="h5" sx={{ mb: 2 }}>
