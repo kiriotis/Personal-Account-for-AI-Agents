@@ -56,6 +56,7 @@ export default function TextBots({}: iTextBots) {
             height: '100%',
             display: 'flex',
             p: { xs: 1, sm: 2, md: 4 },
+            overflow: 'hidden',
           }}
         >
           <Paper
@@ -64,6 +65,7 @@ export default function TextBots({}: iTextBots) {
               height: '100%',
               display: 'flex',
               p: 1,
+              
             }}
           >
             {value === 1 ? <ActivityTab /> : null}
