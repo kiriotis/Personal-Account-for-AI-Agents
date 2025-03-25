@@ -105,16 +105,20 @@ export const theme = createTheme({
           cursor: 'default',
         },
         root: {
+          '& .MuiPaper-root': {
+            boxShadow: 'unset',
+          },
           '--unstable_DataGrid-radius': borderRadius,
           '--DataGrid-containerBackground': 'rgb(234, 236, 240)',
-          '--unstable_DataGrid-headWeight': '600'
+          '--unstable_DataGrid-headWeight': '600',
+          '--Paper-shadow': null,
         },
       },
     },
     MuiSvgIcon: {
       styleOverrides: {
         root: {
-          color: colors.primary.main,
+          // color: colors.primary.main,
           fontSize: '22px',
         },
       },

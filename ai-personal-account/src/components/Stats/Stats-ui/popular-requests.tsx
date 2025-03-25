@@ -101,7 +101,8 @@ export default function PopularRequests({}: iPopularRequests) {
       <Typography variant="h5">{t('Top requests')}</Typography>
       <Box
         sx={{
-          maxHeight: { xs: 150, sm: 150, md: 150, lg: 380 },
+          minHeight: 200,
+          maxHeight: { xs: 400, sm: 500, md: 600, lg: 800 },
           overflow: 'auto',
         }}
       >

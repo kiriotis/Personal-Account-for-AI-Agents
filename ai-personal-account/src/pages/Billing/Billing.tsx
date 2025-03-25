@@ -23,7 +23,7 @@ export default function Billing({}: iBilling) {
         display: 'flex',
         flexDirection: 'column',
         flexGrow: 1,
-        overflow: 'scroll',
+        overflow: 'auto',
       }}
     >
 <Typography variant="h5">{t('Billing settings')}</Typography>

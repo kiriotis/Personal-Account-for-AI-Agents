@@ -1,4 +1,4 @@
-import { Box, Tabs, tabsClasses } from '@mui/material';
+import { Box, Paper, Tabs, tabsClasses } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import Tab from '@mui/material/Tab';
@@ -58,9 +58,18 @@ export default function TextBots({}: iTextBots) {
             p: { xs: 1, sm: 2, md: 4 },
           }}
         >
-          {value === 1 ? <ActivityTab /> : null}
-          {value === 2 ? <StatsTab /> : null}
-          {value === 3 ? <KnowledgeTab /> : null}
+          <Paper
+            sx={{
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              p: 1,
+            }}
+          >
+            {value === 1 ? <ActivityTab /> : null}
+            {value === 2 ? <StatsTab /> : null}
+            {value === 3 ? <KnowledgeTab /> : null}
+          </Paper>
         </Box>
       </Box>
     </>

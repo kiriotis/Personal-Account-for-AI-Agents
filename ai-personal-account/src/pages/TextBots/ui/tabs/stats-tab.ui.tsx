@@ -18,8 +18,10 @@ export default function StatsTab({}: Props) {
         width: '100%',
         bgcolor: 'white',
         display: 'flex',
+        // height: '100%',
         flexDirection: 'column',
-        overflow: 'scroll'
+        // flexGrow: 1,
+        // overflow: 'auto',
       }}
     >
       <Box
@@ -51,6 +53,8 @@ export default function StatsTab({}: Props) {
           height: '100%',
           display: 'flex',
           alignItems: 'flex-start',
+          flexGrow: 1,
+          overflow: 'auto',
           p: { xs: 1, sm: 2, md: 4 },
         }}
       >
