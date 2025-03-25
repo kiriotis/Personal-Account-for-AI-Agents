@@ -13,8 +13,7 @@ export default function StatsTablesUi({}: iStatsTablesUi) {
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        gap: '10px',
-        flexGrow: 1,
+        gap: { xs: 6, sm: 1 },
         overflow: 'auto',
       }}
     >
@@ -46,13 +45,25 @@ export default function StatsTablesUi({}: iStatsTablesUi) {
           height: '100%',
           display: 'flex',
           flexDirection: { xs: 'column', lg: 'row' },
-          // justifyContent: 'center',
           alignItems: 'flex-start',
-          gap: '10px',
+          gap: { xs: 6, sm: 1 },
+          overflow: { md: 'hidden' },
         }}
       >
-        <DestinationTable></DestinationTable>
-        {/* <PopularRequests></PopularRequests> */}
+        <Box
+          sx={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: { xs: 'column', lg: 'row' },
+            alignItems: 'flex-start',
+            gap: { xs: 6, sm: 1 },
+            overflow: 'auto',
+          }}
+        >
+          <DestinationTable></DestinationTable>
+          <PopularRequests></PopularRequests>
+        </Box>
       </Box>
     </Box>
   );

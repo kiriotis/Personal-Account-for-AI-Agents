@@ -16,12 +16,12 @@ export default function StatsTab({}: Props) {
     <Box
       sx={{
         width: '100%',
+        height: '100%',
         bgcolor: 'white',
         display: 'flex',
-        // height: '100%',
         flexDirection: 'column',
         // flexGrow: 1,
-        // overflow: 'auto',
+        overflow: 'hidden',
       }}
     >
       <Box

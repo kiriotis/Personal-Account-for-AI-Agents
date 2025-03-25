@@ -60,6 +60,7 @@ export default function KnowledgeTab({}: Props) {
     <Box
       sx={{
         width: '100%',
+        height: '100%',
         bgcolor: 'white',
         display: 'flex',
         flexDirection: 'column',
@@ -69,10 +70,11 @@ export default function KnowledgeTab({}: Props) {
       <Typography variant="h5">{t('Knowledge Base')}</Typography>
       <Box
         sx={{
-          overflow: 'auto',
+          overflow: 'hidden',
+          height: '100%',
         }}
       >
-        <TableContainer component={Paper}>
+        <TableContainer sx={{ height: '100%' }} component={Paper}>
           <Table sx={{ minWidth: 250 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
@@ -82,7 +84,7 @@ export default function KnowledgeTab({}: Props) {
                 <TableCell align="right"></TableCell>
                 <TableCell align="right">
                   <Button variant="outlined" onClick={handleUploadClick}>
-                  { t("Upload new File") }
+                    {t('Upload new File')}
                   </Button>
                   <input
                     type="file"
