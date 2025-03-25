@@ -49,6 +49,7 @@ export default function StatsGraph({}: iStatsGraph) {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px',
+
       }}
     >
       <TextChartsUi />
