@@ -26,7 +26,7 @@ export default function StatsTablesUi({}: iStatsTablesUi) {
           display: 'flex',
           flexDirection: { xs: 'column', lg: 'row' },
           alignItems: 'flex-start',
-          gap: { xs: 6, sm: 1 },
+          gap: { xs: 6, md: 1 },
           overflow: { md: 'hidden' },
         }}
       >
@@ -37,7 +37,7 @@ export default function StatsTablesUi({}: iStatsTablesUi) {
             display: 'flex',
             flexDirection: { xs: 'column', lg: 'row' },
             alignItems: 'flex-start',
-            gap: { xs: 6, sm: 1 },
+            gap: { xs: 6, md: 1 },
             overflow: 'auto',
           }}
         >
