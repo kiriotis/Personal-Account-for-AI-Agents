@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 25.7.220.59",
-    "build": "tsc -b && vite build",
+    "dev": "vite --mode dev --host localhost",
+    "build": "tsc -b && vite build --mode prod",
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write .",
