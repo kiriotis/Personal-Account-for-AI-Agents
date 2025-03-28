@@ -1,7 +1,7 @@
 import {
   BaseQueryApi,
   FetchArgs,
-  fetchBaseQuery
+  fetchBaseQuery,
 } from '@reduxjs/toolkit/query';
 import Cookies from 'js-cookie';
 import { enqueueSnackbar } from 'notistack';
@@ -14,7 +14,7 @@ const baseQuery = fetchBaseQuery({
       headers.set('Authorization', `Bearer ${token}`);
     }
     return headers;
-  }
+  },
 });
 
 const baseQueryHandler = async (
@@ -24,21 +24,21 @@ const baseQueryHandler = async (
 ) => {
   const result = await baseQuery(args, api, extraOptions);
   if (result?.error?.status === 401) {
-    window.location.href = '/auth/sign-in';
+    window.location.href = '/sign-in';
     Cookies.remove('token');
     enqueueSnackbar('Пользователь не авторизован', {
-      variant: 'error'
+      variant: 'error',
     });
   }
   if (result?.error?.status === 500) {
     enqueueSnackbar('Что - то пошло не так. Возможно, сервер недоступен', {
-      variant: 'error'
+      variant: 'error',
     });
     throw result.error;
   }
   if (result?.error?.status === 'FETCH_ERROR') {
     enqueueSnackbar('Ошибка загрузки данных', {
-      variant: 'error'
+      variant: 'error',
     });
     throw result.error;
   }
