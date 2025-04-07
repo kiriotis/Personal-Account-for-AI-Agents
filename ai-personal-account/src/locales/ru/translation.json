@@ -87,6 +87,11 @@
     "status": "Статус"
   },
   "tables": "Таблицы",
+  "tabs": {
+    "Activity": "Активность",
+    "Knowledge": "База знаний",
+    "Stats": "Статистика"
+  },
   "Token Usage Stats": "Статистика токенов",
   "Top destinations": "Популярные направления",
   "Top requests": "Популярные запросы",
