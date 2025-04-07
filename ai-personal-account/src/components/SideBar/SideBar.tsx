@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { JSX, useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import Drawer from '@mui/material/Drawer';
 import {
   Box,
+  Button,
+  Divider,
   List,
   ListItem,
   ListItemButton,
@@ -19,6 +21,15 @@ import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import VoiceChatIcon from '@mui/icons-material/VoiceChat';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+
+interface iNavItem {
+  name: string;
+  link: string;
+  icon: JSX.Element;
+  enable: boolean;
+  divider: boolean;
+}
 
 export default function StaticSidebar() {
   const { t } = useTranslation();
@@ -40,32 +51,37 @@ export default function StaticSidebar() {
     {
       name: t('pages.AI ChatBots'),
       link: RoutePaths.TextBots,
-      icon: <ChatOutlinedIcon />,
+      icon: <ChatOutlinedIcon sx={{ fontSize: '2rem' }} />,
       enable: true,
+      divider: false,
     },
     {
       name: t('pages.AI Voice ChatBots'),
       link: RoutePaths.VoiceBots,
-      icon: <VoiceChatIcon />,
+      icon: <VoiceChatIcon sx={{ fontSize: '2rem' }} />,
       enable: false,
+      divider: false,
     },
     {
       name: t('pages.Usage'),
       link: RoutePaths.Usage,
-      icon: <QueryStatsIcon />,
+      icon: <QueryStatsIcon sx={{ fontSize: '2rem' }} />,
       enable: true,
+      divider: true,
     },
     {
       name: t('pages.Company'),
       link: RoutePaths.Company,
-      icon: <GroupOutlinedIcon />,
+      icon: <GroupOutlinedIcon sx={{ fontSize: '2rem' }} />,
       enable: true,
+      divider: false,
     },
     {
       name: t('pages.Billing'),
       link: RoutePaths.Billing,
-      icon: <RequestQuoteOutlinedIcon />,
+      icon: <RequestQuoteOutlinedIcon sx={{ fontSize: '2rem' }} />,
       enable: true,
+      divider: false,
     },
   ];
 
@@ -77,7 +93,7 @@ export default function StaticSidebar() {
         edge="start"
         onClick={toggleDrawer(!isOpen)}
         sx={{
-          display: { xs: 'block', sm: 'block',md: 'none' },
+          display: { xs: 'block', sm: 'block', md: 'none' },
           position: 'fixed',
           top: 14,
           left: 16,
@@ -97,26 +113,24 @@ export default function StaticSidebar() {
           display: { xs: 'none', sm: 'none', md: 'flex' },
         }}
       >
-        <List>
+        <List sx={{ px: 1 }}>
           <ListItem sx={{ pb: 6 }}>
             <Logo />
           </ListItem>
           {pagesTabs.map((el) => {
             return (
-              <CustomLink key={el.name} to={el.link} disabled={!el.enable}>
-                <ListItem disablePadding>
-                  <ListItemButton
-                    selected={location.pathname === el.link}
-                    disabled={!el.enable}
-                  >
-                    <ListItemIcon>{el.icon}</ListItemIcon>
-                    <ListItemText primary={el.name} />
-                  </ListItemButton>
-                </ListItem>
-              </CustomLink>
+              <NavItem
+                item={{ ...el }}
+                extraFunction={() => {}}
+                key={el.name}
+              />
             );
           })}
         </List>
+        <Button variant="text" sx={{ mb: 2, textTransform: 'none' }}>
+          <ArrowBackIosIcon fontSize="large" />
+          {t('nav.back')}
+        </Button>
       </Box>
       <Drawer anchor="left" open={isOpen} onClose={toggleDrawer(false)}>
         <Box
@@ -133,29 +147,61 @@ export default function StaticSidebar() {
             </ListItem>
             {pagesTabs.map((el) => {
               return (
-                <CustomLink
+                <NavItem
+                  item={{ ...el }}
+                  extraFunction={() => setIsOpen(false)}
                   key={el.name}
-                  to={el.link}
-                  disabled={!el.enable}
-                  extraFunction={() => {
-                    setIsOpen(false);
-                  }}
-                >
-                  <ListItem disablePadding>
-                    <ListItemButton
-                      selected={location.pathname === el.link}
-                      disabled={!el.enable}
-                    >
-                      <ListItemIcon>{el.icon}</ListItemIcon>
-                      <ListItemText primary={el.name} />
-                    </ListItemButton>
-                  </ListItem>
-                </CustomLink>
+                />
               );
             })}
           </List>
+          <Button variant="text" sx={{ mb: 2, textTransform: 'none' }}>
+            <ArrowBackIosIcon fontSize="large" />
+            {t('nav.back')}
+          </Button>
         </Box>
       </Drawer>
     </Box>
+  );
+}
+
+function NavItem({
+  item,
+  extraFunction,
+}: {
+  item: iNavItem;
+  extraFunction: () => void;
+}) {
+  return (
+    <>
+      <CustomLink
+        key={item.name}
+        to={item.link}
+        disabled={!item.enable}
+        extraFunction={extraFunction}
+      >
+        <ListItem disablePadding>
+          <ListItemButton
+            disableGutters
+            selected={location.pathname === item.link}
+            disabled={!item.enable}
+          >
+            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemText primary={item.name} />
+          </ListItemButton>
+        </ListItem>
+      </CustomLink>
+      {item.divider && (
+        <Divider
+          variant="fullWidth"
+          sx={{
+            mt: 1,
+            mb: 1,
+            // border: '0.5px solid ',
+            borderColor: 'primary.main',
+          }}
+        />
+      )}
+    </>
   );
 }

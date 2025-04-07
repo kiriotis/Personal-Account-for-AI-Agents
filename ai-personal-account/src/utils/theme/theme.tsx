@@ -42,6 +42,26 @@ export const theme = createTheme({
         },
       },
     },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          padding: '6px 2px',
+          borderRadius: '4px', // скругление углов
+          '&.Mui-selected': {
+            color: 'black', // черный текст при выборе
+            fontWeight: 500,
+            backgroundColor: colors.primary.active, // фон активного элемента
+          },
+          '&:not(.Mui-selected)': {
+            color: grey[600], // серый текст, если не выбран
+            fontWeight: 500,
+            '&:hover': {
+              backgroundColor: 'rgba(0, 0, 0, 0.04)', // легкий hover-эффект
+            },
+          },
+        },
+      },
+    },
     MuiListItemText: {
       styleOverrides: {
         root: {
