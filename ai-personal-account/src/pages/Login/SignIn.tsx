@@ -1,24 +1,43 @@
 import { Box, Card } from '@mui/material';
+import { SerializedError } from '@reduxjs/toolkit';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import Cookies from 'js-cookie';
 import { enqueueSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
-import Logo from '../../components/Logo/Logo';
-import video_bg from './../../../assets/bg_video.mp4';
-import LanguageButton from '../../features/change-language/language-button.feature';
+import { useNavigate } from 'react-router-dom';
 import LoginForm, { iLoginUser } from '../../components/forms/LoginForm';
+import Logo from '../../components/Logo/Logo';
+import LanguageButton from '../../features/change-language/language-button.feature';
+import { useLoginMutation } from '../../services/auth.service';
+import video_bg from './../../../assets/bg_video.mp4';
 
 export default function SignIn() {
   const { t, i18n } = useTranslation();
+  const [login, { isLoading }] = useLoginMutation();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
   };
-
+  const navigate = useNavigate();
   const onSubmit = (data: iLoginUser) => {
-    alert(data.email + data.password);
-    enqueueSnackbar(
-      'Пользователь авторизован или не авторизован тут так сказать полномочия все',
-      { variant: 'success' }
-    );
+    const params = new URLSearchParams();
+
+    params.append('grant_type', 'password');
+    params.append('username', data.email);
+    params.append('password', data.password);
+    params.append('scope', '');
+    params.append('client_id', 'string');
+    params.append('client_secret', 'string');
+
+    login(params)
+      .unwrap()
+      .then((data) => {
+        Cookies.set('token', data?.access_token as string, { expires: 2 });
+        enqueueSnackbar('Вход выполнен', {
+          variant: 'success',
+        });
+        navigate('/');
+      });
   };
 
   return (

@@ -30,6 +30,11 @@ const baseQueryHandler = async (
       variant: 'error',
     });
   }
+  if (result?.error?.status === 400) {
+    enqueueSnackbar('Неверный логин или пароль', {
+      variant: 'error',
+    });
+  }
   if (result?.error?.status === 500) {
     enqueueSnackbar('Что - то пошло не так. Возможно, сервер недоступен', {
       variant: 'error',
