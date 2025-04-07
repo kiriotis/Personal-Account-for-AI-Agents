@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Chip,
-  Paper,
-  Button,
-  IconButton,
-  Typography,
-} from '@mui/material';
+import { Avatar, Box, Chip, IconButton } from '@mui/material';
 import { useState } from 'react';
 import ChatPopup from '../Pop-Up/ChatPopup';
 import { useTranslation } from 'react-i18next';
