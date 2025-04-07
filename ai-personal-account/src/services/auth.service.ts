@@ -7,7 +7,7 @@ export const authService = createApi({
   tagTypes: ['auth'],
   baseQuery: baseQueryHandler,
   endpoints: builder => ({
-    login: builder.mutation<ILoginResponse, ILoginRequest>({
+    login: builder.mutation<ILoginResponse, URLSearchParams>({
       query: data => ({
         url: 'login',
         method: 'POST',
