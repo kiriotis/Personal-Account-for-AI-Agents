@@ -22,6 +22,7 @@ import VoiceChatIcon from '@mui/icons-material/VoiceChat';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 interface iNavItem {
   name: string;
@@ -108,7 +109,7 @@ export default function StaticSidebar() {
           justifyContent: 'space-between',
           alignSelf: 'flex-start',
           width: 325,
-          height: '100%',
+          height: '100vh',
           backgroundColor: 'background.paper',
           display: { xs: 'none', sm: 'none', md: 'flex' },
         }}
@@ -127,10 +128,18 @@ export default function StaticSidebar() {
             );
           })}
         </List>
-        <Button variant="text" sx={{ mb: 2, textTransform: 'none' }}>
-          <ArrowBackIosIcon fontSize="large" />
-          {t('nav.back')}
-        </Button>
+        <List sx={{ px: 1 }}>
+          <CustomLink to={'/'}>
+            <ListItem disablePadding>
+              <ListItemButton disableGutters>
+                <ListItemIcon>
+                  <ArrowBackIosNewIcon sx={{ fontSize: '1.5rem' }} />
+                </ListItemIcon>
+                <ListItemText primary={t('nav.back')} />
+              </ListItemButton>
+            </ListItem>
+          </CustomLink>
+        </List>
       </Box>
       <Drawer anchor="left" open={isOpen} onClose={toggleDrawer(false)}>
         <Box
@@ -139,9 +148,10 @@ export default function StaticSidebar() {
             flexDirection: 'column',
             justifyContent: 'center',
             width: 275,
+            height: '100vh',
           }}
         >
-          <List disablePadding>
+          <List disablePadding sx={{ height: '100%' }}>
             <ListItem sx={{ pb: 6, pl: 6 }}>
               <Logo />
             </ListItem>
@@ -155,10 +165,18 @@ export default function StaticSidebar() {
               );
             })}
           </List>
-          <Button variant="text" sx={{ mb: 2, textTransform: 'none' }}>
-            <ArrowBackIosIcon fontSize="large" />
-            {t('nav.back')}
-          </Button>
+          <List sx={{ px: 1 }}>
+            <CustomLink to={'/'}>
+              <ListItem disablePadding>
+                <ListItemButton disableGutters>
+                  <ListItemIcon>
+                    <ArrowBackIosNewIcon sx={{ fontSize: '1.5rem' }} />
+                  </ListItemIcon>
+                  <ListItemText primary={t('nav.back')} />
+                </ListItemButton>
+              </ListItem>
+            </CustomLink>
+          </List>
         </Box>
       </Drawer>
     </Box>
