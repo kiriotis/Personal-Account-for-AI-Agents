@@ -65,7 +65,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, t }) => {
         helperText={errors.password?.message}
       />
 
-      <FormControlLabel
+      {/* <FormControlLabel
         control={
           <Checkbox
             value="remember"
@@ -76,7 +76,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, t }) => {
           />
         }
         label={t('Remember')}
-      />
+      /> */}
 
       <Button type="submit" fullWidth variant="contained">
         {t('signIn')}

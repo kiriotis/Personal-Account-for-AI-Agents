@@ -7,12 +7,9 @@ export const store = configureStore({
     counter: counterReducer,
     [authService.reducerPath]: authService.reducer,
   },
-  
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(
-      authService.middleware,
-     
-    )
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(authService.middleware),
 });
 
 // Типы для TypeScript
