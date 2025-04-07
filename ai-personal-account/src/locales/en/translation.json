@@ -75,6 +75,9 @@
     "columnsPanelHideAllButton": "Hide all",
     "openChatButton": "Open chat"
   },
+  "nav": {
+    "back": "Back to main page"
+  },
   "period": "Period",
   "Information": "Information",
   "Security": "Security",
