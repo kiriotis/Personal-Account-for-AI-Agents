@@ -79,6 +79,10 @@
   "Requests": "Requests",
   "Security": "Security",
   "signIn": "signIn",
+  "stats": {
+    "conversionToBooking": "Conversion to booking",
+    "totalRequests": "Total requests"
+  },
   "Status": "Status",
   "table": {
     "chat": "Chat",

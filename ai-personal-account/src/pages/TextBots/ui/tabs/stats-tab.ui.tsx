@@ -10,7 +10,7 @@ interface Props {}
 export default function StatsTab({}: Props) {
   const [value, setValue] = useState(1);
   const { t } = useTranslation();
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
   return (
@@ -35,15 +35,15 @@ export default function StatsTab({}: Props) {
         }}
       >
         <TotalRequestsCard
-          title={'Всего обращений'}
+          title={t('stats.totalRequests')}
           value={'4,328'}
-          capture={'+12.5% с прошлого месяца'}
+          capture={'+12.5%'}
           isIncrease={true}
         ></TotalRequestsCard>
         <TotalRequestsCard
-          title={'Конверсия в бронирование'}
+          title={t('stats.conversionToBooking')}
           value={'24.3%'}
-          capture={'+3.2% с прошлого месяца'}
+          capture={'+3.2%'}
           isIncrease={true}
         ></TotalRequestsCard>
       </Box>
