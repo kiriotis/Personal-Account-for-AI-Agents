@@ -87,6 +87,11 @@
     "status": "Status"
   },
   "tables": "Tables",
+  "tabs": {
+    "Activity": "Activity",
+    "Knowledge": "Knowledge",
+    "Stats": "Stats"
+  },
   "Token Usage Stats": "Token Usage Stats",
   "Top destinations": "Top destinations",
   "Top requests": "Top requests",

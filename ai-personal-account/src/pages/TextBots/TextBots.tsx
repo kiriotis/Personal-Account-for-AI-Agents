@@ -1,4 +1,12 @@
-import { Box, Paper, Tabs, tabsClasses } from '@mui/material';
+import {
+  Box,
+  Paper,
+  styled,
+  Tabs,
+  tabsClasses,
+  Theme,
+  useMediaQuery,
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -6,10 +14,14 @@ import Tab from '@mui/material/Tab';
 import ActivityTab from './ui/tabs/activity-tab.ui';
 import StatsTab from './ui/tabs/stats-tab.ui';
 import KnowledgeTab from './ui/tabs/knowledge-tab.ui';
+import HistoryIcon from '@mui/icons-material/History';
+import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
+import StorageOutlinedIcon from '@mui/icons-material/StorageOutlined';
 
-interface iTextBots {}
-
-export default function TextBots({}: iTextBots) {
+export default function TextBots() {
+  const isMobile = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down('sm')
+  );
   const { t } = useTranslation();
   const location = useLocation();
 
@@ -62,9 +74,33 @@ export default function TextBots({}: iTextBots) {
             scrollButtons
             allowScrollButtonsMobile
           >
-            <Tab value={'Activity'} label="Activity" />
-            <Tab value={'Stats'} label="Stats" />
-            <Tab value={'Knowledge'} label="Knowledge" />
+            <Tab
+              iconPosition={isMobile ? 'top' : 'start'}
+              icon={<HistoryIcon />}
+              label={t('tabs.Activity')}
+              value="Activity"
+              sx={{
+                minHeight: 'auto',
+              }}
+            />
+            <Tab
+              iconPosition={isMobile ? 'top' : 'start'}
+              icon={<AssessmentOutlinedIcon />}
+              label={t('tabs.Stats')}
+              value="Stats"
+              sx={{
+                minHeight: 'auto',
+              }}
+            />
+            <Tab
+              iconPosition={isMobile ? 'top' : 'start'}
+              icon={<StorageOutlinedIcon />}
+              label={t('tabs.Knowledge')}
+              value="Knowledge"
+              sx={{
+                minHeight: 'auto', // Убираем фиксированную высоту
+              }}
+            />
           </Tabs>
         </Box>
         <Box
