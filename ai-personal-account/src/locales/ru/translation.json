@@ -79,6 +79,10 @@
   "Requests": "Запросы",
   "Security": "Безопасность",
   "signIn": "Войти",
+  "stats": {
+    "conversionToBooking": "Конверсия в бронирование",
+    "totalRequests": "Всего обращений"
+  },
   "Status": "Статус",
   "table": {
     "chat": "Чат",
