@@ -47,6 +47,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, t }) => {
         type="email"
         placeholder={t('loginExaple')}
         autoComplete="email"
+        defaultValue="usertest@example.com"
         autoFocus
         {...register('email')}
         error={!!errors.email}
@@ -60,6 +61,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, t }) => {
         id="password"
         autoComplete="current-password"
         variant="outlined"
+        defaultValue="string"
         {...register('password')}
         error={!!errors.password}
         helperText={errors.password?.message}
