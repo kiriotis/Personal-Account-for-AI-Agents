@@ -29,6 +29,7 @@ interface iNavItem {
   icon: JSX.Element;
   enable: boolean;
   divider: boolean;
+  hidden?: boolean;
 }
 
 export default function StaticSidebar() {
@@ -63,7 +64,7 @@ export default function StaticSidebar() {
       setIsOpen(open);
     };
 
-  const pagesTabs = [
+  const pagesTabs: iNavItem[] = [
     {
       name: t('pages.AI ChatBots'),
       link: RoutePaths.TextBots,
@@ -77,6 +78,7 @@ export default function StaticSidebar() {
       icon: <VoiceChatIcon sx={{ fontSize: '2rem' }} />,
       enable: false,
       divider: false,
+      hidden: true,
     },
     {
       name: t('pages.Usage'),
@@ -86,7 +88,6 @@ export default function StaticSidebar() {
       divider: true,
     },
     {
-      // name: t('pages.Company'),
       name: companyName,
       link: RoutePaths.Company,
       icon: <GroupOutlinedIcon sx={{ fontSize: '2rem' }} />,
@@ -206,6 +207,9 @@ function NavItem({
   item: iNavItem;
   extraFunction: () => void;
 }) {
+  if (item.hidden) {
+    return null;
+  }
   return (
     <>
       <CustomLink
