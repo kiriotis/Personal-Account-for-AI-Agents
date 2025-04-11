@@ -59,6 +59,7 @@ export default function TextBots() {
           sx={{
             width: '100%',
             display: 'flex',
+            padding: isMobile ? '0' : '0 30px',
             // justifyContent: { xs: 'center', sm: 'start' },
           }}
         >
@@ -66,6 +67,7 @@ export default function TextBots() {
             sx={{
               [`& .${tabsClasses.scrollButtons}`]: {
                 '&.Mui-disabled': { opacity: 0.3 },
+                display: isMobile ? 'flex' : 'none',
               },
             }}
             value={value}
