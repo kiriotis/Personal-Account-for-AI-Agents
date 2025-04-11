@@ -1,21 +1,45 @@
-import React from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Button, Checkbox, FormControlLabel, FormLabel, TextField } from '@mui/material';
+import { Box, Button, FormLabel, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { ILoginRequest } from '../../interfaces/auth/auth.interface.ts';
+import { useNavigate } from 'react-router-dom';
+import { t } from 'i18next';
+import { enqueueSnackbar } from 'notistack';
+import { useLoginMutation } from '../../services/auth.service.ts';
+import Cookies from 'js-cookie';
+import SyncIcon from '@mui/icons-material/Sync';
 
 export interface iLoginUser {
   email: string;
   password: string;
 }
 
-interface LoginFormProps {
-  onSubmit: (data: iLoginUser) => void;
-  t: (key: string) => string;
-}
+function LoginForm() {
+  const [login, { isLoading }] = useLoginMutation();
 
-const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, t }) => {
+  const navigate = useNavigate();
+  const onSubmit = (data: iLoginUser) => {
+    const params = new URLSearchParams();
+
+    params.append('grant_type', 'password');
+    params.append('username', data.email);
+    params.append('password', data.password);
+    params.append('scope', '');
+    params.append('client_id', 'string');
+    params.append('client_secret', 'string');
+
+    login(params)
+      .unwrap()
+      .then((data) => {
+        Cookies.set('token', data?.access_token as string, { expires: 2 });
+        enqueueSnackbar('Вход выполнен', {
+          variant: 'success',
+        });
+        navigate('/');
+      });
+  };
+
   const schema = yup.object<ILoginRequest>().shape({
     email: yup
       .string()
@@ -80,11 +104,18 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, t }) => {
         label={t('Remember')}
       /> */}
 
-      <Button type="submit" fullWidth variant="contained">
+      <Button
+        loading={isLoading}
+        loadingPosition="start"
+        startIcon={<SyncIcon />}
+        type="submit"
+        fullWidth
+        variant="contained"
+      >
         {t('signIn')}
       </Button>
     </Box>
   );
-};
+}
 
 export default LoginForm;
