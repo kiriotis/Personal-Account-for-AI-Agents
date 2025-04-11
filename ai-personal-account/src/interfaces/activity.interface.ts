@@ -1,4 +1,4 @@
-interface ChatItem {
+export interface ChatItem {
   datetime: string;
   username: string;
   text: string;

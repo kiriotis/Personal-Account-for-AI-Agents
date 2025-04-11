@@ -5,73 +5,7 @@ import ActivityTableUi from '../../../../components/Tables/activity-table.ui';
 import { GridColDef } from '@mui/x-data-grid';
 import { useAllActivitysQuery } from '../../../../services/activity.service';
 
-interface Props {}
-
-interface IRows {
-  last_update: string;
-  platform: 'Telegram' | 'VK' | 'WebChat';
-  status: 'Paid' | 'Booked' | 'Clicked booking' | 'Lost';
-  chat: string;
-}
-
-const rows: Array<IRows> = [
-  {
-    last_update: '2025-03-19T18:57:30',
-    platform: 'Telegram',
-    status: 'Paid',
-    chat: 'Lorem ipsum',
-  },
-  {
-    last_update: '2025-03-19T18:57:30',
-    platform: 'WebChat',
-    status: 'Booked',
-    chat: 'Lorem ipsum',
-  },
-  {
-    last_update: '2025-03-19T18:57:30',
-    platform: 'VK',
-    status: 'Lost',
-    chat: 'Lorem ipsum',
-  },
-  {
-    last_update: '2025-03-19T18:57:30',
-    platform: 'Telegram',
-    status: 'Clicked booking',
-    chat: 'Lorem ipsum',
-  },
-  {
-    last_update: '2025-03-19T18:57:30',
-    platform: 'WebChat',
-    status: 'Paid',
-    chat: 'Lorem ipsum',
-  },
-  {
-    last_update: '2025-03-19T18:57:30',
-    platform: 'VK',
-    status: 'Booked',
-    chat: 'Lorem ipsum',
-  },
-  {
-    last_update: '2025-03-19T18:57:30',
-    platform: 'Telegram',
-    status: 'Lost',
-    chat: 'Lorem ipsum',
-  },
-  {
-    last_update: '2025-03-19T18:57:30',
-    platform: 'WebChat',
-    status: 'Clicked booking',
-    chat: 'Lorem ipsum',
-  },
-  {
-    last_update: '2025-03-19T18:57:30',
-    platform: 'VK',
-    status: 'Paid',
-    chat: 'Lorem ipsum',
-  },
-];
-
-export default function ActivityTab({}: Props) {
+export default function ActivityTab() {
   const { t } = useTranslation();
   const { data: activityRows } = useAllActivitysQuery();
 
@@ -87,17 +21,9 @@ export default function ActivityTab({}: Props) {
 
   return (
     <Box sx={{ width: '100%', display: 'flex', p: { xs: 1, sm: 2 } }}>
-      <ActivityTableUi
-        columns={columns}
-        rows={
-          activityRows?.data.map((el, ind) => {
-            return { ...el, id: ind };
-          }) ||
-          rows.map((el, ind) => {
-            return { ...el, id: ind };
-          })
-        }
-      />
+      {activityRows && (
+        <ActivityTableUi columns={columns} rows={activityRows?.data} />
+      )}
     </Box>
   );
 }
