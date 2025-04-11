@@ -14,6 +14,7 @@ import { useState } from 'react';
 import ChatPopup from '../Pop-Up/ChatPopup';
 import { useTranslation } from 'react-i18next';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import { GridColDef } from '@mui/x-data-grid';
 import { Activity, ChatItem } from '../../interfaces/activity.interface';
 
@@ -117,9 +118,24 @@ export default function ActivityTableUi({ rows }: Props) {
         >
           <TableRow>
             <TableCell>{t('tables-activity.date')}</TableCell>
-            <TableCell>{t('tables-activity.platform')}</TableCell>
-            <TableCell>{t('tables-activity.status')}</TableCell>
-            <TableCell>{t('tables-activity.chat')}</TableCell>
+            <TableCell>
+              {t('tables-activity.platform')}
+              <IconButton aria-label="filter" size="small">
+                <FilterListIcon />
+              </IconButton>
+            </TableCell>
+            <TableCell>
+              {t('tables-activity.status')}
+              <IconButton aria-label="filter" size="small">
+                <FilterListIcon />
+              </IconButton>
+            </TableCell>
+            <TableCell>
+              {t('tables-activity.chat')}
+              <IconButton aria-label="filter" size="small">
+                <FilterListIcon />
+              </IconButton>
+            </TableCell>
           </TableRow>
         </TableHead>
 
