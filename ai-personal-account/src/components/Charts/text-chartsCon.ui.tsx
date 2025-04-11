@@ -79,6 +79,7 @@ export default function ConversionChart() {
             dataKey: 'direction',
           },
         ]}
+        borderRadius={8} 
         series={series}
         {...chartSetting}
       />

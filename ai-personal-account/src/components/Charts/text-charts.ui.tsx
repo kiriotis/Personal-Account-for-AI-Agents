@@ -197,6 +197,7 @@ export default function TextChartsUi({}: TextChartsProps) {
         dataset={dataset}
         xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
         series={series}
+        borderRadius={8} 
         {...chartSetting}
       />
     </Box>

@@ -38,7 +38,7 @@ export default function TextBots() {
     setValue(String(tab));
   }, [location.search]);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (_: React.SyntheticEvent, newValue: string) => {
     const query = new URLSearchParams(location.search);
     query.set('tab', newValue.toString());
     navigate({ search: query.toString() });
