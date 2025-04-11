@@ -107,8 +107,6 @@ function LoginForm() {
 
       <Button
         loading={isLoading}
-        loadingPosition="start"
-        startIcon={<SyncIcon />}
         type="submit"
         fullWidth
         variant="contained"
