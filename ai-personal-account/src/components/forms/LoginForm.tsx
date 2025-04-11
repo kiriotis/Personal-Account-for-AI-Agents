@@ -4,11 +4,11 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { ILoginRequest } from '../../interfaces/auth/auth.interface.ts';
 import { useNavigate } from 'react-router-dom';
-import { t } from 'i18next';
 import { enqueueSnackbar } from 'notistack';
 import { useLoginMutation } from '../../services/auth.service.ts';
 import Cookies from 'js-cookie';
 import SyncIcon from '@mui/icons-material/Sync';
+import { useTranslation } from 'react-i18next';
 
 export interface iLoginUser {
   email: string;
@@ -16,6 +16,7 @@ export interface iLoginUser {
 }
 
 function LoginForm() {
+  const { t } = useTranslation('translation');
   const [login, { isLoading }] = useLoginMutation();
 
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ function LoginForm() {
       .unwrap()
       .then((data) => {
         Cookies.set('token', data?.access_token as string, { expires: 2 });
-        enqueueSnackbar('Вход выполнен', {
+        enqueueSnackbar(t('snackbar.authSuccess'), {
           variant: 'success',
         });
         navigate('/');

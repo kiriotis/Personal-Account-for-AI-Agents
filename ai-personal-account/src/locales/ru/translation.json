@@ -73,12 +73,20 @@
   "Password is required": "Требуется пароль",
   "Password must be at least 6 characters": "Пароль должен быть не менее 6 символов",
   "period": "Период",
-  "Remember": "Запомнить меня",
   "Request text": "Текст запроса",
   "requests": "Количество запросов",
   "Requests": "Запросы",
   "Security": "Безопасность",
   "signIn": "Войти",
+  "snackbar": {
+    "authError": {
+      "500": "Ошибка сервера",
+      "fetchError": "Ошибка загрузки данных",
+      "invalidCredentials": "Неверный логин или пароль",
+      "notAuthorized": "Пользователь не авторизован"
+    },
+    "authSuccess": "Авторизация прошла успешно"
+  },
   "stats": {
     "conversionToBooking": "Конверсия в бронирование",
     "totalRequests": "Всего обращений"

@@ -3,6 +3,7 @@ import LoginForm from '../../components/forms/LoginForm';
 import Logo from '../../components/Logo/Logo';
 import LanguageButton from '../../features/change-language/language-button.feature';
 import video_bg from './../../../assets/video/bg_video.mp4';
+import svg_logo from './../../../assets/logo/full_logo.svg';
 
 export default function SignIn() {
   return (
@@ -35,7 +36,8 @@ export default function SignIn() {
           paddingTop: 2,
         }}
       >
-        <Logo size="xl" />
+        {/* <Logo size="xl" /> */}
+        <img style={{ width: '250px', height: 'auto'}} src={svg_logo} alt="logo" />
         <Box
           sx={{
             background: 'white',

@@ -73,12 +73,20 @@
   "Password is required": "Password is required",
   "Password must be at least 6 characters": "Password must be at least 6 characters",
   "period": "Period",
-  "Remember": "Remember",
   "Request text": "Request text",
   "requests": "Number of requests",
   "Requests": "Requests",
   "Security": "Security",
   "signIn": "signIn",
+  "snackbar": {
+    "authError": {
+      "500": "Server error",
+      "fetchError": "Fetch error",
+      "invalidCredentials": "Invalid credentials",
+      "notAuthorized": "User not authorized"
+    },
+    "authSuccess": "Login success"
+  },
   "stats": {
     "conversionToBooking": "Conversion to booking",
     "totalRequests": "Total requests"
