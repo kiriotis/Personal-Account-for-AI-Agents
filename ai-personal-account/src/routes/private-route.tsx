@@ -25,8 +25,8 @@ export function PrivateRoute({ children }: { children: JSX.Element }) {
     ) {
       navigate(ROUTES.ROOT, { replace: true });
     }
-
-    if (import.meta.env.VITE_DEVELOPMENT_MODE === 'true') {
+    
+    if (import.meta.env.MODE === 'dev') {
       // пропуск авторизиции если включен режим разработки
       return;
     }
