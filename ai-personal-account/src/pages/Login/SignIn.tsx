@@ -1,26 +1,10 @@
 import { Box, Card } from '@mui/material';
-import { enqueueSnackbar } from 'notistack';
-import { useTranslation } from 'react-i18next';
-import Logo from '../../components/Logo/Logo';
-import video_bg from './../../../assets/bg_video.mp4';
+import LoginForm from '../../components/forms/LoginForm';
 import LanguageButton from '../../features/change-language/language-button.feature';
-import LoginForm, { iLoginUser } from '../../components/forms/LoginForm';
+import video_bg from './../../../assets/video/bg_video_1.mp4';
+import svg_logo from './../../../assets/logo/full_logo.svg';
 
 export default function SignIn() {
-  const { t, i18n } = useTranslation();
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
-
-  const onSubmit = (data: iLoginUser) => {
-    alert(data.email + data.password);
-    enqueueSnackbar(
-      'Пользователь авторизован или не авторизован тут так сказать полномочия все',
-      { variant: 'success' }
-    );
-  };
-
   return (
     <>
       <video
@@ -51,7 +35,8 @@ export default function SignIn() {
           paddingTop: 2,
         }}
       >
-        <Logo size="xl" />
+        {/* <Logo size="xl" /> */}
+        <img style={{ width: '250px', height: 'auto'}} src={svg_logo} alt="logo" />
         <Box
           sx={{
             background: 'white',
@@ -63,7 +48,7 @@ export default function SignIn() {
         >
           <LanguageButton />
         </Box>
-        <LoginForm onSubmit={onSubmit} t={t} />
+        <LoginForm />
       </Card>
     </>
   );

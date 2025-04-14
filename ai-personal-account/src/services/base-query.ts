@@ -3,6 +3,7 @@ import {
   FetchArgs,
   fetchBaseQuery,
 } from '@reduxjs/toolkit/query';
+import { t } from 'i18next';
 import Cookies from 'js-cookie';
 import { enqueueSnackbar } from 'notistack';
 
@@ -26,18 +27,23 @@ const baseQueryHandler = async (
   if (result?.error?.status === 401) {
     window.location.href = '/sign-in';
     Cookies.remove('token');
-    enqueueSnackbar('Пользователь не авторизован', {
+    enqueueSnackbar(t('snackbar.authError.notAuthorized'), {
+      variant: 'error',
+    });
+  }
+  if (result?.error?.status === 400) {
+    enqueueSnackbar(t('snackbar.authError.invalidCredentials'), {
       variant: 'error',
     });
   }
   if (result?.error?.status === 500) {
-    enqueueSnackbar('Что - то пошло не так. Возможно, сервер недоступен', {
+    enqueueSnackbar(t('snackbar.authError.500'), {
       variant: 'error',
     });
     throw result.error;
   }
   if (result?.error?.status === 'FETCH_ERROR') {
-    enqueueSnackbar('Ошибка загрузки данных', {
+    enqueueSnackbar(t('snackbar.authError.fetchError'), {
       variant: 'error',
     });
     throw result.error;

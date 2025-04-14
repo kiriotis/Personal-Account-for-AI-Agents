@@ -45,13 +45,13 @@ export default function DestinationTable({}: iDestinationTable) {
     <Box
       sx={{
         width: '100%',
-        height: { xs: '50%', ms: '50%', md: '100%' },
+        // height: { xs: '50%', ms: '50%', md: '100%' },
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
         gap: 2,
       }}
     >
-      <Typography variant="h5">{t('Top destinations')}</Typography>
       <Box
         sx={{
           height: '100%',
@@ -61,6 +61,9 @@ export default function DestinationTable({}: iDestinationTable) {
           position: 'relative', // ← Для абсолютного позиционирования заголовка
         }}
       >
+        <Typography variant="h5" sx={{ mb: 2 }}>
+          {t('Top destinations')}
+        </Typography>
         <TableContainer
           sx={{
             height: '100%',
@@ -76,9 +79,6 @@ export default function DestinationTable({}: iDestinationTable) {
             {/* Заголовок таблицы (фиксированный) */}
             <TableHead
               sx={{
-                // position: 'sticky', // ← Фиксирует заголовок
-                top: 0, // ← Прилипает к верху
-                zIndex: 1, // ← Чтобы был над контентом
                 backgroundColor: 'background.paper', // ← Фон как у Paper
               }}
             >

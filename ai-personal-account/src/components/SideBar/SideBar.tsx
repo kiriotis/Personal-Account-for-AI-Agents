@@ -1,10 +1,12 @@
-import React, { JSX, useState } from 'react';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
-import IconButton from '@mui/material/IconButton';
-import Drawer from '@mui/material/Drawer';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
+import VoiceChatIcon from '@mui/icons-material/VoiceChat';
 import {
   Box,
-  Button,
   Divider,
   List,
   ListItem,
@@ -12,17 +14,14 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import React, { JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { RoutePaths } from '../../app/routes';
+import { useUsermeMutation } from '../../services/user.service';
 import CustomLink from '../../utils/links/custom-link';
 import Logo from '../Logo/Logo';
-import { RoutePaths } from '../../app/routes';
-import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
-import VoiceChatIcon from '@mui/icons-material/VoiceChat';
-import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
-import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 interface iNavItem {
   name: string;
@@ -30,11 +29,28 @@ interface iNavItem {
   icon: JSX.Element;
   enable: boolean;
   divider: boolean;
+  hidden?: boolean;
 }
 
 export default function StaticSidebar() {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const [user, { isLoading }] = useUsermeMutation();
+
+  const [companyName, setCompanyName] = useState(t('pages.Company'));
+
+  React.useEffect(() => {
+    user()
+      .unwrap()
+      .then((data) => {
+        if (data.company_name) {
+          setCompanyName(data.company_name);
+        }
+      })
+      .catch(() => {
+        // обработка ошибки
+      });
+  }, [user]);
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -48,7 +64,7 @@ export default function StaticSidebar() {
       setIsOpen(open);
     };
 
-  const pagesTabs = [
+  const pagesTabs: iNavItem[] = [
     {
       name: t('pages.AI ChatBots'),
       link: RoutePaths.TextBots,
@@ -62,6 +78,7 @@ export default function StaticSidebar() {
       icon: <VoiceChatIcon sx={{ fontSize: '2rem' }} />,
       enable: false,
       divider: false,
+      hidden: true,
     },
     {
       name: t('pages.Usage'),
@@ -71,7 +88,7 @@ export default function StaticSidebar() {
       divider: true,
     },
     {
-      name: t('pages.Company'),
+      name: companyName,
       link: RoutePaths.Company,
       icon: <GroupOutlinedIcon sx={{ fontSize: '2rem' }} />,
       enable: true,
@@ -190,6 +207,9 @@ function NavItem({
   item: iNavItem;
   extraFunction: () => void;
 }) {
+  if (item.hidden) {
+    return null;
+  }
   return (
     <>
       <CustomLink

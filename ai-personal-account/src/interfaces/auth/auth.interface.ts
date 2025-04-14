@@ -4,5 +4,5 @@ export interface ILoginRequest {
 }
 
 export interface ILoginResponse {
-  token: string
+  access_token: string
 }
