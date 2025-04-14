@@ -7,42 +7,6 @@
   "Conversion": "Конверсия",
   "Count": "Количество",
   "Country": "Страна",
-  "dataGrid": {
-    "columnMenuFilter": "Фильтр",
-    "columnMenuHideColumn": "Скрыть",
-    "columnMenuLabel": "Меню",
-    "columnMenuShowColumns": "Показать столбцы",
-    "columnMenuSortAsc": "Сортировать по возрастанию",
-    "columnMenuSortDesc": "Сортировать по убыванию",
-    "columnMenuUnsort": "Сбросить сортировку",
-    "columnsPanelDragIconLabel": "Изменить порядок столбцов",
-    "columnsPanelHideAllButton": "Скрыть все",
-    "columnsPanelShowAllButton": "Показать все",
-    "columnsPanelTextFieldLabel": "Найти столбец",
-    "columnsPanelTextFieldPlaceholder": "Название столбца",
-    "filterOperatorAfter": "после",
-    "filterOperatorBefore": "до",
-    "filterOperatorContains": "содержит",
-    "filterOperatorEndsWith": "заканчивается на",
-    "filterOperatorEquals": "равно",
-    "filterOperatorIs": "есть",
-    "filterOperatorIsEmpty": "пусто",
-    "filterOperatorIsNotEmpty": "не пусто",
-    "filterOperatorNot": "не",
-    "filterOperatorOnOrAfter": "включительно после",
-    "filterOperatorOnOrBefore": "включительно до",
-    "filterOperatorStartsWith": "начинается с",
-    "filterPanelAddFilter": "Добавить фильтр",
-    "filterPanelColumns": "Столбцы",
-    "filterPanelDeleteIconLabel": "Удалить",
-    "filterPanelInputLabel": "Значение",
-    "filterPanelInputPlaceholder": "Значение фильтра",
-    "filterPanelOperatorAnd": "И",
-    "filterPanelOperatorOr": "ИЛИ",
-    "filterPanelOperators": "Операторы",
-    "footerTotalVisibleRows": "{{visibleCount}} из {{totalCount}}",
-    "noRowsLabel": "Нет строк"
-  },
   "Delete": "Удалить",
   "Email is required": "Требуется email",
   "Enter Verification Code": "Введите код подтверждения",
@@ -61,8 +25,8 @@
   },
   "output": "Выход",
   "pages": {
-    "AI ChatBots": "AI Чат-боты",
-    "AI Voice ChatBots": "AI Голосовые боты",
+    "AI ChatBots": "Чат-боты",
+    "AI Voice ChatBots": "Голосовые Ассистенты",
     "Billing": "Биллинг",
     "Company": "Компания",
     "main": "Главная",
@@ -73,12 +37,20 @@
   "Password is required": "Требуется пароль",
   "Password must be at least 6 characters": "Пароль должен быть не менее 6 символов",
   "period": "Период",
-  "Remember": "Запомнить меня",
   "Request text": "Текст запроса",
   "requests": "Количество запросов",
   "Requests": "Запросы",
   "Security": "Безопасность",
   "signIn": "Войти",
+  "snackbar": {
+    "authError": {
+      "500": "Ошибка сервера",
+      "fetchError": "Ошибка загрузки данных",
+      "invalidCredentials": "Неверный логин или пароль",
+      "notAuthorized": "Пользователь не авторизован"
+    },
+    "authSuccess": "Авторизация прошла успешно"
+  },
   "stats": {
     "conversionToBooking": "Конверсия в бронирование",
     "totalRequests": "Всего обращений"
@@ -91,6 +63,12 @@
     "status": "Статус"
   },
   "tables": "Таблицы",
+  "tables-activity": {
+    "chat": "Чат",
+    "date": "Дата",
+    "platform": "Платформа",
+    "status": "Статус"
+  },
   "tabs": {
     "Activity": "Активность",
     "Knowledge": "База знаний",

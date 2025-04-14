@@ -1,12 +1,19 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Button, TextField } from '@mui/material';
-import React, { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import * as Yup from 'yup';
+import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import {
-  usePatchUserMutation,
-  useUsermeMutation,
-} from '../../services/user.service';
+  TextField,
+  Button,
+  IconButton,
+  Box,
+  InputAdornment,
+} from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import EditIcon from '@mui/icons-material/Edit';
+import DoneIcon from '@mui/icons-material/Done';
+import ChangePasswordPopup from '../Pop-Up/ChangePasswordPopup';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const passwordValidationSchema = Yup.object().shape({
   company: Yup.string().required('Company is required'),
@@ -30,28 +37,9 @@ const ClientDataForm: React.FC<ClientDataFormProps> = ({ initialData }) => {
     defaultValues: initialData,
   });
 
-  const [updateUser] = usePatchUserMutation();
-  const [user, { isLoading }] = useUsermeMutation();
-  const [userId, setCompanyId] = useState('id');
-
-  React.useEffect(() => {
-    user()
-      .unwrap()
-      .then((data) => {
-        if (data.id) {
-          setCompanyId(data.id);
-        }
-      })
-      .catch(() => {
-        // обработка ошибки
-      });
-  }, [user]);
-
   const onSubmit = (data: { company: string; email: string }) => {
-    updateUser({
-      id: userId,
-      userData: { company_name: data.company, email: data.email },
-    });
+    console.log(data);
+    // Handle form submission
   };
 
   return (

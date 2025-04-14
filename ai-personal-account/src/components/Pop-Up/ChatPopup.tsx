@@ -1,14 +1,28 @@
 import React from 'react';
-import { Dialog, DialogTitle, DialogContent, Box, Typography, IconButton } from '@mui/material';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Box,
+  Typography,
+  IconButton,
+} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { ChatItem } from '../../interfaces/activity.interface';
 
 interface ChatPopupProps {
   open: boolean;
   onClose: () => void;
   chatId: string;
+  chat: Array<ChatItem>;
 }
 
-const ChatPopup: React.FC<ChatPopupProps> = ({ open, onClose, chatId }) => {
+const ChatPopup: React.FC<ChatPopupProps> = ({
+  open,
+  onClose,
+  chatId,
+  chat,
+}) => {
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
       <DialogTitle>
@@ -27,9 +41,17 @@ const ChatPopup: React.FC<ChatPopupProps> = ({ open, onClose, chatId }) => {
         </IconButton>
       </DialogTitle>
       <DialogContent>
-        <Box sx={{ maxHeight: 300, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 1 }}>
-          {Array.from({ length: 12 }, (_, index) => {
-            const isUser = index % 2 === 0;
+        <Box
+          sx={{
+            maxHeight: 300,
+            overflowY: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1,
+          }}
+        >
+          {chat.map((item, index) => {
+            const isUser = item.username === 'USER';
             return (
               <Box
                 key={index}
@@ -43,7 +65,7 @@ const ChatPopup: React.FC<ChatPopupProps> = ({ open, onClose, chatId }) => {
                 }}
               >
                 <Typography variant="body2">
-                  {isUser ? 'User message' : 'Assistant message'} {index + 1}
+                 {item.text}
                 </Typography>
               </Box>
             );

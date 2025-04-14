@@ -1,45 +1,10 @@
 import { Box, Card } from '@mui/material';
-import { SerializedError } from '@reduxjs/toolkit';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
-import Cookies from 'js-cookie';
-import { enqueueSnackbar } from 'notistack';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import LoginForm, { iLoginUser } from '../../components/forms/LoginForm';
-import Logo from '../../components/Logo/Logo';
+import LoginForm from '../../components/forms/LoginForm';
 import LanguageButton from '../../features/change-language/language-button.feature';
-import { useLoginMutation } from '../../services/auth.service';
-import video_bg from './../../../assets/bg_video.mp4';
+import video_bg from './../../../assets/video/bg_video_1.mp4';
+import svg_logo from './../../../assets/logo/full_logo.svg';
 
 export default function SignIn() {
-  const { t, i18n } = useTranslation();
-  const [login, { isLoading }] = useLoginMutation();
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
-  const navigate = useNavigate();
-  const onSubmit = (data: iLoginUser) => {
-    const params = new URLSearchParams();
-
-    params.append('grant_type', 'password');
-    params.append('username', data.email);
-    params.append('password', data.password);
-    params.append('scope', '');
-    params.append('client_id', 'string');
-    params.append('client_secret', 'string');
-
-    login(params)
-      .unwrap()
-      .then((data) => {
-        Cookies.set('token', data?.access_token as string, { expires: 2 });
-        enqueueSnackbar('Вход выполнен', {
-          variant: 'success',
-        });
-        navigate('/');
-      });
-  };
-
   return (
     <>
       <video
@@ -70,7 +35,8 @@ export default function SignIn() {
           paddingTop: 2,
         }}
       >
-        <Logo size="xl" />
+        {/* <Logo size="xl" /> */}
+        <img style={{ width: '250px', height: 'auto'}} src={svg_logo} alt="logo" />
         <Box
           sx={{
             background: 'white',
@@ -82,7 +48,7 @@ export default function SignIn() {
         >
           <LanguageButton />
         </Box>
-        <LoginForm onSubmit={onSubmit} t={t} />
+        <LoginForm />
       </Card>
     </>
   );

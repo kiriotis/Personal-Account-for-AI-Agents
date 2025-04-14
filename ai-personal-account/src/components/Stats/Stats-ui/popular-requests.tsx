@@ -134,13 +134,13 @@ export default function PopularRequests({}: iPopularRequests) {
     <Box
       sx={{
         width: '100%',
-        height: { xs: '50%', ms: '50%', md: '100%' },
+        // height: { xs: '50%', ms: '50%', md: '100%' },
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
         gap: 2,
       }}
     >
-      <Typography variant="h5">{t('Top requests')}</Typography>
       <Box
         sx={{
           height: '100%',
@@ -150,6 +150,7 @@ export default function PopularRequests({}: iPopularRequests) {
           position: 'relative', // Для sticky-элементов
         }}
       >
+        <Typography variant="h5" sx={{ mb: 2 }}>{t('Top requests')}</Typography>
         <TableContainer
           sx={{
             height: '100%',
