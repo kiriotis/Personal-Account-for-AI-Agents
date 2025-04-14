@@ -19,6 +19,12 @@ export const authUser = createApi({
         formData: true,
       }),
     }),
+    getUser: builder.query<iUser, void>({
+      query: () => ({
+        url: '/users/me',
+        method: 'GET',
+      }),
+    }),
     patchUser: builder.mutation<
       iUser,
       { id: string; userData: Partial<Omit<iUser, 'id'>> }
@@ -35,4 +41,5 @@ export const authUser = createApi({
   }),
 });
 
-export const { useUsermeMutation, usePatchUserMutation } = authUser;
+export const { useUsermeMutation, usePatchUserMutation, useGetUserQuery } =
+  authUser;

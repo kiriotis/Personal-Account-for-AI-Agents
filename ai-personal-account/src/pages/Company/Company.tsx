@@ -25,12 +25,7 @@ export default function Company({}: iCompany) {
       <Typography variant="h5" sx={{ mb: 2 }}>
         {t('Information')}
       </Typography>
-      <ClientDataForm
-        initialData={{
-          company: 'PressF',
-          email: 'pressf@mail.com',
-        }}
-      />
+      <ClientDataForm />
 
       <Typography variant="h5" sx={{ mt: 4, mb: 2 }}>
         {t('Security')}

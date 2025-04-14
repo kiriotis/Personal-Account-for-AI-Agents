@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import {
+  useGetUserQuery,
   usePatchUserMutation,
   useUsermeMutation,
 } from '../../services/user.service';
@@ -13,25 +14,26 @@ const passwordValidationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
 });
 
-interface ClientDataFormProps {
-  initialData: {
-    company: string;
-    email: string;
-  };
-}
-
-const ClientDataForm: React.FC<ClientDataFormProps> = ({ initialData }) => {
+function ClientDataForm() {
+  const { data: userData } = useGetUserQuery();
   const {
     control,
     handleSubmit,
     formState: { errors, isDirty },
   } = useForm({
     resolver: yupResolver(passwordValidationSchema),
-    defaultValues: initialData,
+    defaultValues: {
+      company: '',
+      email: '',
+    },
+    values: {
+      company: userData?.company_name || '',
+      email: userData?.email || '',
+    },
   });
 
   const [updateUser] = usePatchUserMutation();
-  const [user, { isLoading }] = useUsermeMutation();
+  const [user] = useUsermeMutation();
   const [userId, setCompanyId] = useState('id');
 
   React.useEffect(() => {
@@ -106,6 +108,6 @@ const ClientDataForm: React.FC<ClientDataFormProps> = ({ initialData }) => {
       </form>
     </Box>
   );
-};
+}
 
 export default ClientDataForm;
