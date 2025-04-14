@@ -5,7 +5,6 @@ import UpdateIcon from '@mui/icons-material/Update';
 import {
   Box,
   Button,
-  Paper,
   Table,
   TableBody,
   TableCell,
@@ -17,12 +16,6 @@ import {
 import { useTranslation } from 'react-i18next';
 
 interface Props {}
-
-interface Destination {
-  filename: string;
-  weights: string;
-  link: string;
-}
 
 const BaseFile = [
   { name: 'File.txt', weights: '60 kb' },

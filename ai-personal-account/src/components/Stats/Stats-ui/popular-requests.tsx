@@ -1,6 +1,5 @@
 import {
   Box,
-  Paper,
   Table,
   TableBody,
   TableCell,
@@ -9,19 +8,7 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-
 import { useTranslation } from 'react-i18next';
-interface iPopularRequests {}
-interface Poprequest {
-  name: string;
-  requests: number;
-  conversion: string;
-  status: string;
-}
-
-interface PoprequestCardProps {
-  destinations: Poprequest[];
-}
 
 const popularRequests = [
   {
@@ -128,7 +115,7 @@ const popularRequests = [
   },
 ];
 
-export default function PopularRequests({}: iPopularRequests) {
+export default function PopularRequests() {
   const { t } = useTranslation();
   return (
     <Box
@@ -150,7 +137,9 @@ export default function PopularRequests({}: iPopularRequests) {
           position: 'relative', // Для sticky-элементов
         }}
       >
-        <Typography variant="h5" sx={{ mb: 2 }}>{t('Top requests')}</Typography>
+        <Typography variant="h5" sx={{ mb: 2 }}>
+          {t('Top requests')}
+        </Typography>
         <TableContainer
           sx={{
             height: '100%',

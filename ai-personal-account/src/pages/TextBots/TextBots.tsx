@@ -1,7 +1,6 @@
 import {
   Box,
   Paper,
-  styled,
   Tabs,
   tabsClasses,
   Theme,

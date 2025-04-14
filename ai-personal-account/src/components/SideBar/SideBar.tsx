@@ -35,7 +35,7 @@ interface iNavItem {
 export default function StaticSidebar() {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [user, { isLoading }] = useUsermeMutation();
+  const [user] = useUsermeMutation();
 
   const [companyName, setCompanyName] = useState(t('pages.Company'));
 

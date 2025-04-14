@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Typography, useTheme } from '@mui/material';
+import { Box, Card, CardContent, Typography } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -10,8 +10,6 @@ interface TotalRequestsCardProps {
 }
 
 export default function TotalRequestsCard(props: TotalRequestsCardProps) {
-  const theme = useTheme();
-
   return (
     <Card
       sx={{

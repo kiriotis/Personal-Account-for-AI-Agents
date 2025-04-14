@@ -26,8 +26,8 @@ export default function Billing({}: iBilling) {
         overflow: 'auto',
       }}
     >
-<Typography variant="h5">{t('Billing settings')}</Typography>
-      {billingData.map((item, index) => (
+      <Typography variant="h5">{t('Billing settings')}</Typography>
+      {billingData.map((item) => (
         <Box
           sx={{
             display: 'flex',

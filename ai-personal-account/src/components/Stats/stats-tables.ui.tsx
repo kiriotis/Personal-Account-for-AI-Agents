@@ -1,7 +1,6 @@
 import { Box } from '@mui/material';
 import DestinationTable from './Stats-ui/destination-table';
 import PopularRequests from './Stats-ui/popular-requests';
-import TotalRequestsCard from './Tabs-ui/TotalRequestsCard';
 
 interface iStatsTablesUi {}
 

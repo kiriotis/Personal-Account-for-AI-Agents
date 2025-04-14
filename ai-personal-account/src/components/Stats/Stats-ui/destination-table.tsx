@@ -1,6 +1,5 @@
 import {
   Box,
-  Paper,
   Table,
   TableBody,
   TableCell,
@@ -12,11 +11,6 @@ import {
 
 import { useTranslation } from 'react-i18next';
 interface iDestinationTable {}
-
-interface Destination {
-  name: string;
-  requests: number;
-}
 
 const destinations = [
   { name: 'Кемер, Турция', requests: 60 },

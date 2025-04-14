@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { enqueueSnackbar } from 'notistack';
 import { useLoginMutation } from '../../services/auth.service.ts';
 import Cookies from 'js-cookie';
-import SyncIcon from '@mui/icons-material/Sync';
 import { useTranslation } from 'react-i18next';
 
 export interface iLoginUser {
@@ -105,12 +104,7 @@ function LoginForm() {
         label={t('Remember')}
       /> */}
 
-      <Button
-        loading={isLoading}
-        type="submit"
-        fullWidth
-        variant="contained"
-      >
+      <Button loading={isLoading} type="submit" fullWidth variant="contained">
         {t('signIn')}
       </Button>
     </Box>
