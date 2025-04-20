@@ -33,26 +33,10 @@ function ClientDataForm() {
   });
 
   const [updateUser] = usePatchUserMutation();
-  const [user] = useUsermeMutation();
-  const [userId, setCompanyId] = useState('id');
-
-  React.useEffect(() => {
-    user()
-      .unwrap()
-      .then((data) => {
-        if (data.id) {
-          setCompanyId(data.id);
-        }
-      })
-      .catch(() => {
-        // обработка ошибки
-      });
-  }, [user]);
 
   const onSubmit = (data: { company: string; email: string }) => {
     updateUser({
-      id: userId,
-      userData: { company_name: data.company, email: data.email },
+      userData: { company_name: data.company },
     });
   };
 

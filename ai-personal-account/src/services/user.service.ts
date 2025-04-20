@@ -23,19 +23,22 @@ export const authUser = createApi({
         url: '/users/me',
         method: 'GET',
       }),
+      providesTags: ['user'],
     }),
     patchUser: builder.mutation<
       iUser,
-      { id: string; userData: Partial<Omit<iUser, 'id'>> }
+      { userData: Partial<Omit<iUser, 'id'>> }
     >({
-      query: ({ id, userData }) => ({
-        url: `/users/${id}`,
+      query: ({ userData }) => ({
+        url: `/users/me`,
         method: 'PATCH',
         body: userData,
         headers: {
           'Content-Type': 'application/json',
         },
+        providesTags: ['user'],
       }),
+      invalidatesTags: ['user'],
     }),
   }),
 });

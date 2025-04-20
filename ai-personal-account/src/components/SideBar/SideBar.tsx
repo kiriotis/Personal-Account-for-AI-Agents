@@ -19,7 +19,10 @@ import IconButton from '@mui/material/IconButton';
 import React, { JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RoutePaths } from '../../app/routes';
-import { useUsermeMutation } from '../../services/user.service';
+import {
+  useGetUserQuery,
+  useUsermeMutation,
+} from '../../services/user.service';
 import CustomLink from '../../utils/links/custom-link';
 import Logo from '../Logo/Logo';
 
@@ -35,22 +38,7 @@ interface iNavItem {
 export default function StaticSidebar() {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [user] = useUsermeMutation();
-
-  const [companyName, setCompanyName] = useState(t('pages.Company'));
-
-  React.useEffect(() => {
-    user()
-      .unwrap()
-      .then((data) => {
-        if (data.company_name) {
-          setCompanyName(data.company_name);
-        }
-      })
-      .catch(() => {
-        // обработка ошибки
-      });
-  }, [user]);
+  const { data: userData } = useGetUserQuery();
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -88,7 +76,7 @@ export default function StaticSidebar() {
       divider: true,
     },
     {
-      name: companyName,
+      name: userData?.company_name || t('pages.Company'),
       link: RoutePaths.Company,
       icon: <GroupOutlinedIcon sx={{ fontSize: '2rem' }} />,
       enable: true,
