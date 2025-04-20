@@ -52,21 +52,25 @@ export default function TextBots() {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
+          justifyItems: 'center',
         }}
       >
         <Box
           sx={{
             width: '100%',
             display: 'flex',
+            justifyContent: isMobile ? 'center' : 'none',
             padding: isMobile ? '0' : '0 30px',
             // justifyContent: { xs: 'center', sm: 'start' },
           }}
         >
           <Tabs
             sx={{
+              justifyItems: 'center',
               [`& .${tabsClasses.scrollButtons}`]: {
                 '&.Mui-disabled': { opacity: 0.3 },
-                display: isMobile ? 'flex' : 'none',
+                display: isMobile ? 'none' : 'none',
+                justifyItems: 'center',
               },
             }}
             value={value}
