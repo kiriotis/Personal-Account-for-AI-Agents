@@ -40,9 +40,7 @@ export default function UsageMessagesCharts() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h5">
-          {t('Message Usage Stats')}
-        </Typography>
+        <Typography variant="h5">{t('Message Usage Stats')}</Typography>
       </Box>
       <Box
         sx={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}
@@ -73,7 +71,7 @@ export default function UsageMessagesCharts() {
             <ChevronLeftIcon />
           </IconButton>
           <Typography variant="body1" sx={{ margin: '0 10px' }}>
-          {`${t('period')}: 01.02.2025 - 07.02.2027`}
+            {`${t('period')}: 01.02.2025 - 07.02.2027`}
           </Typography>
           <IconButton>
             <ChevronRightIcon />
@@ -98,12 +96,12 @@ export default function UsageMessagesCharts() {
           <BarChart
             xAxis={[{ scaleType: 'band', data: chartData.labels }]}
             series={[
-              { data: chartData.input, label:t('input'), stack: 'assets' },
+              { data: chartData.input, label: t('input'), stack: 'assets' },
               { data: chartData.output, label: t('output'), stack: 'assets' },
             ]}
             borderRadius={6}
             sx={{
-              // pointerEvents: { xs: 'none', sm: 'auto' },
+              pointerEvents: { xs: 'none', sm: 'auto' },
               transition: { xs: 'none', sm: 'all 0.3s ease' },
               width: '100%',
             }}

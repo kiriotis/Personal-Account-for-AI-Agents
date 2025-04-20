@@ -46,6 +46,7 @@ const chartSetting = {
     [`.${axisClasses.left} .${axisClasses.label}`]: {
       transform: 'translate(-10px, 0)',
     },
+    pointerEvents: { xs: 'none', sm: 'auto' },
   },
 };
 

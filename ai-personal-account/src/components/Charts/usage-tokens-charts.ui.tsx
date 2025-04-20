@@ -76,7 +76,7 @@ export default function UsageTokensCharts() {
             <ChevronLeftIcon />
           </IconButton>
           <Typography variant="body1" sx={{ margin: '0 10px' }}>
-          {`${t('period')}: 01.02.2025 - 07.02.2027`}
+            {`${t('period')}: 01.02.2025 - 07.02.2027`}
           </Typography>
           <IconButton>
             <ChevronRightIcon />
@@ -106,12 +106,11 @@ export default function UsageTokensCharts() {
             ]}
             borderRadius={6}
             sx={{
-              // pointerEvents: { xs: 'none', sm: 'auto' },
+              pointerEvents: { xs: 'none', sm: 'auto' },
               transition: { xs: 'none', sm: 'all 0.3s ease' },
               width: '100%',
             }}
             height={300}
-         
           />
         </Box>
       </Box>

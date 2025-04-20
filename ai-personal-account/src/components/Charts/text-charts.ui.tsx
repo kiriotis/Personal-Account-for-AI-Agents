@@ -29,6 +29,7 @@ const chartSetting = {
     [`.${axisClasses.left} .${axisClasses.label}`]: {
       transform: 'translate(-10px, 0)',
     },
+    pointerEvents: { xs: 'none', sm: 'auto' },
   },
 };
 
@@ -197,7 +198,7 @@ export default function TextChartsUi({}: TextChartsProps) {
         dataset={dataset}
         xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
         series={series}
-        borderRadius={8} 
+        borderRadius={8}
         {...chartSetting}
       />
     </Box>
