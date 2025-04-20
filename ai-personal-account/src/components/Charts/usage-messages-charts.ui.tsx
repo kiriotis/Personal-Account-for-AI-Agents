@@ -58,7 +58,7 @@ export default function UsageMessagesCharts() {
           >
             <MenuItem value={'7'}>7 days</MenuItem>
             <MenuItem value={'30'}>30 days</MenuItem>
-            <MenuItem value={'90'}>90 days</MenuItem>
+            {/* <MenuItem value={'90'}>90 days</MenuItem> */}
           </Select>
         </FormControl>
         <Box

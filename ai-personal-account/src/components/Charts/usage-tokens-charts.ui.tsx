@@ -61,7 +61,7 @@ export default function UsageTokensCharts() {
           >
             <MenuItem value={'7'}>7 days</MenuItem>
             <MenuItem value={'30'}>30 days</MenuItem>
-            <MenuItem value={'90'}>90 days</MenuItem>
+            {/* <MenuItem value={'90'}>90 days</MenuItem> */}
           </Select>
         </FormControl>
         <Box
@@ -111,6 +111,7 @@ export default function UsageTokensCharts() {
               width: '100%',
             }}
             height={300}
+         
           />
         </Box>
       </Box>
