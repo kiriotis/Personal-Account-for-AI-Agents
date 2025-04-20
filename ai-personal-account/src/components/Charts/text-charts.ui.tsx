@@ -1,10 +1,13 @@
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import {
   Box,
+  Button,
   FormControl,
   InputLabel,
   MenuItem,
   Select,
-  SelectChangeEvent,
+  type SelectChangeEvent,
   Typography,
 } from '@mui/material';
 import { BarChart } from '@mui/x-charts';
@@ -126,18 +129,38 @@ export function valueFormatter(value: number | null): string {
   return `${value}`;
 }
 
-interface TextChartsProps {}
+type TextChartsProps = {};
 
 export default function TextChartsUi({}: TextChartsProps) {
   const [series, setSeries] = useState<SeriesItem[]>([]);
-  const [age, setAge] = useState('');
+  const [year, setYear] = useState('');
+  const [currentPage, setCurrentPage] = useState(0);
+  const monthsPerPage = 4;
   const { t } = useTranslation();
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
+
+  // Calculate total pages
+  const totalPages = Math.ceil(dataset.length / monthsPerPage);
+
+  // Get current slice of data
+  const currentData = dataset.slice(
+    currentPage * monthsPerPage,
+    (currentPage + 1) * monthsPerPage
+  );
+
+  const handleYearChange = (event: SelectChangeEvent) => {
+    setYear(event.target.value as string);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1));
   };
 
   useEffect(() => {
-    // Собираем все уникальные ключи, исключая 'month'
+    // Collect all unique keys, excluding 'month'
     const keys = new Set<string>();
     dataset.forEach((item) => {
       Object.keys(item).forEach((key) => {
@@ -147,10 +170,10 @@ export default function TextChartsUi({}: TextChartsProps) {
       });
     });
 
-    // Формируем массив series на основе собранных ключей
+    // Create series array based on collected keys
     const newSeries: SeriesItem[] = Array.from(keys).map((key) => ({
       dataKey: key,
-      label: key.charAt(0).toUpperCase() + key.slice(1), // Делаем первую букву заглавной
+      label: key.charAt(0).toUpperCase() + key.slice(1), // Capitalize first letter
       valueFormatter,
     }));
 
@@ -177,13 +200,13 @@ export default function TextChartsUi({}: TextChartsProps) {
       >
         <Typography variant="h5">{t('requests')}</Typography>
         <FormControl sx={{ minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Year</InputLabel>
+          <InputLabel id="year-select-label">Year</InputLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={age}
-            label="Age"
-            onChange={handleChange}
+            labelId="year-select-label"
+            id="year-select"
+            value={year}
+            label="Year"
+            onChange={handleYearChange}
           >
             <MenuItem value={10}>2020</MenuItem>
             <MenuItem value={20}>2021</MenuItem>
@@ -194,13 +217,38 @@ export default function TextChartsUi({}: TextChartsProps) {
           </Select>
         </FormControl>
       </Box>
+
+      {/* Chart with paginated data */}
       <BarChart
-        dataset={dataset}
+        dataset={currentData}
         xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
         series={series}
         borderRadius={8}
         {...chartSetting}
       />
+
+      {/* Pagination controls */}
+      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 2 }}>
+        <Button
+          variant="outlined"
+          onClick={handlePrevPage}
+          disabled={currentPage === 0}
+        >
+          <ChevronLeftIcon />
+        </Button>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Typography>
+            {currentPage + 1} / {totalPages}
+          </Typography>
+        </Box>
+        <Button
+          variant="outlined"
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages - 1}
+        >
+          <ChevronRightIcon />
+        </Button>
+      </Box>
     </Box>
   );
 }
