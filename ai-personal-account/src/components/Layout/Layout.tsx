@@ -49,7 +49,7 @@ export default function Layout({}: iLayout) {
           variant="h5"
           sx={{
             display: 'none',
-            '@media (max-width: 768px)': {
+            '@media (max-width: 899px)': {
               display: 'block',
             },
             padding: '16px',
