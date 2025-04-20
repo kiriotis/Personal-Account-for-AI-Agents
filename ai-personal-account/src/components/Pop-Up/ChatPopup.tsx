@@ -64,8 +64,11 @@ const ChatPopup: React.FC<ChatPopupProps> = ({
                   maxWidth: '80%',
                 }}
               >
-                <Typography variant="body2">
-                 {item.text}
+                <Typography
+                  variant="body2"
+                  sx={{ overflowWrap: 'break-word', whiteSpace: 'pre-wrap' }}
+                >
+                  {item.text}
                 </Typography>
               </Box>
             );
