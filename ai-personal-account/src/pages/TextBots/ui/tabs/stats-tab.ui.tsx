@@ -51,28 +51,6 @@ export default function StatsTab({}: Props) {
       <Box
         sx={{
           width: '100%',
-          display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
-          gap: { xs: 1, sm: 2 },
-          p: { xs: 1, sm: 2 },
-        }}
-      >
-        <TotalRequestsCard
-          title={t('stats.totalRequests')}
-          value={'4,328'}
-          capture={'+12.5%'}
-          isIncrease={true}
-        ></TotalRequestsCard>
-        <TotalRequestsCard
-          title={t('stats.conversionToBooking')}
-          value={'24.3%'}
-          capture={'+3.2%'}
-          isIncrease={true}
-        ></TotalRequestsCard>
-      </Box>
-      <Box
-        sx={{
-          width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'flex-start',
