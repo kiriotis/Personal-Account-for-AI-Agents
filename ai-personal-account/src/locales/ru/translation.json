@@ -80,5 +80,20 @@
   "Update": "Обновить",
   "Upload new File": "Загрузить новый файл",
   "Weight": "Вес",
-  "welcome": "Добро пожаловать"
+  "welcome": "Добро пожаловать",
+  "changePassword": {
+    "Old Password": "Старый пароль",
+    "New Password": "Новый пароль",
+    "Confirm Password": "Подтвердите пароль",
+    "Old password is required": "Старый пароль требуется",
+    "New password is required": "Новый пароль требуется",
+    "Password must be at least 8 characters": "Пароль должен быть не менее 8 символов",
+    "Password must contain at least one uppercase letter": "Пароль должен содержать хотя бы одну заглавную букву",
+    "Password must contain at least one lowercase letter": "Пароль должен содержать хотя бы одну строчную букву",
+    "Password must contain at least one number": "Пароль должен содержать хотя бы одну цифру",
+    "Password must contain at least one special character": "Пароль должен содержать хотя бы один специальный символ",
+    "Confirm password is required": "Подтвердите пароль",
+    "Confirm":"Подтвердить",
+    "Verification code": "Код подтверждения"
+  }
 }
