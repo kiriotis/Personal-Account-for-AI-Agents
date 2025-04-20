@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import StatsGraph from '../../../../components/Stats/Graph-ui/stats-graph';
 import StatsTablesUi from '../../../../components/Stats/stats-tables.ui';
-import TotalRequestsCard from '../../../../components/Stats/Tabs-ui/TotalRequestsCard';
 
 interface Props {}
 

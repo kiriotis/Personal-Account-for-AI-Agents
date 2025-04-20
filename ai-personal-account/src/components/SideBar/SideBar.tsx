@@ -19,10 +19,7 @@ import IconButton from '@mui/material/IconButton';
 import React, { JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RoutePaths } from '../../app/routes';
-import {
-  useGetUserQuery,
-  useUsermeMutation,
-} from '../../services/user.service';
+import { useGetUserQuery } from '../../services/user.service';
 import CustomLink from '../../utils/links/custom-link';
 import Logo from '../Logo/Logo';
 
