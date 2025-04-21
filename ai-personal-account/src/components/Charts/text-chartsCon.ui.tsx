@@ -35,21 +35,6 @@ const dataset = [
 // Сортируем данные по убыванию conversion
 const sortedDataset = [...dataset].sort((a, b) => b.conversion - a.conversion);
 
-const chartSetting = {
-  yAxis: [
-    {
-      label: 'Conversion (%)',
-    },
-  ],
-  height: 450,
-  sx: {
-    [`.${axisClasses.left} .${axisClasses.label}`]: {
-      transform: 'translate(-10px, 0)',
-    },
-    pointerEvents: { xs: 'none', sm: 'auto' },
-  },
-};
-
 export default function ConversionChart() {
   const { t } = useTranslation();
 
@@ -68,7 +53,7 @@ export default function ConversionChart() {
         flexDirection: 'column',
         gap: 2,
         width: '100%',
-        p: 0,
+        px: 3,
       }}
     >
       <Typography variant="h5">{t('conversion')}</Typography>
@@ -80,9 +65,22 @@ export default function ConversionChart() {
             dataKey: 'direction',
           },
         ]}
-        borderRadius={8} 
+        borderRadius={8}
         series={series}
-        {...chartSetting}
+        yAxis={ [
+          {
+            label: 'Conversion (%)',
+            position: 'none',
+          },
+        ]}
+        height={450}
+        sx= {{
+          [`.${axisClasses.left} .${axisClasses.label}`]: {
+            transform: 'translate(-10px, 0)',
+          },
+          // pointerEvents: { xs: 'none', sm: 'auto' },
+        }}
+        // {...chartSetting}
       />
     </Box>
   );
