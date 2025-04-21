@@ -1,4 +1,6 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { setNavigate } from '../../shared/lib/navigation';
 import SideBar from '../SideBar/SideBar';
 import { Box, Typography, useTheme } from '@mui/material';
 import { grey } from '@mui/material/colors';
@@ -10,6 +12,11 @@ export default function Layout({}: iLayout) {
   const theme = useTheme();
   const location = useLocation();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setNavigate(navigate);
+  }, [navigate]);
 
   const pageTitles: { [key: string]: string } = {
     '/': t('pages.main'),

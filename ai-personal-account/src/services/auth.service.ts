@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { ILoginResponse } from '../interfaces/auth/auth.interface.ts';
-import baseQueryHandler from './base-query.ts';
+import baseQueryHandler from '../shared/lib/base-query.ts';
 
 export const authService = createApi({
   reducerPath: 'authService',
