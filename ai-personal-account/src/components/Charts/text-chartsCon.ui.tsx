@@ -67,14 +67,14 @@ export default function ConversionChart() {
         ]}
         borderRadius={8}
         series={series}
-        yAxis={ [
+        yAxis={[
           {
             label: 'Conversion (%)',
             position: 'none',
           },
         ]}
         height={450}
-        sx= {{
+        sx={{
           [`.${axisClasses.left} .${axisClasses.label}`]: {
             transform: 'translate(-10px, 0)',
           },

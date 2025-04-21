@@ -36,7 +36,11 @@ export default function SignIn() {
         }}
       >
         {/* <Logo size="xl" /> */}
-        <img style={{ width: '250px', height: 'auto'}} src={svg_logo} alt="logo" />
+        <img
+          style={{ width: '250px', height: 'auto' }}
+          src={svg_logo}
+          alt="logo"
+        />
         <Box
           sx={{
             background: 'white',
