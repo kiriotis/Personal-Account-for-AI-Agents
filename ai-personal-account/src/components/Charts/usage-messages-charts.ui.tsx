@@ -91,17 +91,21 @@ export default function UsageMessagesCharts() {
             display: 'flex',
             flexDirection: 'column',
             width: '100%',
+            px: 3,
           }}
         >
           <BarChart
+            disableAxisListener={true}
+            hideLegend={true}
             xAxis={[{ scaleType: 'band', data: chartData.labels }]}
+            yAxis={[{ position: 'none' }]}
             series={[
               { data: chartData.input, label: t('input'), stack: 'assets' },
               { data: chartData.output, label: t('output'), stack: 'assets' },
             ]}
             borderRadius={6}
             sx={{
-              pointerEvents: { xs: 'none', sm: 'auto' },
+              // pointerEvents: { xs: 'none', sm: 'auto' },
               transition: { xs: 'none', sm: 'all 0.3s ease' },
               width: '100%',
             }}

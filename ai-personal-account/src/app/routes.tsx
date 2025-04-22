@@ -1,13 +1,15 @@
+import { Suspense, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../components/Layout/Layout';
-import Billing from '../pages/Billing/Billing';
-import SignIn from '../pages/Login/SignIn';
-import NotFound from '../pages/NotFound/NotFound';
-import TextBots from '../pages/TextBots/TextBots';
-import Usage from '../pages/Usage/Usage';
-import VoiceBots from '../pages/VoiceBots/VoiceBots';
 import { PrivateRoute } from '../routes/private-route';
-import Company from '../pages/Company/Company';
+
+const Billing = lazy(() => import('../pages/Billing/Billing'));
+const SignIn = lazy(() => import('../pages/Login/SignIn'));
+const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
+const TextBots = lazy(() => import('../pages/TextBots/TextBots'));
+const Usage = lazy(() => import('../pages/Usage/Usage'));
+const VoiceBots = lazy(() => import('../pages/VoiceBots/VoiceBots'));
+const Company = lazy(() => import('../pages/Company/Company'));
 
 export enum RoutePaths {
   Home = '/',
@@ -29,60 +31,80 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: (
-          <PrivateRoute>
-            <TextBots />
-          </PrivateRoute>
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <PrivateRoute>
+              <TextBots />
+            </PrivateRoute>
+          </Suspense>
         ),
       },
       {
         path: RoutePaths.TextBots,
         element: (
-          <PrivateRoute>
-            <TextBots />
-          </PrivateRoute>
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <PrivateRoute>
+              <TextBots />
+            </PrivateRoute>
+          </Suspense>
         ),
       },
       {
         path: RoutePaths.VoiceBots,
         element: (
-          <PrivateRoute>
-            <VoiceBots />
-          </PrivateRoute>
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <PrivateRoute>
+              <VoiceBots />
+            </PrivateRoute>
+          </Suspense>
         ),
       },
       {
         path: RoutePaths.Usage,
         element: (
-          <PrivateRoute>
-            <Usage />
-          </PrivateRoute>
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <PrivateRoute>
+              <Usage />
+            </PrivateRoute>
+          </Suspense>
         ),
       },
       {
         path: RoutePaths.Company,
         element: (
-          <PrivateRoute>
-            <Company />
-          </PrivateRoute>
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <PrivateRoute>
+              <Company />
+            </PrivateRoute>
+          </Suspense>
         ),
       },
       {
         path: RoutePaths.Billing,
         element: (
-          <PrivateRoute>
-            <Billing />
-          </PrivateRoute>
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <PrivateRoute>
+              <Billing />
+            </PrivateRoute>
+          </Suspense>
         ),
       },
     ],
   },
   {
     path: RoutePaths.SignIn,
-    element: <SignIn />,
+    element: (
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <SignIn />
+      </Suspense>
+    ),
   },
   {
     path: RoutePaths.NotFound,
-    element: <NotFound />,
+    element: (
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <NotFound />
+      </Suspense>
+    ),
   },
 ]);
 

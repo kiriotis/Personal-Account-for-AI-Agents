@@ -1,5 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import baseQueryHandler from './base-query.ts';
+import baseQueryHandler from '../shared/lib/base-query.ts';
 import { ActiviyResponse } from '../interfaces/activity.interface.ts';
 
 export const activityService = createApi({

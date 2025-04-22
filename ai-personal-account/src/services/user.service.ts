@@ -1,5 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import baseQueryHandler from './base-query.ts';
+import baseQueryHandler from '../shared/lib/base-query.ts';
 import { iUser } from '../interfaces/user/user.interface.ts';
 
 export const authUser = createApi({

@@ -1,12 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, Button, TextField } from '@mui/material';
-import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import {
   useGetUserQuery,
   usePatchUserMutation,
-  useUsermeMutation,
 } from '../../services/user.service';
 
 const passwordValidationSchema = Yup.object().shape({

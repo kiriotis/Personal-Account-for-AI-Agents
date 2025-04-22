@@ -17,7 +17,14 @@ export default function Main({}: iMain) {
       <Typography variant="h3" component="h1" gutterBottom>
         {t('welcome')}, MUI!
       </Typography>
-      <Container sx={{ gap: 2, display: 'flex',alignItems: 'center', justifyContent: 'center' }}>
+      <Container
+        sx={{
+          gap: 2,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <Button
           variant="contained"
           color="primary"

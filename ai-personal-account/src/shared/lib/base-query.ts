@@ -6,6 +6,7 @@ import {
 import { t } from 'i18next';
 import Cookies from 'js-cookie';
 import { enqueueSnackbar } from 'notistack';
+import { getNavigate } from './navigation';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_URL,
@@ -25,7 +26,7 @@ const baseQueryHandler = async (
 ) => {
   const result = await baseQuery(args, api, extraOptions);
   if (result?.error?.status === 401) {
-    window.location.href = '/sign-in';
+    getNavigate()('/sign-in');
     Cookies.remove('token');
     enqueueSnackbar(t('snackbar.authError.notAuthorized'), {
       variant: 'error',

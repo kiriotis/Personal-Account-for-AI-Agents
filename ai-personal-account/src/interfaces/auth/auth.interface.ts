@@ -1,8 +1,8 @@
 export interface ILoginRequest {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
 export interface ILoginResponse {
-  access_token: string
+  access_token: string;
 }

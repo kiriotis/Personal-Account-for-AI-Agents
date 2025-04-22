@@ -93,7 +93,7 @@
     "Password must contain at least one number": "Пароль должен содержать хотя бы одну цифру",
     "Password must contain at least one special character": "Пароль должен содержать хотя бы один специальный символ",
     "Confirm password is required": "Подтвердите пароль",
-    "Confirm":"Подтвердить",
+    "Confirm": "Подтвердить",
     "Verification code": "Код подтверждения"
   }
 }

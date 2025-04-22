@@ -93,7 +93,7 @@
     "Password must contain at least one number": "Password must contain at least one number",
     "Password must contain at least one special character": "Password must contain at least one special character",
     "Confirm password is required": "Confirm password is required",
-    "Confirm":"Confirm",
+    "Confirm": "Confirm",
     "Verification code": "Verification code"
   }
 }

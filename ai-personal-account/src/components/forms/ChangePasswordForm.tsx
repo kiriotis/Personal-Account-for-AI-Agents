@@ -6,8 +6,6 @@ import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 
-
-
 interface ChangePasswordFormProps {
   onSubmit: (data: {
     oldPassword: string;
@@ -22,13 +20,24 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
   const { t } = useTranslation('translation');
 
   const changePasswordSchema = Yup.object().shape({
-    oldPassword: Yup.string().required(t('changePassword.Old password is required')),
+    oldPassword: Yup.string().required(
+      t('changePassword.Old password is required')
+    ),
     newPassword: Yup.string()
       .required(t('changePassword.New password is required'))
       .min(8, t('changePassword.Password must be at least 8 characters'))
-      .matches(/[A-Z]/, t('changePassword.Password must contain at least one uppercase letter'))
-      .matches(/[a-z]/, t('changePassword.Password must contain at least one lowercase letter'))
-      .matches(/[0-9]/, t('changePassword.Password must contain at least one number'))
+      .matches(
+        /[A-Z]/,
+        t('changePassword.Password must contain at least one uppercase letter')
+      )
+      .matches(
+        /[a-z]/,
+        t('changePassword.Password must contain at least one lowercase letter')
+      )
+      .matches(
+        /[0-9]/,
+        t('changePassword.Password must contain at least one number')
+      )
       .matches(
         /[!@#$%^&*(),.?":{}|<>]/,
         t('changePassword.Password must contain at least one special character')
@@ -96,7 +105,7 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
           )}
         />
         <Button type="submit" variant="contained" color="primary" fullWidth>
-          { t("changePassword.Confirm")}
+          {t('changePassword.Confirm')}
         </Button>
       </Box>
     </form>

@@ -21,21 +21,6 @@ type SeriesItem = {
   valueFormatter: (value: number | null) => string;
 };
 
-const chartSetting = {
-  yAxis: [
-    {
-      label: 'Requests',
-    },
-  ],
-  height: 450,
-  sx: {
-    [`.${axisClasses.left} .${axisClasses.label}`]: {
-      transform: 'translate(-10px, 0)',
-    },
-    pointerEvents: { xs: 'none', sm: 'auto' },
-  },
-};
-
 export const dataset = [
   {
     london: 59,
@@ -196,6 +181,7 @@ export default function TextChartsUi({}: TextChartsProps) {
           flexWrap: 'wrap',
           justifyContent: 'space-between',
           alignItems: 'center',
+          px: 3,
         }}
       >
         <Typography variant="h5">{t('requests')}</Typography>
@@ -224,7 +210,19 @@ export default function TextChartsUi({}: TextChartsProps) {
         xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
         series={series}
         borderRadius={8}
-        {...chartSetting}
+        yAxis={[
+          {
+            label: 'Requests',
+            position: 'none',
+          },
+        ]}
+        height={450}
+        sx={{
+          [`.${axisClasses.left} .${axisClasses.label}`]: {
+            transform: 'translate(-10px, 0)',
+          },
+          // pointerEvents: { xs: 'none', sm: 'auto' },
+        }}
       />
 
       {/* Pagination controls */}
