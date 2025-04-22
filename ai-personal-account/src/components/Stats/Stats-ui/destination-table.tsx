@@ -7,9 +7,11 @@ import {
   TableHead,
   TableRow,
   Typography,
+  TablePagination,
 } from '@mui/material';
-
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
 interface iDestinationTable {}
 
 const destinations = [
@@ -35,45 +37,50 @@ const destinations = [
 
 export default function DestinationTable({}: iDestinationTable) {
   const { t } = useTranslation();
+  const [page, setPage] = useState(0);
+  const rowsPerPage = 10; // Фиксированное значение - 10 строк на странице
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  // Вычисляем отображаемые строки
+  const visibleRows = destinations.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  );
+
   return (
     <Box
       sx={{
         width: '100%',
-        // height: { xs: '50%', ms: '50%', md: '100%' },
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
         gap: 2,
       }}
     >
+      <Typography variant="h5" sx={{ mb: 2 }}>
+        {t('Top destinations')}
+      </Typography>
+
       <Box
         sx={{
-          height: '100%',
-          minHeight: 200,
-          maxHeight: { xs: '300px', sm: '100%' },
-          overflow: 'hidden', // ← Главный контейнер без прокрутки
-          position: 'relative', // ← Для абсолютного позиционирования заголовка
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
         }}
       >
-        <Typography variant="h5" sx={{ mb: 2 }}>
-          {t('Top destinations')}
-        </Typography>
-        <TableContainer
-          sx={{
-            height: '100%',
-            overflow: 'auto', // ← Прокрутка только для тела таблицы
-          }}
-        >
+        <TableContainer sx={{ flex: 1 }}>
           <Table
             stickyHeader
-            sx={{ minWidth: 250 }}
             size="small"
-            aria-label="a dense table"
+            aria-label="destinations table"
           >
-            {/* Заголовок таблицы (фиксированный) */}
             <TableHead
               sx={{
-                backgroundColor: 'background.paper', // ← Фон как у Paper
+                backgroundColor: 'background.paper',
               }}
             >
               <TableRow>
@@ -82,9 +89,8 @@ export default function DestinationTable({}: iDestinationTable) {
               </TableRow>
             </TableHead>
 
-            {/* Тело таблицы (прокручивается) */}
             <TableBody>
-              {destinations.map((destination, index) => (
+              {visibleRows.map((destination, index) => (
                 <TableRow
                   key={index}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -98,6 +104,18 @@ export default function DestinationTable({}: iDestinationTable) {
             </TableBody>
           </Table>
         </TableContainer>
+
+        <TablePagination
+          component="div"
+          count={destinations.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          rowsPerPageOptions={[]} // Скрываем выбор количества строк
+          labelDisplayedRows={({ from, to, count }) =>
+            `${from}-${to} ${t('of')} ${count}`
+          }
+        />
       </Box>
     </Box>
   );

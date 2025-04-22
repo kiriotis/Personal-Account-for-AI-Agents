@@ -15,7 +15,7 @@ export default function StatsTablesUi({}: iStatsTablesUi) {
         display: 'flex',
         flexDirection: 'column',
         gap: { xs: 6, sm: 4 },
-        overflow: 'auto',
+
       }}
     >
       <Box
@@ -60,7 +60,7 @@ export default function StatsTablesUi({}: iStatsTablesUi) {
             flexDirection: { xs: 'column', lg: 'row' },
             alignItems: 'flex-start',
             gap: { xs: 6, md: 1 },
-            overflow: 'auto',
+
           }}
         >
           <DestinationTable></DestinationTable>
