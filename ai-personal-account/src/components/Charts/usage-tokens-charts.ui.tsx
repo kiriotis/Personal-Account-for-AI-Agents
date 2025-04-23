@@ -14,11 +14,18 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { generateMockGraphData } from '../../utils/helpers/mockGraphData';
+import { useGetUsageTokenQuery } from '../../services/usage.service';
 
 export default function UsageTokensCharts() {
+  const today = new Date();
   const { t } = useTranslation();
   const [period, setPeriod] = useState<'7' | '30' | '90'>('7');
   const [chartData, setChartData] = useState(generateMockGraphData(7));
+  const { data: tockenData } = useGetUsageTokenQuery({
+    type: 'tokens',
+    days: period,
+    start_date: today.toISOString().split('T')[0],
+  });
 
   useEffect(() => {
     const data = generateMockGraphData(parseInt(period));
@@ -125,4 +132,7 @@ export default function UsageTokensCharts() {
       </Box>
     </Box>
   );
+}
+function formatDateToISO(today: Date): string {
+  throw new Error('Function not implemented.');
 }
