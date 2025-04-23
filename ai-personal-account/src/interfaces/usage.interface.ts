@@ -6,7 +6,7 @@ export const UsageRequsetSchema = z.object({
   start_date: z.string(),
 });
 
-export const UsageResponseSchema = z.object({
+export const UsageTokenResponseSchema = z.object({
   data: z.array(
     z.object({
       day: z.string(),
@@ -16,5 +16,15 @@ export const UsageResponseSchema = z.object({
   ),
 });
 
+export const UsageMessagesResponseSchema = z.object({
+  data: z.array(
+    z.object({
+      day: z.string(),
+      n: z.number(),
+    })
+  ),
+});
+
 export type UsageRequest = z.infer<typeof UsageRequsetSchema>;
-export type UsageResponse = z.infer<typeof UsageResponseSchema>;
+export type UsageTokenResponse = z.infer<typeof UsageTokenResponseSchema>;
+export type UsageMessagesResponse = z.infer<typeof UsageMessagesResponseSchema>;

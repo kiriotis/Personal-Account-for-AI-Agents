@@ -3,10 +3,26 @@
   "Billing settings": "Настройки биллинга",
   "Change password": "Изменить пароль",
   "Change Password": "Изменить пароль",
+  "changePassword": {
+    "Confirm": "Подтвердить",
+    "Confirm Password": "Подтвердите пароль",
+    "Confirm password is required": "Подтвердите пароль",
+    "New Password": "Новый пароль",
+    "New password is required": "Новый пароль требуется",
+    "Old Password": "Старый пароль",
+    "Old password is required": "Старый пароль требуется",
+    "Password must be at least 8 characters": "Пароль должен быть не менее 8 символов",
+    "Password must contain at least one lowercase letter": "Пароль должен содержать хотя бы одну строчную букву",
+    "Password must contain at least one number": "Пароль должен содержать хотя бы одну цифру",
+    "Password must contain at least one special character": "Пароль должен содержать хотя бы один специальный символ",
+    "Password must contain at least one uppercase letter": "Пароль должен содержать хотя бы одну заглавную букву",
+    "Verification code": "Код подтверждения"
+  },
   "conversion": "Конверсия по городам",
   "Conversion": "Конверсия",
   "Count": "Количество",
   "Country": "Страна",
+  "days": "дней",
   "Delete": "Удалить",
   "Email is required": "Требуется email",
   "Enter Verification Code": "Введите код подтверждения",
@@ -80,20 +96,5 @@
   "Update": "Обновить",
   "Upload new File": "Загрузить новый файл",
   "Weight": "Вес",
-  "welcome": "Добро пожаловать",
-  "changePassword": {
-    "Old Password": "Старый пароль",
-    "New Password": "Новый пароль",
-    "Confirm Password": "Подтвердите пароль",
-    "Old password is required": "Старый пароль требуется",
-    "New password is required": "Новый пароль требуется",
-    "Password must be at least 8 characters": "Пароль должен быть не менее 8 символов",
-    "Password must contain at least one uppercase letter": "Пароль должен содержать хотя бы одну заглавную букву",
-    "Password must contain at least one lowercase letter": "Пароль должен содержать хотя бы одну строчную букву",
-    "Password must contain at least one number": "Пароль должен содержать хотя бы одну цифру",
-    "Password must contain at least one special character": "Пароль должен содержать хотя бы один специальный символ",
-    "Confirm password is required": "Подтвердите пароль",
-    "Confirm": "Подтвердить",
-    "Verification code": "Код подтверждения"
-  }
+  "welcome": "Добро пожаловать"
 }

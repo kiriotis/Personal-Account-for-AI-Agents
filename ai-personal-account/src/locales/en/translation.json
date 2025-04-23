@@ -3,10 +3,26 @@
   "Billing settings": "Billing settings",
   "Change password": "Change password",
   "Change Password": "Change Password",
+  "changePassword": {
+    "Confirm": "Confirm",
+    "Confirm Password": "Confirm Password",
+    "Confirm password is required": "Confirm password is required",
+    "New Password": "New Password",
+    "New password is required": "New password is required",
+    "Old Password": "Old Password",
+    "Old password is required": "Old password is required",
+    "Password must be at least 8 characters": "Password must be at least 8 characters",
+    "Password must contain at least one lowercase letter": "Password must contain at least one lowercase letter",
+    "Password must contain at least one number": "Password must contain at least one number",
+    "Password must contain at least one special character": "Password must contain at least one special character",
+    "Password must contain at least one uppercase letter": "Password must contain at least one uppercase letter",
+    "Verification code": "Verification code"
+  },
   "conversion": "Conversion by city",
   "Conversion": "Conversion",
   "Count": "Count",
   "Country": "Country",
+  "days": "days",
   "Delete": "Delete",
   "Email is required": "Email is required",
   "Enter Verification Code": "Enter Verification Code",
@@ -80,20 +96,5 @@
   "Update": "Update",
   "Upload new File": "Upload new File",
   "Weight": "Weight",
-  "welcome": "welcome",
-  "changePassword": {
-    "Old Password": "Old Password",
-    "New Password": "New Password",
-    "Confirm Password": "Confirm Password",
-    "Old password is required": "Old password is required",
-    "New password is required": "New password is required",
-    "Password must be at least 8 characters": "Password must be at least 8 characters",
-    "Password must contain at least one uppercase letter": "Password must contain at least one uppercase letter",
-    "Password must contain at least one lowercase letter": "Password must contain at least one lowercase letter",
-    "Password must contain at least one number": "Password must contain at least one number",
-    "Password must contain at least one special character": "Password must contain at least one special character",
-    "Confirm password is required": "Confirm password is required",
-    "Confirm": "Confirm",
-    "Verification code": "Verification code"
-  }
+  "welcome": "welcome"
 }

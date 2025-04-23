@@ -1,18 +1,20 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import baseQueryHandler from '../shared/lib/base-query.ts';
 import {
+  UsageMessagesResponse,
+  UsageMessagesResponseSchema,
   UsageRequest,
   UsageRequsetSchema,
-  UsageResponse,
-  UsageResponseSchema,
+  UsageTokenResponse,
+  UsageTokenResponseSchema,
 } from '../interfaces/usage.interface.ts';
 
 export const usageService = createApi({
   reducerPath: 'usageService',
-  tagTypes: ['usage-tockens', 'usage-messages'],
+  tagTypes: ['usage-tokens', 'usage-messages'],
   baseQuery: baseQueryHandler,
   endpoints: (builder) => ({
-    getUsageToken: builder.query<{ data: UsageResponse }, UsageRequest>({
+    getUsageToken: builder.query<UsageTokenResponse, UsageRequest>({
       query: (rawReq) => {
         // Валидация входящих данных
         const validationResult = UsageRequsetSchema.safeParse({
@@ -32,9 +34,9 @@ export const usageService = createApi({
           method: 'GET',
         };
       },
-      providesTags: ['usage-tockens'],
+      providesTags: ['usage-tokens'],
       transformResponse: (response: unknown) => {
-        const parsed = UsageResponseSchema.safeParse(response);
+        const parsed = UsageTokenResponseSchema.safeParse(response);
         if (!parsed.success) {
           console.error(
             'Ошибка валидации getUsageToken:',
@@ -42,33 +44,32 @@ export const usageService = createApi({
           );
           throw new Error('Ошибка валидации ответа getUsageToken');
         }
-        return { data: parsed.data };
+        return parsed.data;
       },
     }),
-    getUsageMessage: builder.query<UsageResponse, UsageRequest>({
+    getUsageMessage: builder.query<UsageMessagesResponse, UsageRequest>({
       query: (rawReq) => {
         // Валидация входящих данных
         const validationResult = UsageRequsetSchema.safeParse({
           ...rawReq,
-          type: 'message',
+          type: 'messages',
         });
         if (!validationResult.success) {
           throw new Error(
-            `Ошибка валидации запроса getUsageMessage: ${validationResult.error.message}`
+            `Ошибка валидации запроса getUsageToken: ${validationResult.error.message}`
           );
         }
 
         // Используем провалидированные данные
         const validatedReq = validationResult.data;
         return {
-          url: '/usage',
+          url: `/usage?type=${validatedReq.type}&days=${validatedReq.days}&start_date=${validatedReq.start_date}`,
           method: 'GET',
-          body: validatedReq,
         };
       },
       providesTags: ['usage-messages'],
-      transformResponse: (response: UsageResponse) => {
-        const parsed = UsageResponseSchema.safeParse(response);
+      transformResponse: (response: unknown) => {
+        const parsed = UsageMessagesResponseSchema.safeParse(response);
         if (!parsed.success) {
           console.error(
             'Ошибка валидации getUsageMessage:',

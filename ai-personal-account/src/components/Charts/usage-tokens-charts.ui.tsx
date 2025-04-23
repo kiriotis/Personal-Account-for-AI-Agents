@@ -13,24 +13,49 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { generateMockGraphData } from '../../utils/helpers/mockGraphData';
 import { useGetUsageTokenQuery } from '../../services/usage.service';
+import formatDateToISO from '../../shared/lib/format-date-to-ISO';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function UsageTokensCharts() {
   const today = new Date();
   const { t } = useTranslation();
   const [period, setPeriod] = useState<'7' | '30' | '90'>('7');
-  const [chartData, setChartData] = useState(generateMockGraphData(7));
-  const { data: tockenData } = useGetUsageTokenQuery({
-    type: 'tokens',
+  const [startDate, setStartDate] = useState<Date>(today);
+
+  // Обработчики для пагинации по датам
+  const handlePrevPeriod = () => {
+    setStartDate((prev) => {
+      const newDate = new Date(prev);
+      newDate.setDate(newDate.getDate() - parseInt(period));
+      return newDate;
+    });
+  };
+
+  const handleNextPeriod = () => {
+    setStartDate((prev) => {
+      const newDate = new Date(prev);
+      newDate.setDate(newDate.getDate() + parseInt(period));
+      // Не даём уйти в будущее
+      return newDate > today ? today : newDate;
+    });
+  };
+
+  // Сброс startDate при смене периода
+  useEffect(() => {
+    setStartDate(today);
+  }, [period]);
+
+  const {
+    data: tockenData,
+    isLoading,
+    isFetching,
+  } = useGetUsageTokenQuery({
+    type: 'messages',
     days: period,
-    start_date: today.toISOString().split('T')[0],
+    start_date: formatDateToISO(startDate),
   });
 
-  useEffect(() => {
-    const data = generateMockGraphData(parseInt(period));
-    setChartData(data);
-  }, [period]);
   const handlePeriodChange = (event: SelectChangeEvent) => {
     setPeriod(event.target.value as '7' | '30' | '90');
   };
@@ -58,7 +83,7 @@ export default function UsageTokensCharts() {
         }}
       >
         <FormControl variant="standard">
-          <InputLabel id="demo-simple-select-label">Age</InputLabel>
+          <InputLabel id="demo-simple-select-label">{t('period')}</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -66,8 +91,8 @@ export default function UsageTokensCharts() {
             label={t('period')}
             onChange={handlePeriodChange}
           >
-            <MenuItem value={'7'}>7 days</MenuItem>
-            <MenuItem value={'30'}>30 days</MenuItem>
+            <MenuItem value={'7'}>{`7 ${t('days')}`}</MenuItem>
+            <MenuItem value={'30'}>{`30 ${t('days')}`}</MenuItem>
             {/* <MenuItem value={'90'}>90 days</MenuItem> */}
           </Select>
         </FormControl>
@@ -79,13 +104,22 @@ export default function UsageTokensCharts() {
             marginTop: 2,
           }}
         >
-          <IconButton disabled>
+          <IconButton onClick={handlePrevPeriod}>
             <ChevronLeftIcon />
           </IconButton>
           <Typography variant="body1" sx={{ margin: '0 10px' }}>
-            {`${t('period')}: 01.02.2025 - 07.02.2027`}
+            {`${t('period')}: ${formatDateToISO(startDate)} - ${formatDateToISO(
+              (() => {
+                const end = new Date(startDate);
+                end.setDate(end.getDate() + parseInt(period) - 1);
+                return end > today ? today : end;
+              })()
+            )}`}
           </Typography>
-          <IconButton>
+          <IconButton
+            onClick={handleNextPeriod}
+            disabled={formatDateToISO(startDate) === formatDateToISO(today)}
+          >
             <ChevronRightIcon />
           </IconButton>
         </Box>
@@ -104,35 +138,69 @@ export default function UsageTokensCharts() {
             flexDirection: 'column',
             width: '100%',
             px: 3,
+            position: 'relative',
+            minHeight: 320,
           }}
         >
-          <BarChart
-            disableAxisListener={true}
-            hideLegend={true}
-            xAxis={[
-              {
-                scaleType: 'band',
-                data: chartData.labels,
-              },
-            ]}
-            yAxis={[{ position: 'none' }]}
-            series={[
-              { data: chartData.input, label: t('input'), stack: 'assets' },
-              { data: chartData.output, label: t('output'), stack: 'assets' },
-            ]}
-            borderRadius={6}
-            sx={{
-              // pointerEvents: { xs: 'none', sm: 'auto' },
-              transition: { xs: 'none', sm: 'all 0.3s ease' },
-              width: '100%',
-            }}
-            height={300}
-          />
+          {isLoading || isFetching ? (
+            <Box
+              sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                zIndex: 2,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'rgba(255,255,255,0.7)',
+              }}
+            >
+              <CircularProgress size={64} />
+            </Box>
+          ) : null}
+          {(() => {
+            const usageArr = Array.isArray(tockenData?.data)
+              ? tockenData.data
+              : [];
+            if (usageArr.length === 0 && !isLoading) {
+              return (
+                <Typography variant="body1" sx={{ textAlign: 'center', mt: 4 }}>
+                  Нет данных для отображения
+                </Typography>
+              );
+            }
+
+            const labels = usageArr.map((item) => item.day);
+            const input = usageArr.map((item) => item.n_input);
+            const output = usageArr.map((item) => item.n_output);
+            return (
+              <BarChart
+                disableAxisListener={true}
+                hideLegend={true}
+                xAxis={[
+                  {
+                    scaleType: 'band',
+                    data: labels,
+                  },
+                ]}
+                yAxis={[{ position: 'none' }]}
+                series={[
+                  { data: input, label: t('input'), stack: 'assets' },
+                  { data: output, label: t('output'), stack: 'assets' },
+                ]}
+                borderRadius={6}
+                sx={{
+                  transition: { xs: 'none', sm: 'all 0.3s ease' },
+                  width: '100%',
+                }}
+                height={300}
+              />
+            );
+          })()}
         </Box>
       </Box>
     </Box>
   );
-}
-function formatDateToISO(today: Date): string {
-  throw new Error('Function not implemented.');
 }
