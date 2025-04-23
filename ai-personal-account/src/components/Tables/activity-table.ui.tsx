@@ -9,6 +9,8 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TablePagination,
+  Typography,
 } from '@mui/material';
 import { useState } from 'react';
 import ChatPopup from '../Pop-Up/ChatPopup';
@@ -40,9 +42,20 @@ function setVariant(variant: unknown) {
 
 export default function ActivityTableUi({ rows }: Props) {
   const { t } = useTranslation('translation');
+  const [page, setPage] = useState(0);
+  const rowsPerPage = 10; // Фиксированное значение - 10 строк на странице
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  // Вычисляем отображаемые строки
+  const visibleRows = rows?.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  ) || [];
 
   const renderPlatformCell = (params: string) => {
-    // Custom rendering logic for platform
     return (
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <Avatar
@@ -98,72 +111,92 @@ export default function ActivityTableUi({ rows }: Props) {
   };
 
   return (
-    <TableContainer
+    <Box
       sx={{
+        width: '100%',
         height: '100%',
-        overflow: 'auto', // ← Прокрутка только для тела таблицы
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
-      <Table
-        stickyHeader
-        sx={{ minWidth: 250 }}
-        size="small"
-        aria-label="a dense table"
+      <TableContainer
+        sx={{
+          flex: 1,
+          overflow: 'auto',
+        }}
       >
-        <TableHead
-          sx={{
-            zIndex: 1,
-            backgroundColor: 'background.paper',
-          }}
+        <Table
+          stickyHeader
+          sx={{ minWidth: 250 }}
+          size="small"
+          aria-label="activity table"
         >
-          <TableRow>
-            <TableCell>{t('tables-activity.date')}</TableCell>
-            <TableCell>
-              {t('tables-activity.platform')}
-              <IconButton aria-label="filter" size="small">
-                <FilterListIcon />
-              </IconButton>
-            </TableCell>
-            <TableCell>
-              {t('tables-activity.status')}
-              <IconButton aria-label="filter" size="small">
-                <FilterListIcon />
-              </IconButton>
-            </TableCell>
-            <TableCell>
-              {t('tables-activity.chat')}
-              <IconButton aria-label="filter" size="small">
-                <FilterListIcon />
-              </IconButton>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-
-        {/* Тело таблицы (прокручивается) */}
-        <TableBody>
-          {rows?.map((el, index) => (
-            <TableRow
-              key={index}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell scope="row">{el.last_update}</TableCell>
-              <TableCell scope="row">
-                {renderPlatformCell(el.platform)}
+          <TableHead
+            sx={{
+              zIndex: 1,
+              backgroundColor: 'background.paper',
+            }}
+          >
+            <TableRow>
+              <TableCell>{t('tables-activity.date')}</TableCell>
+              <TableCell>
+                {t('tables-activity.platform')}
+                <IconButton aria-label="filter" size="small">
+                  <FilterListIcon />
+                </IconButton>
               </TableCell>
-              <TableCell scope="row">
-                {renderStatusCell(el.status || '')}
+              <TableCell>
+                {t('tables-activity.status')}
+                <IconButton aria-label="filter" size="small">
+                  <FilterListIcon />
+                </IconButton>
               </TableCell>
-              <TableCell scope="row">
-                {renderChatCell({
-                  id: String(index),
-                  value: '',
-                  chat: el.chat,
-                })}
+              <TableCell>
+                {t('tables-activity.chat')}
+                <IconButton aria-label="filter" size="small">
+                  <FilterListIcon />
+                </IconButton>
               </TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+
+          <TableBody>
+            {visibleRows.map((el, index) => (
+              <TableRow
+                key={index}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell scope="row">{el.last_update}</TableCell>
+                <TableCell scope="row">
+                  {renderPlatformCell(el.platform)}
+                </TableCell>
+                <TableCell scope="row">
+                  {renderStatusCell(el.status || '')}
+                </TableCell>
+                <TableCell scope="row">
+                  {renderChatCell({
+                    id: String(index),
+                    value: '',
+                    chat: el.chat,
+                  })}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      <TablePagination
+        component="div"
+        count={rows?.length || 0}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        rowsPerPageOptions={[]} // Скрываем выбор количества строк
+        labelDisplayedRows={({ from, to, count }) =>
+          `${from}-${to} ${t('of')} ${count}`
+        }
+      />
+    </Box>
   );
 }
