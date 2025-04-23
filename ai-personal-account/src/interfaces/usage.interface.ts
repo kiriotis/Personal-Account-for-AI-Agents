@@ -1,9 +1,9 @@
-export interface IUsageRequest {
-  type: 'tokens' | 'messages';
-  days: 7 | 30 | 90;
-}
+import { z } from 'zod';
 
-export interface IUsageResponse {
-  // Уточните структуру ответа, если она известна
-  [key: string]: any;
-}
+export const UsageRequsetSchema = z.object({
+  type: z.enum(['tokens', 'messages']),
+  days: z.enum(['7', '30', '90']),
+  start_date: z.string(),
+});
+export type UsageRequest = z.infer<typeof UsageRequsetSchema>;
+
