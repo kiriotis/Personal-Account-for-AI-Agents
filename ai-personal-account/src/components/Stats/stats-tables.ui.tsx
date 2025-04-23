@@ -49,7 +49,7 @@ export default function StatsTablesUi({}: iStatsTablesUi) {
           flexDirection: { xs: 'column', lg: 'row' },
           alignItems: 'flex-start',
           gap: { xs: 6, md: 1 },
-          overflow: { md: 'hidden' },
+          // overflow: { md: 'hidden' },
         }}
       >
         <Box
