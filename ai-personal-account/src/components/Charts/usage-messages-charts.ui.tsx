@@ -21,11 +21,12 @@ export default function UsageMessagesCharts() {
   const today = new Date();
   const { t } = useTranslation();
   const [period, setPeriod] = useState<'7' | '30' | '90'>('7');
-  const [startDate, setStartDate] = useState<Date>(today);
+  // startDate — первый день периода, endDate — последний (сегодня)
+  const [endDate, setEndDate] = useState<Date>(today);
 
   // Обработчики для пагинации по датам
   const handlePrevPeriod = () => {
-    setStartDate((prev) => {
+    setEndDate((prev) => {
       const newDate = new Date(prev);
       newDate.setDate(newDate.getDate() - parseInt(period));
       return newDate;
@@ -33,7 +34,7 @@ export default function UsageMessagesCharts() {
   };
 
   const handleNextPeriod = () => {
-    setStartDate((prev) => {
+    setEndDate((prev) => {
       const newDate = new Date(prev);
       newDate.setDate(newDate.getDate() + parseInt(period));
       // Не даём уйти в будущее
@@ -41,10 +42,17 @@ export default function UsageMessagesCharts() {
     });
   };
 
-  // Сброс startDate при смене периода
+  // Сброс endDate при смене периода
   useEffect(() => {
-    setStartDate(today);
+    setEndDate(today);
   }, [period]);
+
+  // startDate вычисляется на основе endDate и периода
+  const startDate = (() => {
+    const d = new Date(endDate);
+    d.setDate(d.getDate() - parseInt(period) + 1);
+    return d;
+  })();
 
   const {
     data: messagesData,
@@ -108,17 +116,11 @@ export default function UsageMessagesCharts() {
             <ChevronLeftIcon />
           </IconButton>
           <Typography variant="body1" sx={{ margin: '0 10px' }}>
-            {`${t('period')}: ${formatDateToISO(startDate)} - ${formatDateToISO(
-              (() => {
-                const end = new Date(startDate);
-                end.setDate(end.getDate() + parseInt(period) - 1);
-                return end > today ? today : end;
-              })()
-            )}`}
+            {`${t('period')}: ${formatDateToISO(startDate)} - ${formatDateToISO(endDate)}`}
           </Typography>
           <IconButton
             onClick={handleNextPeriod}
-            disabled={formatDateToISO(startDate) === formatDateToISO(today)}
+            disabled={formatDateToISO(endDate) === formatDateToISO(today)}
           >
             <ChevronRightIcon />
           </IconButton>
