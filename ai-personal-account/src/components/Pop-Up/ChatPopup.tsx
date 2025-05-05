@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -48,7 +48,7 @@ const ChatPopup: React.FC<ChatPopupProps> = ({
       <DialogContent>
         <Box
           sx={{
-            maxHeight: 300,
+            maxHeight: '80vh',
             overflowY: 'auto',
             display: 'flex',
             flexDirection: 'column',
@@ -111,7 +111,7 @@ function ParseChatAiMessage({
         color: 'black',
         p: 1,
         borderRadius: 1,
-        maxWidth: '80%',
+        maxWidth: '90%',
       }}
     >
       {SwitchChatModel(chatName, message)}
@@ -127,8 +127,20 @@ function SwitchChatModel(chatModel: 'MGP', message: string) {
 }
 
 function parseMGPChat(message: string) {
+  const dict: Partial<Record<keyof IMgpChatAIMessage, string>> = {
+    hotelname: 'Отель',
+    route: 'Маршрут',
+    dates: 'Даты',
+    price: 'Цена',
+    currency: 'Валюта',
+    mealrussian: 'Питание',
+    room: 'Комната',
+    tourname: 'Тур',
+    approve_tour_url: 'Ссылка на тур',
+  };
   let textMessage: string | null = null;
-  let objectMessage: IMgpChatAIMessage | null = null;
+  let objectMessage: IMgpChatAIMessage[] | null = null;
+
   try {
     const parsedMessage = JSON.parse(message);
     objectMessage = parsedMessage;
@@ -140,9 +152,48 @@ function parseMGPChat(message: string) {
     return <div>{textMessage}</div>;
   }
   if (objectMessage) {
-    console.log('objectMessage', objectMessage);
-    return <div>123123</div>;
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 1,
+          width: '100%',
+          overflowX: 'scroll',
+          p: 0.5,
+        }}
+      >
+        {objectMessage.map((el) => (
+          <Card sx={{ minWidth: '90%' }} key={el.tourname}>
+            <CardContent
+              sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}
+            >
+              <img
+                src={el.picture_url}
+                alt={el.hotelname}
+                style={{ width: '100%', height: 'auto' }}
+              />
+              {(
+                Object.entries(dict) as [
+                  keyof IMgpChatAIMessage,
+                  string | undefined,
+                ][]
+              ).map(([key, value]) => {
+                // теперь key имеет тип keyof IMgpChatAIMessage
+                return (
+                  <Box
+                    key={key}
+                    sx={{ display: 'flex', flexDirection: 'column' }}
+                  >
+                    <Typography variant="caption">{value + ':'}</Typography>
+                    <Typography variant="body2">{el[key]}</Typography>
+                  </Box>
+                );
+              })}
+              <Typography variant="caption">{el.tourname}</Typography>
+            </CardContent>
+          </Card>
+        ))}
+      </Box>
+    );
   }
 }
-
-
