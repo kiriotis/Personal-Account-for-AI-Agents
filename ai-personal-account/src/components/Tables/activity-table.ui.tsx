@@ -103,6 +103,7 @@ export default function ActivityTableUi({ rows }: Props) {
           onClose={handleClose}
           chatId={params.id}
           chat={params.chat}
+          chatName="MGP"
         />
       </Box>
     );
