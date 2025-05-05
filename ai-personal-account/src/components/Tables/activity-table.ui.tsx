@@ -10,7 +10,6 @@ import {
   TableHead,
   TableRow,
   TablePagination,
-  Typography,
 } from '@mui/material';
 import { useState } from 'react';
 import ChatPopup from '../Pop-Up/ChatPopup';
@@ -45,7 +44,7 @@ export default function ActivityTableUi({ rows }: Props) {
   const [page, setPage] = useState(0);
   const rowsPerPage = 10; // Фиксированное значение - 10 строк на странице
 
-  const handleChangePage = (event: unknown, newPage: number) => {
+  const handleChangePage = (_: unknown, newPage: number) => {
     setPage(newPage);
   };
 

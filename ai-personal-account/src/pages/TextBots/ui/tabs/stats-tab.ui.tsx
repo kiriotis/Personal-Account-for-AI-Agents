@@ -8,6 +8,7 @@ interface Props {}
 
 export default function StatsTab({}: Props) {
   const [value, setValue] = useState(1);
+
   const { t } = useTranslation();
   const handleChange = (_: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);

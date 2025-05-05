@@ -11,40 +11,17 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useGetStatsQuery } from '../../../services/stats.service';
 
-interface iDestinationTable {}
-
-const destinations = [
-  { name: 'Кемер, Турция', requests: 60 },
-  { name: 'Шарм-Эль-Шейх, Египет', requests: 54 },
-  { name: 'Дубай, ОАЭ', requests: 51 },
-  { name: 'Алания, Турция', requests: 33 },
-  { name: 'Адлер, Сочи', requests: 28 },
-  { name: 'Судак, Крым', requests: 22 },
-  { name: 'Кемер, Турция', requests: 60 },
-  { name: 'Шарм-Эль-Шейх, Египет', requests: 54 },
-  { name: 'Дубай, ОАЭ', requests: 51 },
-  { name: 'Алания, Турция', requests: 33 },
-  { name: 'Адлер, Сочи', requests: 28 },
-  { name: 'Судак, Крым', requests: 22 },
-  { name: 'Кемер, Турция', requests: 60 },
-  { name: 'Шарм-Эль-Шейх, Египет', requests: 54 },
-  { name: 'Дубай, ОАЭ', requests: 51 },
-  { name: 'Алания, Турция', requests: 33 },
-  { name: 'Адлер, Сочи', requests: 28 },
-  { name: 'Судак, Крым', requests: 22 },
-];
-
-export default function DestinationTable({}: iDestinationTable) {
+export default function DestinationTable() {
   const { t } = useTranslation();
   const [page, setPage] = useState(0);
-  const rowsPerPage = 10; // Фиксированное значение - 10 строк на странице
+  const rowsPerPage = 10;
 
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
+  const { data: statsData, isLoading } = useGetStatsQuery();
 
-  // Вычисляем отображаемые строки
+  const destinations = statsData?.destinations ?? [];
+
   const visibleRows = destinations.slice(
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
@@ -73,34 +50,28 @@ export default function DestinationTable({}: iDestinationTable) {
         }}
       >
         <TableContainer sx={{ flex: 1 }}>
-          <Table
-            stickyHeader
-            size="small"
-            aria-label="destinations table"
-          >
-            <TableHead
-              sx={{
-                backgroundColor: 'background.paper',
-              }}
-            >
+          <Table stickyHeader size="small" aria-label="destinations table">
+            <TableHead sx={{ backgroundColor: 'background.paper' }}>
               <TableRow>
                 <TableCell>{t('Country')}</TableCell>
                 <TableCell align="right">{t('Requests')}</TableCell>
               </TableRow>
             </TableHead>
-
             <TableBody>
-              {visibleRows.map((destination, index) => (
-                <TableRow
-                  key={index}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {destination.name}
-                  </TableCell>
-                  <TableCell align="right">{destination.requests}</TableCell>
+              {isLoading ? (
+                <TableRow>
+                  <TableCell colSpan={2}>{t('Loading...')}</TableCell>
                 </TableRow>
-              ))}
+              ) : (
+                visibleRows.map((destination, index) => (
+                  <TableRow key={index}>
+                    <TableCell component="th" scope="row">
+                      {destination.direction}
+                    </TableCell>
+                    <TableCell align="right">{destination.n}</TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </TableContainer>
@@ -110,8 +81,8 @@ export default function DestinationTable({}: iDestinationTable) {
           count={destinations.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          onPageChange={handleChangePage}
-          rowsPerPageOptions={[]} // Скрываем выбор количества строк
+          onPageChange={(_, newPage) => setPage(newPage)}
+          rowsPerPageOptions={[]} // скрываем выбор количества строк
           labelDisplayedRows={({ from, to, count }) =>
             `${from}-${to} ${t('of')} ${count}`
           }

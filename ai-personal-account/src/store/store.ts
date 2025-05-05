@@ -4,6 +4,7 @@ import { authService } from '../services/auth.service.ts';
 import { authUser } from '../services/user.service.ts';
 import counterReducer from './../features/counterSlice';
 import { usageService } from '../services/usage.service.ts';
+import { statsService } from '../services/stats.service.ts';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     [activityService.reducerPath]: activityService.reducer,
     [authUser.reducerPath]: authUser.reducer,
     [usageService.reducerPath]: usageService.reducer,
+    [statsService.reducerPath]: statsService.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -19,7 +21,8 @@ export const store = configureStore({
       .concat(authService.middleware)
       .concat(activityService.middleware)
       .concat(authUser.middleware)
-      .concat(usageService.middleware),
+      .concat(usageService.middleware)
+      .concat(statsService.middleware),
 });
 
 // Типы для TypeScript
