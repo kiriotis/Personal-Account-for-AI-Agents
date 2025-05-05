@@ -11,13 +11,14 @@ import {
   TableRow,
   TablePagination,
 } from '@mui/material';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import ChatPopup from '../Pop-Up/ChatPopup';
 import { useTranslation } from 'react-i18next';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { GridColDef } from '@mui/x-data-grid';
 import { Activity, ChatItem } from '../../interfaces/activity.interface';
+import formatDateTime from '../../utils/helpers/format-date';
 
 interface Props {
   columns: GridColDef[];
@@ -49,10 +50,8 @@ export default function ActivityTableUi({ rows }: Props) {
   };
 
   // Вычисляем отображаемые строки
-  const visibleRows = rows?.slice(
-    page * rowsPerPage,
-    page * rowsPerPage + rowsPerPage
-  ) || [];
+  const visibleRows =
+    rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) || [];
 
   const renderPlatformCell = (params: string) => {
     return (
@@ -140,47 +139,55 @@ export default function ActivityTableUi({ rows }: Props) {
               <TableCell>{t('tables-activity.date')}</TableCell>
               <TableCell>
                 {t('tables-activity.platform')}
-                <IconButton aria-label="filter" size="small">
+                {/* <IconButton aria-label="filter" size="small">
                   <FilterListIcon />
-                </IconButton>
+                </IconButton> */}
               </TableCell>
-              <TableCell>
+              {/* <TableCell>
                 {t('tables-activity.status')}
                 <IconButton aria-label="filter" size="small">
                   <FilterListIcon />
                 </IconButton>
-              </TableCell>
+              </TableCell> */}
               <TableCell>
                 {t('tables-activity.chat')}
-                <IconButton aria-label="filter" size="small">
+                {/* <IconButton aria-label="filter" size="small">
                   <FilterListIcon />
-                </IconButton>
+                </IconButton> */}
               </TableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
-            {visibleRows.map((el, index) => (
-              <TableRow
-                key={index}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell scope="row">{el.last_update}</TableCell>
-                <TableCell scope="row">
-                  {renderPlatformCell(el.platform)}
-                </TableCell>
-                <TableCell scope="row">
-                  {renderStatusCell(el.status || '')}
-                </TableCell>
-                <TableCell scope="row">
-                  {renderChatCell({
-                    id: String(index),
-                    value: '',
-                    chat: el.chat,
-                  })}
-                </TableCell>
-              </TableRow>
-            ))}
+            {visibleRows.map((el, index) => {
+              // Форматируем дату последнего обновления
+              const formattedDate = useMemo(
+                () => formatDateTime(el.last_update),
+                [el.last_update]
+              );
+
+              return (
+                <TableRow
+                  key={index}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell scope="row">{formattedDate}</TableCell>
+                  <TableCell scope="row">
+                    {renderPlatformCell(el.platform)}
+                  </TableCell>
+                  {/* <TableCell scope="row">
+                {renderStatusCell(el.status || '')}
+              </TableCell> */}
+                  <TableCell scope="row">
+                    {renderChatCell({
+                      id: String(index),
+                      value: '',
+                      chat: el.chat,
+                    })}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
