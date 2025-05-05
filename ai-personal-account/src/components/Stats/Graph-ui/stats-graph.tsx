@@ -16,20 +16,6 @@ export default function StatsGraph({}: iStatsGraph) {
     >
       <TextChartsUi />
       <TextChartsConUi />
-      {/* <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          flexGrow: 1,
-          overflow: 'scroll',
-        }}
-      >
-        <UsageCharts
-          data={data}
-          title={'Конверсия по странам'}
-          series={[{ label: 'Получено' }, { label: 'Отправлено' }]}
-        />
-      </Box> */}
     </Box>
   );
 }

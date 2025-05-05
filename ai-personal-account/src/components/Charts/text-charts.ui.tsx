@@ -14,101 +14,13 @@ import { BarChart } from '@mui/x-charts';
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useGetStatsQuery } from '../../services/stats.service';
 
 type SeriesItem = {
   dataKey: string;
   label: string;
   valueFormatter: (value: number | null) => string;
 };
-
-export const dataset = [
-  {
-    london: 59,
-    paris: 57,
-    newYork: 86,
-    seoul: 21,
-    month: 'Jan',
-  },
-  {
-    london: 50,
-    paris: 52,
-    newYork: 78,
-    seoul: 28,
-    month: 'Feb',
-  },
-  {
-    london: 47,
-    paris: 53,
-    newYork: 106,
-    seoul: 41,
-    month: 'Mar',
-  },
-  {
-    london: 54,
-    paris: 56,
-    newYork: 92,
-    seoul: 73,
-    moskow: 41,
-    month: 'Apr',
-  },
-  {
-    london: 57,
-    paris: 69,
-    newYork: 92,
-    seoul: 99,
-    month: 'May',
-  },
-  {
-    london: 60,
-    paris: 63,
-    newYork: 103,
-    seoul: 144,
-    month: 'June',
-  },
-  {
-    london: 59,
-    paris: 60,
-    newYork: 105,
-    seoul: 319,
-    month: 'July',
-  },
-  {
-    london: 65,
-    paris: 60,
-    newYork: 106,
-    seoul: 249,
-    month: 'Aug',
-  },
-  {
-    london: 51,
-    paris: 51,
-    newYork: 95,
-    seoul: 131,
-    month: 'Sept',
-  },
-  {
-    london: 60,
-    paris: 65,
-    newYork: 97,
-    seoul: 55,
-    month: 'Oct',
-  },
-  {
-    london: 67,
-    paris: 64,
-    newYork: 76,
-    seoul: 48,
-    month: 'Nov',
-  },
-  {
-    london: 61,
-    paris: 70,
-    newYork: 103,
-    seoul: 25,
-    minsk: 48,
-    month: 'Dec',
-  },
-];
 
 export function valueFormatter(value: number | null): string {
   return `${value}`;
@@ -117,24 +29,49 @@ export function valueFormatter(value: number | null): string {
 type TextChartsProps = {};
 
 export default function TextChartsUi({}: TextChartsProps) {
-  const [series, setSeries] = useState<SeriesItem[]>([]);
-  const [year, setYear] = useState('');
-  const [currentPage, setCurrentPage] = useState(0);
-  const monthsPerPage = 4;
+  const { data: statsData, isLoading } = useGetStatsQuery();
   const { t } = useTranslation();
 
-  // Calculate total pages
-  const totalPages = Math.ceil(dataset.length / monthsPerPage);
+  // Получаем список всех месяцев
+  const months = Object.keys(statsData?.n_by_countries || {});
+  const [selectedMonth, setSelectedMonth] = useState<string>('');
 
-  // Get current slice of data
-  const currentData = dataset.slice(
-    currentPage * monthsPerPage,
-    (currentPage + 1) * monthsPerPage
-  );
+  // Автоматически выбираем первый доступный месяц
+  useEffect(() => {
+    if (months.length > 0 && !selectedMonth) {
+      setSelectedMonth(months[0]);
+    }
+  }, [months, selectedMonth]);
 
-  const handleYearChange = (event: SelectChangeEvent) => {
-    setYear(event.target.value as string);
+  // Обработчик изменения месяца
+  const handleMonthChange = (event: SelectChangeEvent) => {
+    setSelectedMonth(event.target.value as string);
   };
+
+  // Формируем данные для графика по выбранному месяцу
+  const monthData = statsData?.n_by_countries[selectedMonth] || [];
+  const chartData = monthData.map(({ country, n }) => ({
+    country,
+    value: n,
+  }));
+
+  // series для BarChart
+  const series: SeriesItem[] = [
+    {
+      dataKey: 'value',
+      label: t('requests'),
+      valueFormatter,
+    },
+  ];
+
+  // Пагинация по странам (если нужно)
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 5;
+  const totalPages = Math.ceil(chartData.length / itemsPerPage);
+  const currentData = chartData.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  );
 
   const handlePrevPage = () => {
     setCurrentPage((prev) => Math.max(0, prev - 1));
@@ -144,26 +81,8 @@ export default function TextChartsUi({}: TextChartsProps) {
     setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1));
   };
 
-  useEffect(() => {
-    // Collect all unique keys, excluding 'month'
-    const keys = new Set<string>();
-    dataset.forEach((item) => {
-      Object.keys(item).forEach((key) => {
-        if (key !== 'month') {
-          keys.add(key);
-        }
-      });
-    });
-
-    // Create series array based on collected keys
-    const newSeries: SeriesItem[] = Array.from(keys).map((key) => ({
-      dataKey: key,
-      label: key.charAt(0).toUpperCase() + key.slice(1), // Capitalize first letter
-      valueFormatter,
-    }));
-
-    setSeries(newSeries);
-  }, []);
+  if (isLoading) return <Typography>Loading...</Typography>;
+  if (!statsData || !selectedMonth) return <Typography>No data</Typography>;
 
   return (
     <Box
@@ -186,20 +105,19 @@ export default function TextChartsUi({}: TextChartsProps) {
       >
         <Typography variant="h5">{t('requests')}</Typography>
         <FormControl sx={{ minWidth: 120 }}>
-          <InputLabel id="year-select-label">Year</InputLabel>
+          <InputLabel id="month-select-label">Month</InputLabel>
           <Select
-            labelId="year-select-label"
-            id="year-select"
-            value={year}
-            label="Year"
-            onChange={handleYearChange}
+            labelId="month-select-label"
+            id="month-select"
+            value={selectedMonth}
+            label="Month"
+            onChange={handleMonthChange}
           >
-            <MenuItem value={10}>2020</MenuItem>
-            <MenuItem value={20}>2021</MenuItem>
-            <MenuItem value={30}>2022</MenuItem>
-            <MenuItem value={40}>2023</MenuItem>
-            <MenuItem value={50}>2024</MenuItem>
-            <MenuItem value={60}>2025</MenuItem>
+            {months.map((month) => (
+              <MenuItem key={month} value={month}>
+                {month}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Box>
@@ -207,7 +125,7 @@ export default function TextChartsUi({}: TextChartsProps) {
       {/* Chart with paginated data */}
       <BarChart
         dataset={currentData}
-        xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
+        xAxis={[{ scaleType: 'band', dataKey: 'country' }]}
         series={series}
         borderRadius={8}
         yAxis={[
@@ -221,7 +139,6 @@ export default function TextChartsUi({}: TextChartsProps) {
           [`.${axisClasses.left} .${axisClasses.label}`]: {
             transform: 'translate(-10px, 0)',
           },
-          // pointerEvents: { xs: 'none', sm: 'auto' },
         }}
       />
 
