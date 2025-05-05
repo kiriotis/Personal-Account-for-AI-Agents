@@ -1,7 +1,6 @@
 import {
   Avatar,
   Box,
-  Chip,
   IconButton,
   Table,
   TableBody,
@@ -15,7 +14,7 @@ import { useMemo, useState } from 'react';
 import ChatPopup from '../Pop-Up/ChatPopup';
 import { useTranslation } from 'react-i18next';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import FilterListIcon from '@mui/icons-material/FilterList';
+// import FilterListIcon from '@mui/icons-material/FilterList';
 import { GridColDef } from '@mui/x-data-grid';
 import { Activity, ChatItem } from '../../interfaces/activity.interface';
 import formatDateTime from '../../utils/helpers/format-date';
@@ -25,20 +24,20 @@ interface Props {
   rows: Activity[];
 }
 
-function setVariant(variant: unknown) {
-  switch (variant) {
-    case 'Paid':
-      return 'success';
-    case 'Booked':
-      return 'warning';
-    case 'Clicked booking':
-      return 'info';
-    case 'Lost':
-      return 'error';
-    default:
-      return 'info';
-  }
-}
+// function setVariant(variant: unknown) {
+//   switch (variant) {
+//     case 'Paid':
+//       return 'success';
+//     case 'Booked':
+//       return 'warning';
+//     case 'Clicked booking':
+//       return 'info';
+//     case 'Lost':
+//       return 'error';
+//     default:
+//       return 'info';
+//   }
+// }
 
 export default function ActivityTableUi({ rows }: Props) {
   const { t } = useTranslation('translation');
@@ -72,9 +71,9 @@ export default function ActivityTableUi({ rows }: Props) {
     );
   };
 
-  const renderStatusCell = (params: string) => {
-    return <Chip label={params || 'info'} color={setVariant(params)} />;
-  };
+  // const renderStatusCell = (params: string) => {
+  //   return <Chip label={params || 'info'} color={setVariant(params)} />;
+  // };
 
   const renderChatCell = (params: {
     id: string;

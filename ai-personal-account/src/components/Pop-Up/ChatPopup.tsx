@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -26,7 +26,7 @@ const ChatPopup: React.FC<ChatPopupProps> = ({
   onClose,
   chatId,
   chat,
-  chatName,
+  // chatName,
 }) => {
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
