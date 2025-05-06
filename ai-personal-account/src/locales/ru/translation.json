@@ -18,7 +18,7 @@
     "Password must contain at least one uppercase letter": "Пароль должен содержать хотя бы одну заглавную букву",
     "Verification code": "Код подтверждения"
   },
-  "conversion": "Конверсия по городам",
+  "conversion": "Конверсия по странам",
   "Conversion": "Конверсия",
   "Count": "Количество",
   "Country": "Страна",
@@ -54,7 +54,7 @@
   "Password must be at least 6 characters": "Пароль должен быть не менее 6 символов",
   "period": "Период",
   "Request text": "Текст запроса",
-  "requests": "Количество запросов",
+  "requests": "Запросы по странам в течение года",
   "Requests": "Запросы",
   "Security": "Безопасность",
   "signIn": "Войти",

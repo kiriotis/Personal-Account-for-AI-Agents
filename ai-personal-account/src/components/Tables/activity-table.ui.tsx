@@ -14,6 +14,7 @@ import { useMemo, useState } from 'react';
 import ChatPopup from '../Pop-Up/ChatPopup';
 import { useTranslation } from 'react-i18next';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import MarkUnreadChatAltOutlinedIcon from '@mui/icons-material/MarkUnreadChatAltOutlined';
 // import FilterListIcon from '@mui/icons-material/FilterList';
 import { GridColDef } from '@mui/x-data-grid';
 import { Activity, ChatItem } from '../../interfaces/activity.interface';
@@ -56,15 +57,17 @@ export default function ActivityTableUi({ rows }: Props) {
     return (
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <Avatar
-          sx={{ width: 32, height: 32, fontSize: '14px' }}
+          sx={{
+            width: 32,
+            height: 32,
+            fontSize: '14px',
+            backgroundColor: '#C4C4C4',
+          }}
           alt={params}
-          src="/static/images/avatar/1.jpg"
         >
-          {params
-            .split(/(?=[A-Z])/)
-            .map((word: string) => word[0])
-            .join('')
-            .slice(0, 2)}
+          <MarkUnreadChatAltOutlinedIcon
+            sx={{ width: 20, height: 20, strokeWidth: 1, fontSize: '14px' }}
+          />
         </Avatar>
         <span>{params}</span>
       </Box>

@@ -1,5 +1,5 @@
 import LaunchIcon from '@mui/icons-material/Launch';
-import { Box, TextField, Typography } from '@mui/material';
+import { Box, Paper, TextField, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 interface iBilling {}
 
@@ -26,6 +26,16 @@ export default function Billing({}: iBilling) {
         overflow: 'auto',
       }}
     >
+      <Paper
+        sx={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          p: 2,
+        }}
+      >
+
       <Typography variant="h5">{t('Billing settings')}</Typography>
       {billingData.map((item) => (
         <Box
@@ -49,6 +59,7 @@ export default function Billing({}: iBilling) {
           </a>
         </Box>
       ))}
+      </Paper>
     </Box>
   );
 }

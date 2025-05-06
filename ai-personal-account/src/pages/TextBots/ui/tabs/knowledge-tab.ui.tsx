@@ -54,7 +54,6 @@ export default function KnowledgeTab({}: Props) {
       sx={{
         width: '100%',
         height: '100%',
-        bgcolor: 'white',
         display: 'flex',
         flexDirection: 'column',
         p: { xs: 1, sm: 2 },
@@ -83,7 +82,9 @@ export default function KnowledgeTab({}: Props) {
                 <TableCell align="right"></TableCell>
                 <TableCell align="right">
                   <Button variant="outlined" onClick={handleUploadClick}>
-                    {t('Upload new File')}
+                    <Typography variant='button'>
+                      {t('Upload new File')}
+                    </Typography>
                   </Button>
                   <input
                     type="file"
@@ -110,13 +111,23 @@ export default function KnowledgeTab({}: Props) {
                   <TableCell align="right">
                     <Button variant="outlined" sx={{ gap: 1 }}>
                       <UpdateIcon></UpdateIcon>
-                      {t('Update')}
+                      <Typography
+                        variant="body2"
+                        sx={{ display: { xs: 'none', sm: 'block' } }}
+                      >
+                        {t('Update')}
+                      </Typography>
                     </Button>
                   </TableCell>
                   <TableCell align="center">
                     <Button variant="outlined" sx={{ gap: 1 }}>
                       <DeleteIcon></DeleteIcon>
-                      {t('Delete')}
+                      <Typography
+                        variant="body2"
+                        sx={{ display: { xs: 'none', sm: 'block' } }}
+                      >
+                        {t('Delete')}
+                      </Typography>
                     </Button>
                   </TableCell>
                 </TableRow>

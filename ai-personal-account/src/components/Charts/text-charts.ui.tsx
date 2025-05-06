@@ -81,9 +81,6 @@ export default function TextChartsUi({}: TextChartsProps) {
     setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1));
   };
 
-  if (isLoading) return <Typography>Loading...</Typography>;
-  if (!statsData || !selectedMonth) return <Typography>No data</Typography>;
-
   return (
     <Box
       sx={{
@@ -101,6 +98,7 @@ export default function TextChartsUi({}: TextChartsProps) {
           justifyContent: 'space-between',
           alignItems: 'center',
           px: 3,
+          gap: 2,
         }}
       >
         <Typography variant="h5">{t('requests')}</Typography>

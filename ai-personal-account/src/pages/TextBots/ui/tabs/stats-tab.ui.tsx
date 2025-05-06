@@ -18,11 +18,10 @@ export default function StatsTab({}: Props) {
       sx={{
         width: '100%',
         height: '100%',
-        bgcolor: 'white',
         display: 'flex',
         flexDirection: 'column',
         // flexGrow: 1,
-        overflow: 'hidden',
+        // overflow: 'hidden',
       }}
     >
       <Box
@@ -54,8 +53,8 @@ export default function StatsTab({}: Props) {
           height: '100%',
           display: 'flex',
           alignItems: 'flex-start',
-          flexGrow: 1,
-          overflow: 'auto',
+          // flexGrow: 1,
+          // overflow: 'auto',
           p: { xs: 1, sm: 2 },
         }}
       >

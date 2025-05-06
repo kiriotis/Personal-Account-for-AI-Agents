@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 import UsageTokensCharts from '../../components/Charts/usage-tokens-charts.ui';
 import UsageMessagesCharts from '../../components/Charts/usage-messages-charts.ui';
 
@@ -16,8 +16,18 @@ export default function Usage({}: iUsage) {
         gap: 2,
       }}
     >
-      <UsageTokensCharts />
-      <UsageMessagesCharts />
+      <Paper
+        sx={{
+          width: '100%',
+          // height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          p: 2,
+        }}
+      >
+        <UsageTokensCharts />
+        <UsageMessagesCharts />
+      </Paper>
     </Box>
   );
 }

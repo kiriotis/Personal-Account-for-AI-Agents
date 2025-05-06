@@ -112,16 +112,17 @@ export default function TextBots() {
           sx={{
             width: '100%',
             height: '100%',
-            display: 'flex',
+            // display: 'flex',
             p: { xs: 1, sm: 2, md: 4 },
-            overflow: 'hidden',
+            overflowY: 'auto',
           }}
         >
           <Paper
             sx={{
               width: '100%',
-              height: '100%',
+              // height: '100%',
               display: 'flex',
+              flexGrow: 1,
               p: 1,
             }}
           >

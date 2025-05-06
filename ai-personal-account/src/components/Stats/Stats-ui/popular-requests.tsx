@@ -44,7 +44,7 @@ export default function PopularRequests() {
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
-          overflow: 'hidden',
+          // overflow: 'hidden',
         }}
       >
         <TableContainer sx={{ flex: 1 }}>

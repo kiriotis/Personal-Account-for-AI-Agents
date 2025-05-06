@@ -43,7 +43,7 @@ export default function Layout({}: iLayout) {
       <SideBar></SideBar>
       <Box
         sx={{
-          flexGrow: 1,
+          // flexGrow: 1,
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -72,7 +72,7 @@ export default function Layout({}: iLayout) {
         </Typography>
         <Box
           sx={{
-            flexGrow: 1,
+            // flexGrow: 1,
             width: '100%',
             height: '100%',
             display: 'flex',
