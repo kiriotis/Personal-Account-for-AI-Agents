@@ -71,7 +71,7 @@ function LoginForm() {
         type="email"
         placeholder={t('loginExaple')}
         autoComplete="email"
-        defaultValue="usertest@example.com"
+        defaultValue="" //usertest@example.com
         autoFocus
         {...register('email')}
         error={!!errors.email}
@@ -85,7 +85,7 @@ function LoginForm() {
         id="password"
         autoComplete="current-password"
         variant="outlined"
-        defaultValue="string"
+        defaultValue=""
         {...register('password')}
         error={!!errors.password}
         helperText={errors.password?.message}
