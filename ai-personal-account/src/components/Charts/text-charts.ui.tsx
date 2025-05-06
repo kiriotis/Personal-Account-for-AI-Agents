@@ -29,7 +29,7 @@ export function valueFormatter(value: number | null): string {
 type TextChartsProps = {};
 
 export default function TextChartsUi({}: TextChartsProps) {
-  const { data: statsData, isLoading } = useGetStatsQuery();
+  const { data: statsData } = useGetStatsQuery();
   const { t } = useTranslation();
 
   // Получаем список всех месяцев
