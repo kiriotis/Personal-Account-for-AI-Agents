@@ -19,7 +19,6 @@
     "Verification code": "Verification code"
   },
   "conversion": "Conversion by city",
-  "Conversion": "Conversion",
   "Count": "Count",
   "Country": "Country",
   "days": "days",
@@ -32,13 +31,18 @@
   "input": "Input",
   "Invalid email": "Invalid email",
   "Knowledge Base": "Knowledge Base",
+  "Loading": {
+    "": "Loading..."
+  },
   "Localization": "Localization",
   "login": "login",
   "loginExaple": "loginExaple",
   "Message Usage Stats": "Message Usage Stats",
+  "month": "Month",
   "nav": {
     "back": "Back to main page"
   },
+  "of": "of",
   "output": "Output",
   "pages": {
     "AI ChatBots": "Chat-bots",
@@ -71,7 +75,6 @@
     "conversionToBooking": "Conversion to booking",
     "totalRequests": "Total requests"
   },
-  "Status": "Status",
   "table": {
     "chat": "Chat",
     "date": "Date & Time",
@@ -82,8 +85,7 @@
   "tables-activity": {
     "chat": "Chat",
     "date": "Date",
-    "platform": "Platform",
-    "status": "Status"
+    "platform": "Platform"
   },
   "tabs": {
     "Activity": "Activity",

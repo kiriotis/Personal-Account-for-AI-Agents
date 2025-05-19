@@ -19,7 +19,6 @@
     "Verification code": "Код подтверждения"
   },
   "conversion": "Конверсия по странам",
-  "Conversion": "Конверсия",
   "Count": "Количество",
   "Country": "Страна",
   "days": "дней",
@@ -32,13 +31,18 @@
   "input": "Вход",
   "Invalid email": "Неверный email",
   "Knowledge Base": "База знаний",
+  "Loading": {
+    "": "Загрузка..."
+  },
   "Localization": "Локализация",
   "login": "Логин",
   "loginExaple": "email@example.com",
   "Message Usage Stats": "Статистика сообщений",
+  "month": "Месяц",
   "nav": {
     "back": "Назад на главную"
   },
+  "of": "из",
   "output": "Выход",
   "pages": {
     "AI ChatBots": "Чат-боты",
@@ -71,7 +75,6 @@
     "conversionToBooking": "Конверсия в бронирование",
     "totalRequests": "Всего обращений"
   },
-  "Status": "Статус",
   "table": {
     "chat": "Чат",
     "date": "Дата и время",
@@ -82,8 +85,7 @@
   "tables-activity": {
     "chat": "Чат",
     "date": "Дата",
-    "platform": "Платформа",
-    "status": "Статус"
+    "platform": "Платформа"
   },
   "tabs": {
     "Activity": "Активность",

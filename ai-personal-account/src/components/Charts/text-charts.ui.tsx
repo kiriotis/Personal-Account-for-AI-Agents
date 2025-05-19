@@ -103,12 +103,12 @@ export default function TextChartsUi({}: TextChartsProps) {
       >
         <Typography variant="h5">{t('requests')}</Typography>
         <FormControl sx={{ minWidth: 120 }}>
-          <InputLabel id="month-select-label">Month</InputLabel>
+          <InputLabel id="month-select-label">{t('month')}</InputLabel>
           <Select
             labelId="month-select-label"
             id="month-select"
             value={selectedMonth}
-            label="Month"
+            label={t('month')}
             onChange={handleMonthChange}
           >
             {months.map((month) => (
@@ -141,7 +141,8 @@ export default function TextChartsUi({}: TextChartsProps) {
       />
 
       {/* Pagination controls */}
-      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 2 }}>
+      {/* TODO: Времено скрыт */}
+      <Box sx={{ display: 'non  ', justifyContent: 'center', gap: 2, mt: 2 }}>
         <Button
           variant="outlined"
           onClick={handlePrevPage}
